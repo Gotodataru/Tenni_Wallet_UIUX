@@ -3,10 +3,11 @@
    The only layer components are allowed to use.
    In Figma: Variables "theme" with two modes (Dark / Light).
 
-   Dark  — "night session": ball on a deep blue hard court.
-   Light — "day session": the ball can't be used on paper (1.2:1),
-           so the court blue takes over the accent role and the ball
-           survives as a darkened olive for "up".
+   Dark  — the night match: black canvas, a cobalt card lit by the
+           optic-yellow ball; the ball is the only accent.
+   Light — warm white paper, ink actions. The ball can't be text on
+           paper (1.2:1), so it becomes a highlight fill; cobalt stays
+           on the card as a physical object, never a button on grey.
    ============================================================ */
 
 /* ==================== DARK (default) ==================== */
@@ -16,50 +17,50 @@
 
   /* --- Backgrounds --- */
   --bg-canvas:     var(--c-base);
-  --bg-surface-1:  rgba(238, 242, 250, .04);
-  --bg-surface-2:  rgba(238, 242, 250, .06);
-  --bg-surface-3:  rgba(238, 242, 250, .10);
+  --bg-surface-1:  rgba(242, 244, 248, .04);
+  --bg-surface-2:  rgba(242, 244, 248, .07);
+  --bg-surface-3:  rgba(242, 244, 248, .11);
   --bg-inverse:    var(--c-chalk);
-  --bg-overlay:    rgba(4, 7, 14, .72);
+  --bg-overlay:    rgba(3, 4, 6, .74);
   --bg-ambient:
-    radial-gradient(1200px 700px at 18% -10%, rgba(63, 111, 216, .26), transparent 60%),
-    radial-gradient(900px 600px at 110% 30%, rgba(200, 255, 77, .08), transparent 65%),
+    radial-gradient(1100px 700px at 12% -10%, rgba(43, 91, 255, .30), transparent 60%),
+    radial-gradient(900px 700px at 105% 95%, rgba(216, 248, 30, .12), transparent 60%),
     var(--c-base);
 
   /* --- Text & icons --- */
   --fg-default:  var(--c-chalk);
-  --fg-dim:      rgba(238, 242, 250, .68);   /* 8.2:1 */
-  --fg-faint:    rgba(238, 242, 250, .42);   /* ⚠ 3.7:1 — decoration and large text only */
+  --fg-dim:      rgba(242, 244, 248, .66);   /* 8.0:1 */
+  --fg-faint:    rgba(242, 244, 248, .42);   /* ⚠ 3.8:1 — decoration and large text only */
   --fg-inverse:  var(--c-base);
   --fg-accent:   var(--c-ball);
   --fg-on-accent: var(--c-base);
 
   /* --- Borders --- */
-  --border-subtle: rgba(238, 242, 250, .10);
-  --border-strong: rgba(238, 242, 250, .22);
+  --border-subtle: rgba(242, 244, 248, .10);
+  --border-strong: rgba(242, 244, 248, .22);
   --border-focus:  var(--c-ball);
 
   /* --- Accent --- */
   --accent:        var(--c-ball);
   --accent-hover:  var(--c-ball-glow);
   --accent-press:  var(--c-ball-deep);
-  --accent-subtle: rgba(200, 255, 77, .14);
-  --accent-border: rgba(200, 255, 77, .28);
+  --accent-subtle: rgba(216, 248, 30, .13);
+  --accent-border: rgba(216, 248, 30, .30);
 
   /* --- Status ---
      success = up = the ball. In dark mode it equals the accent on
      purpose: numbers always carry an ▲/▼ arrow and are text, actions
      are filled buttons — shape separates "data" from "action". */
   --success:        var(--c-ball);
-  --success-subtle: rgba(200, 255, 77, .14);
+  --success-subtle: rgba(216, 248, 30, .13);
   --danger:         var(--c-clay);
-  --danger-subtle:  rgba(255, 123, 92, .14);
+  --danger-subtle:  rgba(255, 107, 90, .14);
   --warning:        var(--c-warn-d);
   --warning-subtle: rgba(255, 196, 107, .14);
   --info:           var(--c-info-d);
   --info-subtle:    rgba(123, 211, 255, .14);
 
-  /* --- Price movement: ball and clay --- */
+  /* --- Price movement --- */
   --up:   var(--c-ball);
   --down: var(--c-clay);
 
@@ -70,10 +71,10 @@
   --btn-primary-press: var(--c-ball-deep);
 
   /* --- Secondary button --- */
-  --btn-secondary-bg:    rgba(238, 242, 250, .10);
+  --btn-secondary-bg:    rgba(242, 244, 248, .10);
   --btn-secondary-fg:    var(--c-chalk);
-  --btn-secondary-hover: rgba(238, 242, 250, .16);
-  --btn-secondary-press: rgba(238, 242, 250, .06);
+  --btn-secondary-hover: rgba(242, 244, 248, .16);
+  --btn-secondary-press: rgba(242, 244, 248, .06);
 
   /* --- Shadows --- */
   --shadow-0: none;
@@ -81,17 +82,17 @@
   --shadow-2: 0 4px 12px rgba(0, 0, 0, .35);
   --shadow-3: 0 12px 32px rgba(0, 0, 0, .45);
   --shadow-4: 0 24px 64px rgba(0, 0, 0, .55);
-  --shadow-accent: 0 8px 28px rgba(200, 255, 77, .22);
+  --shadow-accent: 0 8px 28px rgba(216, 248, 30, .24);
 
   /* --- Phone frame & card --- */
-  --phone-bezel:  linear-gradient(160deg, #0B1324 0%, #141F36 100%);
-  --phone-screen: linear-gradient(180deg, #0B1324 0%, #15213A 100%);
-  --card-bg:      linear-gradient(135deg, #15213A 0%, #2551C4 60%, #070D1A 100%);
-  --card-glow:    rgba(200, 255, 77, .22);
+  --phone-bezel:  linear-gradient(160deg, #0E1016 0%, #171A22 100%);
+  --phone-screen: linear-gradient(180deg, #0B0D13 0%, #06070B 100%);
+  --card-bg:      linear-gradient(135deg, #4A78FF 0%, #2448F0 50%, #0E1C8C 100%);
+  --card-glow:    rgba(216, 248, 30, .45);
 
   /* --- Glass --- */
-  --glass-bg:     rgba(238, 242, 250, .07);
-  --glass-border: rgba(238, 242, 250, .14);
+  --glass-bg:     rgba(242, 244, 248, .07);
+  --glass-border: rgba(242, 244, 248, .16);
   --glass-blur:   20px;
 
   /* --- Controls: Toggle / Checkbox / Radio / Slider --- */
@@ -104,40 +105,39 @@
 [data-theme="light"] {
   color-scheme: light;
 
-  --bg-canvas:     var(--c-paper-2);
-  --bg-surface-1:  rgba(255, 255, 255, .72);
+  --bg-canvas:     var(--c-paper);
+  --bg-surface-1:  rgba(255, 255, 255, .80);
   --bg-surface-2:  #FFFFFF;
-  --bg-surface-3:  var(--c-paper);
+  --bg-surface-3:  var(--c-paper-2);
   --bg-inverse:    var(--c-ink);
-  --bg-overlay:    rgba(19, 26, 42, .48);
+  --bg-overlay:    rgba(11, 12, 16, .48);
   --bg-ambient:
-    radial-gradient(1200px 700px at 18% -10%, rgba(255, 255, 255, .95), transparent 60%),
-    radial-gradient(900px 600px at 110% 30%, rgba(63, 111, 216, .16), transparent 65%),
-    linear-gradient(160deg, #F6F8FB 0%, #DBE2EC 100%);
+    radial-gradient(1000px 600px at 12% -10%, rgba(43, 91, 255, .10), transparent 60%),
+    radial-gradient(900px 700px at 105% 95%, rgba(216, 248, 30, .22), transparent 60%),
+    var(--c-paper);
 
   --fg-default:  var(--c-ink);
-  --fg-dim:      rgba(19, 26, 42, .66);   /* 5.3:1 */
-  --fg-faint:    rgba(19, 26, 42, .40);   /* ⚠ decoration only */
+  --fg-dim:      rgba(11, 12, 16, .62);   /* 5.4:1 */
+  --fg-faint:    rgba(11, 12, 16, .38);   /* ⚠ decoration only */
   --fg-inverse:  var(--c-paper);
-  --fg-accent:   var(--c-court-deep);
-  --fg-on-accent: var(--c-white);
+  --fg-accent:   var(--c-ink);
+  --fg-on-accent: var(--c-paper);
 
-  --border-subtle: rgba(19, 26, 42, .10);
-  --border-strong: rgba(19, 26, 42, .20);
+  --border-subtle: rgba(11, 12, 16, .09);
+  --border-strong: rgba(11, 12, 16, .20);
   --border-focus:  var(--c-court-deep);
 
-  --accent:        var(--c-court-deep);
-  --accent-hover:  var(--c-court);
-  --accent-press:  var(--c-court-night);
-  --accent-subtle: rgba(37, 81, 196, .10);
-  --accent-border: rgba(37, 81, 196, .24);
+  /* Actions are ink; the ball survives as a highlight fill behind ink text. */
+  --accent:        var(--c-ink);
+  --accent-hover:  var(--c-ink-2);
+  --accent-press:  #000000;
+  --accent-subtle: rgba(216, 248, 30, .42);
+  --accent-border: rgba(11, 12, 16, .18);
 
-  /* The ball on paper is 1.2:1, so here it is the same ball darkened
-     to olive, and the same clay darkened to brick; both AA. */
   --success:        var(--c-ball-olive);
-  --success-subtle: rgba(70, 112, 0, .12);
+  --success-subtle: rgba(216, 248, 30, .40);
   --danger:         var(--c-clay-deep);
-  --danger-subtle:  rgba(184, 67, 43, .12);
+  --danger-subtle:  rgba(194, 58, 43, .10);
   --warning:        var(--c-warn-l);
   --warning-subtle: rgba(143, 90, 0, .12);
   --info:           var(--c-info-l);
@@ -146,33 +146,33 @@
   --up:   var(--c-ball-olive);
   --down: var(--c-clay-deep);
 
-  --btn-primary-bg:    var(--c-court-deep);
-  --btn-primary-fg:    var(--c-white);
-  --btn-primary-hover: var(--c-court);
-  --btn-primary-press: var(--c-court-night);
+  --btn-primary-bg:    var(--c-ink);
+  --btn-primary-fg:    var(--c-paper);
+  --btn-primary-hover: var(--c-ink-2);
+  --btn-primary-press: #000000;
 
-  --btn-secondary-bg:    rgba(19, 26, 42, .07);
+  --btn-secondary-bg:    rgba(11, 12, 16, .06);
   --btn-secondary-fg:    var(--c-ink);
-  --btn-secondary-hover: rgba(19, 26, 42, .12);
-  --btn-secondary-press: rgba(19, 26, 42, .04);
+  --btn-secondary-hover: rgba(11, 12, 16, .11);
+  --btn-secondary-press: rgba(11, 12, 16, .04);
 
   --shadow-0: none;
-  --shadow-1: 0 1px 2px rgba(19, 26, 42, .06);
-  --shadow-2: 0 4px 12px rgba(19, 26, 42, .08);
-  --shadow-3: 0 12px 32px rgba(19, 26, 42, .12);
-  --shadow-4: 0 24px 64px rgba(19, 26, 42, .16);
-  --shadow-accent: 0 8px 28px rgba(37, 81, 196, .24);
+  --shadow-1: 0 1px 2px rgba(11, 12, 16, .06);
+  --shadow-2: 0 4px 12px rgba(11, 12, 16, .08);
+  --shadow-3: 0 12px 32px rgba(11, 12, 16, .12);
+  --shadow-4: 0 24px 64px rgba(11, 12, 16, .16);
+  --shadow-accent: 0 8px 28px rgba(11, 12, 16, .18);
 
-  --phone-bezel:  linear-gradient(160deg, #2E3750 0%, #131A2A 100%);
-  --phone-screen: linear-gradient(180deg, #F9FAFC 0%, #ECF0F6 50%, #DBE2EC 100%);
-  --card-bg:      linear-gradient(135deg, #1A2E5C 0%, #2551C4 60%, #131A2A 100%);
-  --card-glow:    rgba(200, 255, 77, .20);
+  --phone-bezel:  linear-gradient(160deg, #2A2C33 0%, #0B0C10 100%);
+  --phone-screen: linear-gradient(180deg, #FBFBF8 0%, #F7F7F3 100%);
+  --card-bg:      linear-gradient(135deg, #4A78FF 0%, #2448F0 50%, #0E1C8C 100%);
+  --card-glow:    rgba(216, 248, 30, .55);
 
-  --glass-bg:     rgba(255, 255, 255, .62);
+  --glass-bg:     rgba(255, 255, 255, .55);
   --glass-border: rgba(255, 255, 255, .85);
   --glass-blur:   20px;
 
   --control-thumb:     var(--c-white);
-  --control-track-off: rgba(19, 26, 42, .16);
+  --control-track-off: rgba(11, 12, 16, .16);
   --control-track-on:  var(--accent);
 }

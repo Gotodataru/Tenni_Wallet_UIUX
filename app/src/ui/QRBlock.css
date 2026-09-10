@@ -62,5 +62,5 @@
   justify-content: center;
   gap: var(--space-8);
   border-radius: var(--r-md);
-  background: rgba(19, 26, 42, .82);
+  background: rgba(11, 12, 16, .82);
 }

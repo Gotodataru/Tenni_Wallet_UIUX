@@ -21,10 +21,12 @@ Notation: `W`/`H` — width/height. `hug` = Hug contents, `fill` = Fill containe
 | Control sizes | `--control-*`, `--icon-*` | 8 |
 | Motion | `--dur-*`, `--ease-*` | 7 |
 
-Palette concept — three tennis surfaces: **ball** `#C8FF4D` (accent, up),
-**hard court** `#3F6FD8` / night court `#070D1A` (canvas, light-theme accent),
-**clay** `#FF7B5C` (down, errors). In the light theme the ball becomes olive
-`#467000` and the accent switches to court blue — lime on paper is 1.2:1.
+Palette concept — a night match under floodlights: **ball** `#D8F81E` (the only
+accent: actions, up), **court** `#2448F0` (the card, glows), **night** `#06070B`
+(dark canvas), **chalk** `#F2F4F8` (text on dark), **clay** `#FF6B5A` (down,
+errors). In the light theme (warm white `#F7F7F3`) the ball can't be text on
+paper (1.2:1): actions are ink `#0B0C10`, the ball becomes a highlight fill, and
+"up" is olive `#3F6A00`.
 
 ---
 
