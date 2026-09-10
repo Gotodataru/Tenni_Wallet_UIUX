@@ -1,0 +1,29 @@
+/* ============================================================
+   L3 · Balance
+   column · W=hug H=hug · gap 6 · align center
+   ============================================================ */
+
+.Balance {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-6);
+  width: fit-content;
+}
+
+.Balance--center { align-items: center; }
+.Balance--start  { align-items: flex-start; }   /* balance as the screen header on Home */
+
+.Balance__head {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.Balance__delta {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-8);
+}

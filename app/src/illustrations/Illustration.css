@@ -1,0 +1,52 @@
+/* ============================================================
+   Empty-state illustrations — the shared style vocabulary of the set.
+   No color outside the tokens: the set must survive a theme switch
+   exactly like the icons do (see Icon.css).
+   ============================================================ */
+
+.Illu {
+  display: block;
+  flex: 0 0 auto;
+}
+
+/* Background circle — marks membership in the set */
+.Illu__blob {
+  fill: var(--accent-subtle);
+}
+
+/* Main geometry — a stroke like the icons, thicker for the scale */
+.Illu__line,
+.Illu__dashed {
+  fill: none;
+  stroke: var(--fg-dim);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.Illu__dashed {
+  stroke-dasharray: 7 7;
+}
+
+.Illu__dot {
+  fill: var(--fg-dim);
+  stroke: none;
+}
+
+/* Exactly one accent per drawing — where the eye lands first */
+.Illu__accent {
+  fill: var(--accent);
+  stroke: none;
+}
+
+.Illu__accentLine {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Fading rows in empty-activity: the list trails off into nothing */
+.Illu__fade1 { opacity: .62; }
+.Illu__fade2 { opacity: .32; }

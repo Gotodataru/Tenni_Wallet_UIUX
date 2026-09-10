@@ -1,0 +1,49 @@
+/* ============================================================
+   L3 · AssetIcon
+   W=fixed(size) H=fixed(size) · radius full · center
+   ============================================================ */
+
+.AssetIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  position: relative;   /* is-abs: anchor for the chain badge below */
+
+  border-radius: var(--r-full);
+  background: var(--bg-surface-3);
+  color: var(--fg-dim);
+}
+
+/* Known symbol — brand-colored background with a light icon on top */
+.AssetIcon--tinted {
+  background: var(--asset-tone);
+  color: var(--fg-inverse);
+}
+
+.AssetIcon--24 { width: 24px; height: 24px; }
+.AssetIcon--32 { width: 32px; height: 32px; }
+.AssetIcon--40 { width: 40px; height: 40px; }
+
+.AssetIcon__mono {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  line-height: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.AssetIcon__chain {
+  position: absolute;   /* is-abs: network badge over the asset icon, out of flow */
+  bottom: -2px;
+  right: -2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: var(--r-full);
+  background: var(--bg-surface-2);
+  box-shadow: 0 0 0 2px var(--bg-canvas);
+  color: var(--fg-default);
+}

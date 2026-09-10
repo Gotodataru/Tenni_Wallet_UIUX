@@ -1,0 +1,34 @@
+/* ============================================================
+   L5 · StatusBar
+   row · W=fill H=fixed(54) · pad 0/24 · space-between
+   ============================================================ */
+
+.StatusBar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  align-self: stretch;   /* Figma: Fill container */
+
+  height: 54px;
+  padding: 0 var(--space-24);
+  flex: 0 0 auto;
+}
+
+.StatusBar--dark  { color: var(--c-white); }
+.StatusBar--light { color: var(--c-ink); }
+
+.StatusBar__time {
+  font-family: var(--font-sans);
+  font-size: var(--text-body-size);
+  line-height: var(--text-body-lh);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.StatusBar__icons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-6);
+}

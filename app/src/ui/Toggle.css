@@ -1,0 +1,76 @@
+/* ============================================================
+   L2 · Toggle
+   row · W=fixed(52) H=fixed(32) · pad 4 · thumb fixed(24)
+
+   Contract note: the first spec said pad 3 / thumb 26 — adjusted to
+   pad 4 / thumb 24 so the spacing sits on var(--space-4) (FIGMA_RULES §2
+   bans magic numbers even here). 52 − 4×2 − 24 = 0, no gap left.
+
+   The thumb moves with a transform (smooth animation in the browser).
+   In Figma it's two variants with different alignment
+   (justify-content: flex-start/flex-end); Smart Animate interpolates
+   the transition — no transform needed at the Figma level.
+   ============================================================ */
+
+.Toggle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex: 0 0 auto;
+
+  width: 52px;
+  height: 32px;
+  padding: var(--space-4);
+  border-radius: var(--r-full);
+
+  background: var(--control-track-off);
+  box-shadow: inset 0 0 0 1px var(--border-subtle);
+  cursor: pointer;
+  position: relative;   /* is-abs: anchor for the touch target below, doesn't position content */
+
+  transition: background-color var(--dur-fast) var(--ease-out),
+              box-shadow var(--dur-fast) var(--ease-out);
+}
+
+/* Touch target ≥44×44 — the visual track is only 32px tall */
+.Toggle::after {
+  content: '';
+  position: absolute;   /* is-abs: extends the hit area, outside the layout flow */
+  inset: 50% auto auto 50%;
+  width: var(--touch-min);
+  height: var(--touch-min);
+  transform: translate(-50%, -50%);
+}
+
+.Toggle__thumb {
+  width: 24px;
+  height: 24px;
+  flex: 0 0 auto;
+  border-radius: var(--r-full);
+  background: var(--control-thumb);
+  box-shadow: var(--shadow-1);
+  transform: translateX(0);
+  transition: transform var(--dur-fast) var(--ease-spring);
+}
+
+/* ==================== STATES ==================== */
+
+.Toggle.is-on {
+  background: var(--control-track-on);
+  box-shadow: none;
+}
+.Toggle.is-on .Toggle__thumb {
+  transform: translateX(20px);
+}
+
+.Toggle:focus-visible,
+.Toggle.is-focus {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+.Toggle:disabled,
+.Toggle.is-disabled {
+  opacity: .4;
+  cursor: not-allowed;
+}

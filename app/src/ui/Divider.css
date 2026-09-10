@@ -1,0 +1,13 @@
+/* L1 · Divider */
+
+.Divider {
+  align-self: stretch;      /* Figma: Fill container */
+  height: 1px;
+  flex: 0 0 auto;
+  background: var(--border-subtle);
+}
+
+/* The inset is the box's own padding, not a margin */
+.Divider--inset-0  { margin: 0; }
+.Divider--inset-16 { padding: 0; box-shadow: inset 16px 0 0 0 var(--bg-canvas); }
+.Divider--inset-56 { padding: 0; box-shadow: inset 56px 0 0 0 var(--bg-canvas); }

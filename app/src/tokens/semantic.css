@@ -1,0 +1,178 @@
+/* ============================================================
+   L1 · SEMANTIC TOKENS
+   The only layer components are allowed to use.
+   In Figma: Variables "theme" with two modes (Dark / Light).
+
+   Dark  — "night session": ball on a deep blue hard court.
+   Light — "day session": the ball can't be used on paper (1.2:1),
+           so the court blue takes over the accent role and the ball
+           survives as a darkened olive for "up".
+   ============================================================ */
+
+/* ==================== DARK (default) ==================== */
+:root,
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  /* --- Backgrounds --- */
+  --bg-canvas:     var(--c-base);
+  --bg-surface-1:  rgba(238, 242, 250, .04);
+  --bg-surface-2:  rgba(238, 242, 250, .06);
+  --bg-surface-3:  rgba(238, 242, 250, .10);
+  --bg-inverse:    var(--c-chalk);
+  --bg-overlay:    rgba(4, 7, 14, .72);
+  --bg-ambient:
+    radial-gradient(1200px 700px at 18% -10%, rgba(63, 111, 216, .26), transparent 60%),
+    radial-gradient(900px 600px at 110% 30%, rgba(200, 255, 77, .08), transparent 65%),
+    var(--c-base);
+
+  /* --- Text & icons --- */
+  --fg-default:  var(--c-chalk);
+  --fg-dim:      rgba(238, 242, 250, .68);   /* 8.2:1 */
+  --fg-faint:    rgba(238, 242, 250, .42);   /* ⚠ 3.7:1 — decoration and large text only */
+  --fg-inverse:  var(--c-base);
+  --fg-accent:   var(--c-ball);
+  --fg-on-accent: var(--c-base);
+
+  /* --- Borders --- */
+  --border-subtle: rgba(238, 242, 250, .10);
+  --border-strong: rgba(238, 242, 250, .22);
+  --border-focus:  var(--c-ball);
+
+  /* --- Accent --- */
+  --accent:        var(--c-ball);
+  --accent-hover:  var(--c-ball-glow);
+  --accent-press:  var(--c-ball-deep);
+  --accent-subtle: rgba(200, 255, 77, .14);
+  --accent-border: rgba(200, 255, 77, .28);
+
+  /* --- Status ---
+     success = up = the ball. In dark mode it equals the accent on
+     purpose: numbers always carry an ▲/▼ arrow and are text, actions
+     are filled buttons — shape separates "data" from "action". */
+  --success:        var(--c-ball);
+  --success-subtle: rgba(200, 255, 77, .14);
+  --danger:         var(--c-clay);
+  --danger-subtle:  rgba(255, 123, 92, .14);
+  --warning:        var(--c-warn-d);
+  --warning-subtle: rgba(255, 196, 107, .14);
+  --info:           var(--c-info-d);
+  --info-subtle:    rgba(123, 211, 255, .14);
+
+  /* --- Price movement: ball and clay --- */
+  --up:   var(--c-ball);
+  --down: var(--c-clay);
+
+  /* --- Primary button --- */
+  --btn-primary-bg:    var(--c-ball);
+  --btn-primary-fg:    var(--c-base);
+  --btn-primary-hover: var(--c-ball-glow);
+  --btn-primary-press: var(--c-ball-deep);
+
+  /* --- Secondary button --- */
+  --btn-secondary-bg:    rgba(238, 242, 250, .10);
+  --btn-secondary-fg:    var(--c-chalk);
+  --btn-secondary-hover: rgba(238, 242, 250, .16);
+  --btn-secondary-press: rgba(238, 242, 250, .06);
+
+  /* --- Shadows --- */
+  --shadow-0: none;
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, .30);
+  --shadow-2: 0 4px 12px rgba(0, 0, 0, .35);
+  --shadow-3: 0 12px 32px rgba(0, 0, 0, .45);
+  --shadow-4: 0 24px 64px rgba(0, 0, 0, .55);
+  --shadow-accent: 0 8px 28px rgba(200, 255, 77, .22);
+
+  /* --- Phone frame & card --- */
+  --phone-bezel:  linear-gradient(160deg, #0B1324 0%, #141F36 100%);
+  --phone-screen: linear-gradient(180deg, #0B1324 0%, #15213A 100%);
+  --card-bg:      linear-gradient(135deg, #15213A 0%, #2551C4 60%, #070D1A 100%);
+  --card-glow:    rgba(200, 255, 77, .22);
+
+  /* --- Glass --- */
+  --glass-bg:     rgba(238, 242, 250, .07);
+  --glass-border: rgba(238, 242, 250, .14);
+  --glass-blur:   20px;
+
+  /* --- Controls: Toggle / Checkbox / Radio / Slider --- */
+  --control-thumb:     var(--c-white);
+  --control-track-off: var(--bg-surface-3);
+  --control-track-on:  var(--accent);
+}
+
+/* ==================== LIGHT ==================== */
+[data-theme="light"] {
+  color-scheme: light;
+
+  --bg-canvas:     var(--c-paper-2);
+  --bg-surface-1:  rgba(255, 255, 255, .72);
+  --bg-surface-2:  #FFFFFF;
+  --bg-surface-3:  var(--c-paper);
+  --bg-inverse:    var(--c-ink);
+  --bg-overlay:    rgba(19, 26, 42, .48);
+  --bg-ambient:
+    radial-gradient(1200px 700px at 18% -10%, rgba(255, 255, 255, .95), transparent 60%),
+    radial-gradient(900px 600px at 110% 30%, rgba(63, 111, 216, .16), transparent 65%),
+    linear-gradient(160deg, #F6F8FB 0%, #DBE2EC 100%);
+
+  --fg-default:  var(--c-ink);
+  --fg-dim:      rgba(19, 26, 42, .66);   /* 5.3:1 */
+  --fg-faint:    rgba(19, 26, 42, .40);   /* ⚠ decoration only */
+  --fg-inverse:  var(--c-paper);
+  --fg-accent:   var(--c-court-deep);
+  --fg-on-accent: var(--c-white);
+
+  --border-subtle: rgba(19, 26, 42, .10);
+  --border-strong: rgba(19, 26, 42, .20);
+  --border-focus:  var(--c-court-deep);
+
+  --accent:        var(--c-court-deep);
+  --accent-hover:  var(--c-court);
+  --accent-press:  var(--c-court-night);
+  --accent-subtle: rgba(37, 81, 196, .10);
+  --accent-border: rgba(37, 81, 196, .24);
+
+  /* The ball on paper is 1.2:1, so here it is the same ball darkened
+     to olive, and the same clay darkened to brick; both AA. */
+  --success:        var(--c-ball-olive);
+  --success-subtle: rgba(70, 112, 0, .12);
+  --danger:         var(--c-clay-deep);
+  --danger-subtle:  rgba(184, 67, 43, .12);
+  --warning:        var(--c-warn-l);
+  --warning-subtle: rgba(143, 90, 0, .12);
+  --info:           var(--c-info-l);
+  --info-subtle:    rgba(22, 104, 168, .12);
+
+  --up:   var(--c-ball-olive);
+  --down: var(--c-clay-deep);
+
+  --btn-primary-bg:    var(--c-court-deep);
+  --btn-primary-fg:    var(--c-white);
+  --btn-primary-hover: var(--c-court);
+  --btn-primary-press: var(--c-court-night);
+
+  --btn-secondary-bg:    rgba(19, 26, 42, .07);
+  --btn-secondary-fg:    var(--c-ink);
+  --btn-secondary-hover: rgba(19, 26, 42, .12);
+  --btn-secondary-press: rgba(19, 26, 42, .04);
+
+  --shadow-0: none;
+  --shadow-1: 0 1px 2px rgba(19, 26, 42, .06);
+  --shadow-2: 0 4px 12px rgba(19, 26, 42, .08);
+  --shadow-3: 0 12px 32px rgba(19, 26, 42, .12);
+  --shadow-4: 0 24px 64px rgba(19, 26, 42, .16);
+  --shadow-accent: 0 8px 28px rgba(37, 81, 196, .24);
+
+  --phone-bezel:  linear-gradient(160deg, #2E3750 0%, #131A2A 100%);
+  --phone-screen: linear-gradient(180deg, #F9FAFC 0%, #ECF0F6 50%, #DBE2EC 100%);
+  --card-bg:      linear-gradient(135deg, #1A2E5C 0%, #2551C4 60%, #131A2A 100%);
+  --card-glow:    rgba(200, 255, 77, .20);
+
+  --glass-bg:     rgba(255, 255, 255, .62);
+  --glass-border: rgba(255, 255, 255, .85);
+  --glass-blur:   20px;
+
+  --control-thumb:     var(--c-white);
+  --control-track-off: rgba(19, 26, 42, .16);
+  --control-track-on:  var(--accent);
+}

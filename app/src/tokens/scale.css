@@ -1,0 +1,94 @@
+/* ============================================================
+   L0 · SCALES — spacing, radii, shadows, type, sizes, motion
+   Theme-independent. In Figma: Variables "scale".
+   ============================================================ */
+
+:root {
+  /* --- Spacing: 4-pt grid. Name = value in px --- */
+  --space-0:  0px;
+  --space-2:  2px;
+  --space-4:  4px;
+  --space-6:  6px;
+  --space-8:  8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-20: 20px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-40: 40px;
+  --space-48: 48px;
+  --space-64: 64px;
+
+  /* --- Radii --- */
+  --r-xs:   6px;
+  --r-sm:   10px;
+  --r-md:   14px;
+  --r-lg:   18px;
+  --r-xl:   24px;
+  --r-2xl:  32px;
+  --r-full: 999px;
+  --r-phone: 44px;   /* iPhone screen frame */
+
+  /* --- Control sizes (fixed height) --- */
+  --control-sm: 32px;
+  --control-md: 40px;
+  --control-lg: 48px;
+  --control-xl: 56px;
+
+  /* --- Icon sizes --- */
+  --icon-xs: 16px;
+  --icon-sm: 20px;
+  --icon-md: 24px;
+  --icon-lg: 32px;
+
+  /* --- Minimum touch target (WCAG 2.2 AA) --- */
+  --touch-min: 44px;
+
+  /* --- Screen frame --- */
+  --screen-w: 390px;   /* iPhone 14/15/16 logical points */
+  --screen-h: 844px;
+  --statusbar-h: 54px;
+  --appbar-h: 56px;
+  --tabbar-h: 64px;
+  --home-indicator-h: 34px;
+
+  /* --- Fonts --- */
+  --font-sans:    'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+  --font-mono:    ui-monospace, 'SF Mono', 'Cascadia Code', Consolas, monospace;
+
+  /* --- Type scale.
+         line-height in px ONLY — unitless values don't transfer to Figma
+         (see FIGMA_RULES.md §2). --- */
+  --text-display-size: 40px;  --text-display-lh: 44px;  --text-display-w: 700;  --text-display-ls: -0.8px;
+  --text-h1-size:      32px;  --text-h1-lh:      36px;  --text-h1-w:      700;  --text-h1-ls:      -0.6px;
+  --text-h2-size:      24px;  --text-h2-lh:      28px;  --text-h2-w:      700;  --text-h2-ls:      -0.3px;
+  --text-h3-size:      20px;  --text-h3-lh:      24px;  --text-h3-w:      600;  --text-h3-ls:      -0.2px;
+  --text-title-size:   17px;  --text-title-lh:   22px;  --text-title-w:   600;  --text-title-ls:   0px;
+  --text-body-size:    15px;  --text-body-lh:    20px;  --text-body-w:    400;  --text-body-ls:    0px;
+  --text-bodysm-size:  13px;  --text-bodysm-lh:  18px;  --text-bodysm-w:  400;  --text-bodysm-ls:  0px;
+  --text-label-size:   13px;  --text-label-lh:   16px;  --text-label-w:   600;  --text-label-ls:   0.1px;
+  --text-caption-size: 11px;  --text-caption-lh: 14px;  --text-caption-w: 500;  --text-caption-ls: 0.2px;
+  --text-mono-size:    13px;  --text-mono-lh:    18px;  --text-mono-w:    500;  --text-mono-ls:    0px;
+
+  /* --- Motion --- */
+  --dur-instant: 80ms;
+  --dur-fast:    140ms;
+  --dur-base:    220ms;
+  --dur-slow:    320ms;
+  --ease-out:    cubic-bezier(.2, .8, .2, 1);
+  --ease-in-out: cubic-bezier(.4, 0, .2, 1);
+  --ease-spring: cubic-bezier(.34, 1.56, .64, 1);
+
+  /* --- Icon stroke width --- */
+  --icon-stroke: 1.75;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-instant: 0ms;
+    --dur-fast:    0ms;
+    --dur-base:    0ms;
+    --dur-slow:    0ms;
+  }
+}

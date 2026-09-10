@@ -1,0 +1,50 @@
+/* L1 · Stack — Figma Auto Layout in CSS */
+
+.Stack {
+  display: flex;
+  min-width: 0;
+}
+
+.Stack--row    { flex-direction: row; }
+.Stack--column { flex-direction: column; }
+.Stack--wrap   { flex-wrap: wrap; }
+
+/* Gap — the only way to space items (margin is not allowed) */
+.Stack--gap-0  { gap: var(--space-0); }
+.Stack--gap-2  { gap: var(--space-2); }
+.Stack--gap-4  { gap: var(--space-4); }
+.Stack--gap-6  { gap: var(--space-6); }
+.Stack--gap-8  { gap: var(--space-8); }
+.Stack--gap-12 { gap: var(--space-12); }
+.Stack--gap-16 { gap: var(--space-16); }
+.Stack--gap-20 { gap: var(--space-20); }
+.Stack--gap-24 { gap: var(--space-24); }
+.Stack--gap-32 { gap: var(--space-32); }
+.Stack--gap-40 { gap: var(--space-40); }
+.Stack--gap-48 { gap: var(--space-48); }
+.Stack--gap-64 { gap: var(--space-64); }
+
+/* Align items (cross axis) */
+.Stack--align-start    { align-items: flex-start; }
+.Stack--align-center   { align-items: center; }
+.Stack--align-end      { align-items: flex-end; }
+.Stack--align-stretch  { align-items: stretch; }
+.Stack--align-baseline { align-items: baseline; }
+
+/* Justify (main axis) */
+.Stack--justify-start   { justify-content: flex-start; }
+.Stack--justify-center  { justify-content: center; }
+.Stack--justify-end     { justify-content: flex-end; }
+.Stack--justify-between { justify-content: space-between; }
+.Stack--justify-around  { justify-content: space-around; }
+
+/* Sizing */
+/* Figma: Fill container. min-width: 0 so text in a row truncates instead
+   of stretching it (FIGMA_RULES §3). No min-height: 0 here on purpose:
+   in a column it let a fill wrapper collapse to zero when the content
+   didn't fit, and a footer pinned with `fill justify="end"` got pushed
+   UP over the block above it. Screen__content does the scrolling (it
+   has its own min-height: 0); nested Stacks never need to shrink below
+   their content. */
+.Stack--fill      { flex: 1 1 0; min-width: 0; }
+.Stack--fillCross { align-self: stretch; }

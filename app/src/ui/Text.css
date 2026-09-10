@@ -1,0 +1,43 @@
+/* L1 · Text — 10 type styles × 8 tones */
+
+.Text {
+  margin: 0;
+  font-family: var(--font-sans);
+  min-width: 0;
+}
+
+/* --- Variants. line-height in px only (FIGMA_RULES §2) --- */
+.Text--display { font-family: var(--font-display); font-size: var(--text-display-size); line-height: var(--text-display-lh); font-weight: var(--text-display-w); letter-spacing: var(--text-display-ls); }
+.Text--h1      { font-family: var(--font-display); font-size: var(--text-h1-size);      line-height: var(--text-h1-lh);      font-weight: var(--text-h1-w);      letter-spacing: var(--text-h1-ls); }
+.Text--h2      { font-family: var(--font-display); font-size: var(--text-h2-size);      line-height: var(--text-h2-lh);      font-weight: var(--text-h2-w);      letter-spacing: var(--text-h2-ls); }
+.Text--h3      { font-size: var(--text-h3-size);      line-height: var(--text-h3-lh);      font-weight: var(--text-h3-w);      letter-spacing: var(--text-h3-ls); }
+.Text--title   { font-size: var(--text-title-size);   line-height: var(--text-title-lh);   font-weight: var(--text-title-w);   letter-spacing: var(--text-title-ls); }
+.Text--body    { font-size: var(--text-body-size);    line-height: var(--text-body-lh);    font-weight: var(--text-body-w);    letter-spacing: var(--text-body-ls); }
+.Text--bodySm  { font-size: var(--text-bodysm-size);  line-height: var(--text-bodysm-lh);  font-weight: var(--text-bodysm-w);  letter-spacing: var(--text-bodysm-ls); }
+.Text--label   { font-size: var(--text-label-size);   line-height: var(--text-label-lh);   font-weight: var(--text-label-w);   letter-spacing: var(--text-label-ls); }
+.Text--caption { font-size: var(--text-caption-size); line-height: var(--text-caption-lh); font-weight: var(--text-caption-w); letter-spacing: var(--text-caption-ls); text-transform: uppercase; }
+.Text--mono    { font-family: var(--font-mono); font-size: var(--text-mono-size); line-height: var(--text-mono-lh); font-weight: var(--text-mono-w); }
+
+/* --- Tones --- */
+.Text--default { color: var(--fg-default); }
+.Text--dim     { color: var(--fg-dim); }
+.Text--faint   { color: var(--fg-faint); }   /* ⚠ below 4.5:1 — not for body text */
+.Text--accent  { color: var(--fg-accent); }
+.Text--success { color: var(--success); }
+.Text--danger  { color: var(--danger); }
+.Text--warning { color: var(--warning); }
+.Text--inverse { color: var(--fg-inverse); }
+
+/* --- Alignment --- */
+.Text--align-start  { text-align: left; }
+.Text--align-center { text-align: center; }
+.Text--align-end    { text-align: right; }
+
+/* --- Sizing --- */
+.Text--fill { flex: 1 1 0; min-width: 0; }   /* Figma: Fill container */
+
+.is-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

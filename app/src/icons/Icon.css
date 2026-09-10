@@ -1,0 +1,31 @@
+/* L1 · Icon — a fixed box that never shrinks */
+
+.Icon {
+  display: block;
+  flex: 0 0 auto;
+  color: inherit;
+}
+
+/* Fixed sizing — Figma: Fixed width + Fixed height */
+.Icon--16 { width: var(--icon-xs); height: var(--icon-xs); }
+.Icon--20 { width: var(--icon-sm); height: var(--icon-sm); }
+.Icon--24 { width: var(--icon-md); height: var(--icon-md); }
+.Icon--32 { width: var(--icon-lg); height: var(--icon-lg); }
+
+/* Tones */
+.Icon--inherit { color: inherit; }
+.Icon--default { color: var(--fg-default); }
+.Icon--dim     { color: var(--fg-dim); }
+.Icon--faint   { color: var(--fg-faint); }
+.Icon--accent  { color: var(--accent); }
+.Icon--success { color: var(--success); }
+.Icon--danger  { color: var(--danger); }
+.Icon--warning { color: var(--warning); }
+.Icon--inverse { color: var(--fg-inverse); }
+
+/* Spinner — the only icon with built-in animation */
+.Icon--spin { animation: Icon-spin 900ms linear infinite; }
+
+@keyframes Icon-spin {
+  to { transform: rotate(360deg); }
+}

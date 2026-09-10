@@ -1,0 +1,51 @@
+/* ============================================================
+   L4 · Modal
+   column · W=fixed(320) H=hug · pad 24 · gap 16 · radius xl · align center
+   ============================================================ */
+
+.Modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-16);
+
+  width: 320px;
+  flex: 0 0 auto;
+  padding: var(--space-24);
+  border-radius: var(--r-xl);
+
+  background: var(--bg-surface-2);
+  box-shadow: var(--shadow-4);
+}
+
+.Modal__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--r-full);
+}
+
+.Modal--neutral .Modal__icon { background: var(--accent-subtle); color: var(--fg-accent); }
+.Modal--danger  .Modal__icon { background: var(--danger-subtle); color: var(--danger); }
+
+.Modal__text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-8);
+  align-self: stretch;
+}
+
+.Modal__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+  align-self: stretch;   /* Figma: Fill container — buttons span the panel */
+}
+
+.Modal__actions--row {
+  flex-direction: row;
+}

@@ -1,0 +1,113 @@
+/* ============================================================
+   L2 · Slider
+   column · W=fill H=hug · gap 8
+   ============================================================ */
+
+.Slider {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  align-self: stretch;
+}
+
+.Slider__head {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-self: stretch;
+}
+
+.Slider__track {
+  position: relative;   /* is-abs: container for fill/thumb/input below — all three are data-driven, not layout */
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+  height: 24px;   /* hit area for the pointer/finger around the thin line */
+}
+
+.Slider__track::before {
+  content: '';
+  position: absolute;   /* is-abs: the track's background line, decorative, out of flow */
+  inset: 50% 0 auto 0;
+  height: 4px;
+  transform: translateY(-50%);
+  border-radius: var(--r-full);
+  background: var(--control-track-off);
+}
+
+/* value-fill: width = value, not layout. The Figma equivalent is a
+   width bound to a Number variable, not Fill container. */
+.Slider__fill {
+  position: absolute;   /* is-abs: value-fill, width depends on the number, not the layout */
+  inset: 50% auto auto 0;
+  height: 4px;
+  width: calc(1% * var(--pct));
+  transform: translateY(-50%);
+  border-radius: var(--r-full);
+  background: var(--control-track-on);
+}
+
+.Slider__ticks {
+  position: absolute;   /* is-abs: decorative ticks over the track line */
+  inset: 50% 0 auto 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.Slider__tick {
+  width: 2px;
+  height: 4px;
+  border-radius: var(--r-full);
+  background: var(--bg-canvas);
+}
+
+.Slider__thumb {
+  position: absolute;   /* is-abs: value-fill — position depends on the number, not the layout */
+  top: 50%;
+  left: calc(1% * var(--pct));
+  width: 20px;
+  height: 20px;
+  transform: translate(-50%, -50%);
+  border-radius: var(--r-full);
+  background: var(--control-thumb);
+  box-shadow: var(--shadow-2), 0 0 0 1px var(--border-subtle);
+  transition: transform var(--dur-fast) var(--ease-out);
+  pointer-events: none;
+}
+
+.Slider.is-active .Slider__thumb {
+  transform: translate(-50%, -50%) scale(1.15);
+}
+
+/* A native range input, invisible, over the whole area: keyboard, drag
+   and click-anywhere for free. */
+.Slider__input {
+  position: absolute;   /* is-abs: invisible accessible input over the custom track; inset: 0 covers the parent without % */
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.Slider__input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+}
+.Slider__input::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border: none;
+}
+
+.Slider__input:focus-visible ~ .Slider__thumb {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+.Slider.is-disabled .Slider__track { opacity: .4; }
+.Slider.is-disabled .Slider__input { cursor: not-allowed; }

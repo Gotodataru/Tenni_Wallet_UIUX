@@ -1,0 +1,23 @@
+/* ============================================================
+   L5 · HomeIndicator
+   row · W=fill H=fixed(34) · center
+   ============================================================ */
+
+.HomeIndicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;   /* Figma: Fill container */
+  height: 34px;
+  flex: 0 0 auto;
+}
+
+.HomeIndicator__bar {
+  width: 134px;
+  height: 5px;
+  flex: 0 0 auto;
+  border-radius: var(--r-full);
+}
+
+.HomeIndicator--dark  .HomeIndicator__bar { background: var(--c-white); }
+.HomeIndicator--light .HomeIndicator__bar { background: var(--c-ink); }

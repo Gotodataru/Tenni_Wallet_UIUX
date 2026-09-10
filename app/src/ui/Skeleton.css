@@ -1,0 +1,32 @@
+/* ============================================================
+   L3 · Skeleton
+   shape=line: W=fill(default)|fixed H=fixed(16) · radius sm
+   shape=circle: W=fixed H=fixed(=W) · radius full
+   shape=rect: W=fill(default)|fixed H=fixed · radius md
+   ============================================================ */
+
+.Skeleton {
+  display: block;
+  background: linear-gradient(90deg, var(--bg-surface-1) 0%, var(--bg-surface-3) 50%, var(--bg-surface-1) 100%);
+  background-size: 200% 100%;
+  animation: Skeleton-shimmer 1400ms ease-in-out infinite;
+}
+
+/* Fill container by default when no width is set (not width: 100%) */
+.Skeleton--fill {
+  align-self: stretch;
+  flex: 1 1 auto;
+}
+
+.Skeleton--line   { border-radius: var(--r-xs); }
+.Skeleton--rect   { border-radius: var(--r-md); }
+.Skeleton--circle { border-radius: var(--r-full); }
+
+@keyframes Skeleton-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .Skeleton { animation: none; }
+}

@@ -1,0 +1,125 @@
+/* ============================================================
+   L3 · ListRow
+   row · W=fill · H=fixed(68|56) · pad 0/16 · gap 12 · align center
+   ============================================================ */
+
+.ListRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-12);
+  align-self: stretch;   /* Figma: Fill container */
+
+  padding: 0 var(--space-16);
+  border-radius: var(--r-md);
+  background: transparent;
+  text-align: left;
+  position: relative;   /* is-abs: anchor for the hairline divider below */
+
+  transition: background-color var(--dur-fast) var(--ease-out);
+}
+
+.ListRow--md { height: 68px; }
+.ListRow--sm { height: 56px; }
+
+/* --- leading: a slot, the nested component sets the size (Avatar 40, Icon 24…) --- */
+.ListRow__leading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+
+/* --- body: CRITICAL flex: 1 1 0 + min-width: 0 —
+       without min-width: 0 a long asset name stretches the row
+       and pushes trailing off screen (FIGMA_RULES §3) --- */
+.ListRow__body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-2);
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+/* --- trailing: hug, right-aligned --- */
+.ListRow__trailing {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: var(--space-2);
+  flex: 0 0 auto;
+}
+
+.ListRow__chevron {
+  flex: 0 0 auto;
+}
+
+/* --- Divider: a hairline along the bottom edge.
+       box-shadow, not border-bottom — a border is part of the box model
+       and would break the fixed height of rows with and without it. --- */
+.ListRow--divider {
+  box-shadow: inset 0 -1px 0 0 var(--border-subtle);
+  /* A rounded corner bends the hairline up at both ends — rows meet square. */
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.ListRow--divider + .ListRow {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+/* ==================== STATES ==================== */
+
+.ListRow.is-interactive {
+  cursor: pointer;
+}
+.ListRow.is-interactive:hover {
+  background: var(--bg-surface-1);
+}
+.ListRow.is-interactive:active,
+.ListRow.is-pressed {
+  background: var(--bg-surface-2);
+}
+.ListRow.is-interactive:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: -2px;
+}
+
+.ListRow.is-selected {
+  background: var(--accent-subtle);
+  box-shadow: inset 0 0 0 1px var(--accent-border);
+}
+
+.ListRow.is-disabled {
+  opacity: .4;
+  cursor: not-allowed;
+}
+
+/* ==================== SWIPE ====================
+   The action sits under the row, the row is shifted left.
+   In Figma this is a separate variant state=swiped, not an animation. */
+
+.ListRow__swipe {
+  display: flex;
+  align-self: stretch;
+  position: relative;   /* is-abs: container for the action under the row */
+  border-radius: var(--r-md);
+  overflow: hidden;
+}
+
+.ListRow__swipeAction {
+  position: absolute;   /* is-abs: action under the row, revealed by the shift */
+  inset: 0 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 var(--space-20);
+  background: var(--danger-subtle);
+}
+
+.ListRow__swipe .ListRow {
+  transform: translateX(-88px);
+  background: var(--bg-canvas);
+}

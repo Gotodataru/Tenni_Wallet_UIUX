@@ -1,0 +1,61 @@
+/* ============================================================
+   L5 · Screen
+   column · W=fixed(390) H=fixed(844) · radius 44 · clip
+   ============================================================ */
+
+.Screen {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--bg-canvas);
+  color: var(--fg-default);
+}
+
+/* mock — the catalog and Figma frame: iPhone 14/15/16 logical points */
+.Screen--mock {
+  width: 390px;
+  height: 844px;
+  flex: 0 0 auto;
+  border-radius: var(--r-phone);
+}
+
+/* fluid — the real app shell: fills its container, no rounded corners.
+   See decision 4 in Screen.jsx */
+.Screen--fluid {
+  flex: 1 1 auto;
+  align-self: stretch;
+  border-radius: 0;
+}
+
+/* Safe areas only where there is no mock bar — otherwise the inset doubles */
+.Screen--safeTop    { padding-top: env(safe-area-inset-top, 0px); }
+.Screen--safeBottom { padding-bottom: env(safe-area-inset-bottom, 0px); }
+
+/* ==================== CONTENT ====================
+   min-height: 0 — the same kind of bug as min-width: 0 in ListRow:
+   without it the flex child can't shrink below its content, scrolling
+   never kicks in, and the content pushes the TabBar out of the frame. */
+.Screen__content {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;
+  min-height: 0;
+  align-self: stretch;
+}
+
+.Screen__content--scroll {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.Screen__content--clip {
+  overflow: hidden;
+}
+
+/* Padding on ALL sides, not just horizontal: otherwise the first block
+   sticks to the AppBar and the last one to the TabBar. Full-bleed lists
+   use contentPadding=0 and get their spacing from Section. */
+.Screen__content--pad-16 { padding: var(--space-16); }
+.Screen__content--pad-20 { padding: var(--space-20); }
+.Screen__content--pad-24 { padding: var(--space-24); }

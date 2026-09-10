@@ -1,0 +1,63 @@
+/* ============================================================
+   L5 · NavItem
+   column · W=fill H=fill · gap 4 · center
+   ============================================================ */
+
+.NavItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+
+  flex: 1 1 0;      /* Figma: Fill container — equal-width tabs */
+  align-self: stretch;
+
+  color: var(--fg-faint);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.NavItem__iconWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  position: relative;   /* is-abs: anchor for the badge below */
+}
+
+.NavItem__label {
+  color: inherit;
+}
+
+.NavItem.is-active {
+  color: var(--fg-accent);
+}
+
+.NavItem.is-disabled {
+  opacity: .4;
+  cursor: not-allowed;
+}
+
+.NavItem:not(.is-disabled):hover {
+  color: var(--fg-dim);
+}
+.NavItem.is-active:not(.is-disabled):hover {
+  color: var(--fg-accent);
+}
+
+.NavItem:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: -2px;
+  border-radius: var(--r-sm);
+}
+
+.NavItem__badge {
+  position: absolute;   /* is-abs: dot over the icon, out of flow */
+  top: -2px;
+  right: -4px;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--r-full);
+  background: var(--danger);
+  box-shadow: 0 0 0 2px var(--bg-canvas);   /* same trick as the Avatar/AssetIcon/IconButton badge */
+}

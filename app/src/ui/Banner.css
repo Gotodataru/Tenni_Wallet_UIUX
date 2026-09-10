@@ -1,0 +1,37 @@
+/* ============================================================
+   L4 · Banner
+   row · W=fill H=hug · pad 12/16 · gap 10 · radius md
+   ============================================================ */
+
+.Banner {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: var(--space-8);   /* "gap 10" rounded to the 4-pt scale */
+  align-self: stretch;   /* Figma: Fill container */
+
+  padding: var(--space-12) var(--space-16);
+  border-radius: var(--r-md);
+}
+
+.Banner__icon {
+  flex: 0 0 auto;
+}
+
+.Banner__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.Banner--info    { background: var(--info-subtle); }
+.Banner--success { background: var(--success-subtle); }
+.Banner--warning { background: var(--warning-subtle); }
+.Banner--danger  { background: var(--danger-subtle); }
+
+.Banner--info    .Banner__icon { color: var(--info); }
+.Banner--success .Banner__icon { color: var(--success); }
+.Banner--warning .Banner__icon { color: var(--warning); }
+.Banner--danger  .Banner__icon { color: var(--danger); }

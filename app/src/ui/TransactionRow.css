@@ -1,0 +1,21 @@
+/* ============================================================
+   L3 · TransactionRow
+   Only the leading icon — the row itself is inherited from ListRow.
+   W=fixed(40) H=fixed(40) · radius full · center
+   ============================================================ */
+
+.TransactionRow__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--r-full);
+}
+
+.TransactionRow__icon--down    { background: var(--danger-subtle); color: var(--down); }
+.TransactionRow__icon--up      { background: var(--success-subtle); color: var(--up); }
+.TransactionRow__icon--muted   { background: var(--bg-surface-3); color: var(--fg-default); }
+.TransactionRow__icon--neutral { background: var(--accent-subtle); color: var(--fg-accent); }
+.TransactionRow__icon--danger  { background: var(--danger-subtle); color: var(--danger); }

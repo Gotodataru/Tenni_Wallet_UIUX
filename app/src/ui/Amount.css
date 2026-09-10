@@ -1,0 +1,35 @@
+/* ============================================================
+   L3 · Amount
+   row · W=hug H=hug · gap 4 · align baseline
+   ============================================================ */
+
+.Amount {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: var(--space-4);
+  width: fit-content;
+  flex: 0 0 auto;
+
+  font-family: var(--font-sans);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' 1;
+}
+
+.Amount__arrow {
+  align-self: center;   /* the arrow centers visually, not on the text baseline */
+}
+
+/* ==================== SIZES ==================== */
+.Amount--sm .Amount__value { font-size: var(--text-bodysm-size); line-height: var(--text-bodysm-lh); font-weight: 600; }
+.Amount--md .Amount__value { font-size: var(--text-body-size);   line-height: var(--text-body-lh);   font-weight: 600; }
+.Amount--lg .Amount__value { font-size: var(--text-title-size);  line-height: var(--text-title-lh);  font-weight: 700; }
+.Amount--xl .Amount__value { font-size: var(--text-h2-size);     line-height: var(--text-h2-lh);     font-weight: 700; }
+
+/* ==================== TONES ==================== */
+.Amount--up      .Amount__value,
+.Amount--up      .Amount__arrow { color: var(--up); }
+.Amount--down    .Amount__value,
+.Amount--down    .Amount__arrow { color: var(--down); }
+.Amount--neutral .Amount__value,
+.Amount--neutral .Amount__arrow { color: var(--fg-default); }

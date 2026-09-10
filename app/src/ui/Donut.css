@@ -1,0 +1,39 @@
+/* ============================================================
+   L3 · Donut
+   W=fixed(160) H=fixed(160)
+   ============================================================ */
+
+.Donut {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  position: relative;   /* is-abs: anchor for the center label below */
+
+  width: 160px;
+  height: 160px;
+}
+
+.Donut__svg {
+  width: 160px;
+  height: 160px;
+}
+
+.Donut__track {
+  stroke: var(--bg-surface-3);
+}
+
+.Donut__segment {
+  stroke-linecap: butt;
+  transition: stroke-dasharray var(--dur-slow) var(--ease-out);
+}
+
+.Donut__center {
+  position: absolute;   /* is-abs: label in the middle of the ring, over the SVG */
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+}

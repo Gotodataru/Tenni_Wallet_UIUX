@@ -1,0 +1,46 @@
+/* ============================================================
+   L2 · Keypad
+   column · W=fill H=hug · gap 8
+   row ×4 · W=fill · gap 8 · key ×3 fill H=fixed(56)
+   ============================================================ */
+
+.Keypad {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  align-self: stretch;
+}
+
+.Keypad__row {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-8);
+  align-self: stretch;
+}
+
+.Keypad__key {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 0;   /* Figma: Fill container — three keys of equal width */
+  min-width: 0;
+  height: 56px;
+
+  border-radius: var(--r-lg);
+  background: var(--bg-surface-1);
+  color: var(--fg-default);
+  font-family: var(--font-display);
+  font-size: var(--text-h2-size);
+  line-height: var(--text-h2-lh);
+  font-weight: 600;
+
+  transition: background-color var(--dur-fast) var(--ease-out),
+              transform var(--dur-instant) var(--ease-out);
+}
+
+.Keypad__key:hover { background: var(--bg-surface-2); }
+.Keypad__key:active { background: var(--bg-surface-3); transform: scale(.96); }
+.Keypad__key:focus-visible { outline: 2px solid var(--border-focus); outline-offset: -2px; }
+
+.Keypad__key--icon { color: var(--fg-dim); }
+.Keypad__key--empty { background: transparent; pointer-events: none; }

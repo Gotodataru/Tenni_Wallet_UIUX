@@ -1,0 +1,28 @@
+# Dependencies and build output
+node_modules/
+dist/
+*.local
+
+# Secrets (none today — kept as a safety net)
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+Thumbs.db
+ehthumbs.db
+desktop.ini
+.DS_Store
+
+# Editors
+.vscode/
+.idea/
+*.swp
+
+# Tool caches
+.vite/
+.cache/

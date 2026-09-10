@@ -1,0 +1,29 @@
+/* ============================================================
+   L3 · ProgressDots
+   row · W=hug H=fixed(8) · gap 6
+   ============================================================ */
+
+.ProgressDots {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-6);
+  width: fit-content;
+  flex: 0 0 auto;
+  height: 8px;
+}
+
+.ProgressDots__dot {
+  width: 8px;
+  height: 8px;
+  flex: 0 0 auto;
+  border-radius: var(--r-full);
+  background: var(--bg-surface-3);
+  transition: width var(--dur-base) var(--ease-out),
+              background-color var(--dur-base) var(--ease-out);
+}
+
+.ProgressDots__dot.is-active {
+  width: 20px;
+  background: var(--accent);
+}

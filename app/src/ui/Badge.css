@@ -1,0 +1,33 @@
+/* ============================================================
+   L2 · Badge
+   W=hug(min 18) H=fixed(18) · pad 0/5 · center
+   ============================================================ */
+
+.Badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+
+  min-width: 18px;
+  height: 18px;
+  padding: 0 var(--space-6);   /* "pad 0/5" rounded to the 4-pt scale */
+  border-radius: var(--r-full);
+  box-shadow: 0 0 0 2px var(--bg-canvas);
+
+  font-family: var(--font-mono);
+  font-size: 10px;
+  line-height: 12px;
+  font-weight: 700;
+  color: var(--fg-on-accent);
+}
+
+.Badge--dot {
+  width: 8px;
+  height: 8px;
+  min-width: 0;
+  padding: 0;
+}
+
+.Badge--accent { background: var(--accent); }
+.Badge--danger { background: var(--danger); }

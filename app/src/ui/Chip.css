@@ -1,0 +1,68 @@
+/* ============================================================
+   L2 · Chip
+   row · W=hug · H=fixed(32|24) · pad 0/12 · gap 6 · center
+   ============================================================ */
+
+.Chip {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-6);
+
+  width: fit-content;
+  flex: 0 0 auto;
+
+  padding: 0 var(--space-12);
+  border-radius: var(--r-full);
+  font-size: var(--text-label-size);
+  line-height: var(--text-label-lh);
+  font-weight: 600;
+  white-space: nowrap;
+
+  transition: background-color var(--dur-fast) var(--ease-out),
+              box-shadow var(--dur-fast) var(--ease-out);
+}
+
+.Chip--sm { height: var(--control-sm); font-size: var(--text-caption-size); line-height: var(--text-caption-lh); }
+.Chip--md { height: 32px; }
+
+.Chip__label { flex: 0 0 auto; }
+
+.Chip__remove {
+  display: flex;
+  flex: 0 0 auto;
+  color: inherit;
+  opacity: .7;
+}
+.Chip__remove:hover { opacity: 1; }
+
+/* ==================== VARIANTS ==================== */
+
+.Chip--neutral { background: var(--bg-surface-2); color: var(--fg-default); }
+.Chip--accent  { background: var(--accent-subtle);  color: var(--fg-accent); }
+.Chip--success { background: var(--success-subtle); color: var(--success); }
+.Chip--danger  { background: var(--danger-subtle);  color: var(--danger); }
+.Chip--warning { background: var(--warning-subtle); color: var(--warning); }
+.Chip--outline { background: transparent; color: var(--fg-default); box-shadow: inset 0 0 0 1px var(--border-strong); }
+
+.Chip.is-selected.Chip--neutral,
+.Chip.is-selected.Chip--outline {
+  background: var(--accent);
+  color: var(--fg-on-accent);
+  box-shadow: none;
+}
+
+.Chip.is-interactive {
+  cursor: pointer;
+}
+.Chip.is-interactive:hover {
+  filter: brightness(1.08);
+}
+.Chip.is-interactive:active {
+  transform: scale(.97);
+}
+.Chip.is-interactive:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}

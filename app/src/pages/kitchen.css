@@ -1,0 +1,435 @@
+/* ============================================================
+   Catalog chrome.
+   ⚠ NOT part of the design system — documentation chrome
+   (catalog grid, captions, sidebar). It doesn't go to Figma.
+   The no-margin rule still applies here, so there is one linter
+   for the whole project.
+   ============================================================ */
+
+.Kitchen {
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+  background: var(--bg-ambient);
+  background-attachment: fixed;
+}
+
+/* --- Sidebar --- */
+.Kitchen__nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  width: 240px;
+  flex: 0 0 auto;
+  padding: var(--space-24);
+  border-right: 1px solid var(--border-subtle);
+  background: var(--bg-surface-1);
+  backdrop-filter: blur(12px);
+  position: sticky;   /* is-abs: documentation chrome only, not a component */
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.Kitchen__brand {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-12);
+  padding: 0 0 var(--space-16) 0;
+}
+
+.Kitchen__logo {
+  width: 36px;
+  height: 36px;
+  flex: 0 0 auto;
+  border-radius: var(--r-sm);
+  background: var(--accent);
+  color: var(--fg-on-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.Kitchen__link {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-8);
+  height: var(--control-md);
+  padding: 0 var(--space-12);
+  border-radius: var(--r-sm);
+  color: var(--fg-dim);
+  font-size: var(--text-body-size);
+  line-height: var(--text-body-lh);
+  font-weight: 500;
+  transition: background-color var(--dur-fast) var(--ease-out);
+}
+.Kitchen__link:hover { background: var(--bg-surface-2); color: var(--fg-default); }
+.Kitchen__link.is-active { background: var(--accent-subtle); color: var(--fg-accent); font-weight: 600; }
+
+.Kitchen__navGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-12) 0 0 0;
+}
+
+/* --- Main column --- */
+.Kitchen__main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-48);
+  flex: 1 1 0;
+  min-width: 0;
+  padding: var(--space-48);
+  max-width: 1180px;
+}
+
+.Kitchen__header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-24);
+  padding: var(--space-20);
+  border-radius: var(--r-lg);
+  box-shadow: inset 0 0 0 1px var(--border-subtle), var(--shadow-2);
+  /* Sticks to the top so the theme switch is always reachable. The
+     background is opaque on purpose: the surface token is translucent,
+     and scrolling content must never show through the title. */
+  position: sticky;   /* is-abs: sticks on scroll, documentation chrome */
+  top: var(--space-16);
+  z-index: 10;
+  background: linear-gradient(var(--bg-surface-2), var(--bg-surface-2)), var(--bg-canvas);
+}
+
+/* --- Nav group title and brand link --- */
+.Kitchen__navGroupTitle {
+  display: flex;
+  padding: 0 var(--space-12) var(--space-4) var(--space-12);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+
+a.Kitchen__brand { color: inherit; text-decoration: none; }
+
+/* --- Case study links: look like buttons, stay real links --- */
+.CaseLink {
+  display: inline-flex;
+  align-items: center;
+  height: var(--control-md);
+  padding: 0 var(--space-16);
+  border-radius: var(--r-full);
+  background: var(--btn-secondary-bg);
+  color: var(--btn-secondary-fg);
+  font-size: var(--text-label-size);
+  line-height: var(--text-label-lh);
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color var(--dur-fast) var(--ease-out);
+}
+.CaseLink:hover { background: var(--btn-secondary-hover); }
+.CaseLink--primary { background: var(--btn-primary-bg); color: var(--btn-primary-fg); }
+.CaseLink--primary:hover { background: var(--btn-primary-hover); }
+
+/* Text column next to a phone: fills the row on desktop, but has a
+   280px basis so on a narrow screen it wraps under the phone instead
+   of being squeezed to a few letters. */
+.CaseText { flex: 1 1 280px; min-width: 0; align-self: flex-start; }
+
+/* --- Section --- */
+.Section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-20);
+}
+
+.Section__head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* --- Example card --- */
+.Spec {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+  padding: var(--space-20);
+  border-radius: var(--r-lg);
+  background: var(--bg-surface-1);
+  box-shadow: inset 0 0 0 1px var(--border-subtle);
+}
+
+.Spec__head {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-12);
+}
+
+.Spec__body {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-16);
+}
+
+.Spec__body--column { flex-direction: column; align-items: stretch; }
+
+/* Cell with a caption under the example */
+.Cell {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  align-items: flex-start;
+}
+
+.Cell--center { align-items: center; }
+
+.Cell__label {
+  font-size: var(--text-caption-size);
+  line-height: var(--text-caption-lh);
+  font-weight: 500;
+  letter-spacing: .2px;
+  text-transform: uppercase;
+  color: var(--fg-faint);
+  font-family: var(--font-mono);
+}
+
+/* --- Icon catalog grid --- */
+.IconGrid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+}
+
+.IconCell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-8);
+  width: 104px;
+  height: 88px;
+  flex: 0 0 auto;
+  padding: var(--space-12);
+  border-radius: var(--r-md);
+  background: var(--bg-surface-1);
+  box-shadow: inset 0 0 0 1px var(--border-subtle);
+  color: var(--fg-default);
+  transition: background-color var(--dur-fast) var(--ease-out);
+}
+.IconCell:hover { background: var(--accent-subtle); color: var(--fg-accent); }
+
+.IconCell__name {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  line-height: 12px;
+  color: var(--fg-dim);
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  align-self: stretch;
+}
+
+/* --- Token swatches --- */
+.Swatch {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  width: 148px;
+  flex: 0 0 auto;
+}
+
+.Swatch__chip {
+  height: 56px;
+  border-radius: var(--r-md);
+  box-shadow: inset 0 0 0 1px var(--border-subtle);
+}
+
+.Swatch__meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.Swatch__name {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 14px;
+  color: var(--fg-default);
+}
+
+.Swatch__value {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  line-height: 13px;
+  color: var(--fg-faint);
+}
+
+/* --- Spacing scale bar --- */
+.SpaceBar {
+  height: 24px;
+  border-radius: var(--r-xs);
+  background: var(--accent);
+  flex: 0 0 auto;
+}
+
+/* --- Note --- */
+.Note {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-12);
+  padding: var(--space-16);
+  border-radius: var(--r-md);
+  background: var(--warning-subtle);
+  box-shadow: inset 0 0 0 1px var(--warning);
+  color: var(--fg-default);
+}
+
+@media (max-width: 900px) {
+  .Kitchen { flex-direction: column; }
+  .Kitchen__nav {
+    width: auto; height: auto; position: static;
+    border-right: none; border-bottom: 1px solid var(--border-subtle);
+    padding: var(--space-16);
+  }
+  .Kitchen__brand { padding: 0; }
+  /* The sidebar turns into one horizontally scrolling row of links,
+     so the content starts on the first screen instead of after the menu. */
+  .Kitchen__navGroup { flex-direction: row; overflow-x: auto; gap: var(--space-4); padding: var(--space-8) 0 0 0; }
+  .Kitchen__navGroupTitle { display: none; }
+  .Kitchen__link { flex: 0 0 auto; white-space: nowrap; }
+  .Kitchen__main { padding: var(--space-24); gap: var(--space-32); }
+  .Kitchen__header { position: static; }
+}
+
+@media (max-width: 480px) {
+  .Kitchen__main { padding: var(--space-12); }
+  .Kitchen__header { flex-direction: column; align-items: flex-start; gap: var(--space-12); }
+  .Spec { padding: var(--space-12); }
+  .Spec__head { flex-direction: column; gap: var(--space-4); }
+  /* A 390pt phone in a bezel is wider than a phone screen — scale the
+     live frames down to fit instead of letting the page scroll sideways. */
+  .Device { zoom: .8; }
+}
+
+@media (max-width: 380px) {
+  .Device { zoom: .72; }
+}
+
+/* --- Demo frames for Feedback: they draw the scene context (scrim,
+       phone screen) that the components themselves don't include —
+       documentation chrome, not the design system. --- */
+
+.Feedback__scrimBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-32);
+  border-radius: var(--r-lg);
+  background: var(--bg-overlay);
+}
+
+.Feedback__sheetFrame {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 360px;
+  height: 420px;
+  overflow: hidden;
+  border-radius: var(--r-lg);
+  background: var(--bg-canvas);
+  box-shadow: inset 0 0 0 1px var(--border-subtle);
+}
+
+.Feedback__emptyFrame {
+  display: flex;
+  width: 320px;
+  border-radius: var(--r-lg);
+  background: var(--bg-surface-1);
+  box-shadow: inset 0 0 0 1px var(--border-subtle);
+}
+
+.Feedback__lockFrame {
+  display: flex;
+  width: 200px;
+  height: 280px;
+  overflow: hidden;
+  border-radius: var(--r-lg);
+  box-shadow: inset 0 0 0 1px var(--border-subtle);
+}
+
+/* --- Demo frames for Navigation. frameDark/frameLight reuse the card
+       tokens (--c-card-dark-bg/--c-card-light-bg): a literal background
+       that doesn't follow the app theme — exactly what StatusBar and
+       HomeIndicator need to show their own theme prop. --- */
+
+.Navigation__frameDark,
+.Navigation__frameLight {
+  display: flex;
+  flex-direction: column;
+  width: 320px;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+.Navigation__frameDark  { background: var(--c-card-dark-bg); }
+.Navigation__frameLight { background: var(--c-card-light-bg); }
+
+.Navigation__barFrame {
+  display: flex;
+  flex-direction: column;
+  width: 320px;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: var(--bg-surface-1);
+  box-shadow: inset 0 0 0 1px var(--border-subtle);
+}
+
+/* The phone bezel. Deliberately NOT part of Screen: Screen is the
+   screen, not the device — the same boundary as Modal without its
+   scrim and CardVisual without the payment composer. */
+.Device {
+  display: flex;
+  flex: 0 0 auto;
+  align-self: flex-start;   /* hug the phone — never stretch into a wide empty stage */
+  padding: var(--space-8);
+  border-radius: var(--r-2xl);
+  background: var(--phone-bezel);
+  box-shadow: var(--shadow-4);
+}
+
+/* Small frame: Screen is fixed at 390×844, so to show several variants
+   side by side it is scaled with a transform, and the wrapper sets the
+   resulting size in the flow (390×.44 = 172, 844×.44 = 372).
+
+   The wrapper carries the same --phone-bezel as the large .Device, and
+   its size includes 2×8 padding (188 = 172 + 16, 388 = 372 + 16, with
+   global box-sizing: border-box) — otherwise the padding would shrink
+   the visible clip window instead of adding a bezel around it. */
+.Device--sm {
+  display: flex;
+  flex: 0 0 auto;
+  width: 188px;
+  height: 388px;
+  padding: var(--space-8);
+  overflow: hidden;
+  border-radius: var(--r-lg);
+  background: var(--phone-bezel);
+  box-shadow: var(--shadow-3);
+}
+
+.Device__scaled {
+  transform: scale(.44);
+  transform-origin: top left;
+}

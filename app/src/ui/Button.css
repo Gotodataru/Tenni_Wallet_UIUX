@@ -1,0 +1,197 @@
+/* ============================================================
+   L2 · Button
+   row · W=hug · H=fixed · pad 0/N · gap 8 · center
+   No margins, no percentages (FIGMA_RULES §2)
+   ============================================================ */
+
+.Button {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-8);
+
+  /* Sizing: Hug contents on both axes */
+  width: fit-content;
+  flex: 0 0 auto;
+
+  border-radius: var(--r-full);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  white-space: nowrap;
+  user-select: none;
+  position: relative;   /* is-abs: anchor for the pseudo touch target below */
+
+  transition:
+    background-color var(--dur-fast) var(--ease-out),
+    color            var(--dur-fast) var(--ease-out),
+    box-shadow       var(--dur-fast) var(--ease-out),
+    transform        var(--dur-instant) var(--ease-out);
+}
+
+/* 44×44 touch target for sm/md, which look smaller (WCAG 2.2 AA).
+   The pseudo-element doesn't affect layout — it isn't needed in Figma. */
+.Button--sm::after,
+.Button--md::after {
+  content: '';
+  position: absolute;   /* is-abs: extends the hit area, out of flow */
+  inset: 50% 0 auto 0;
+  height: var(--touch-min);
+  transform: translateY(-50%);
+}
+
+/* ==================== SIZES ====================
+   Height is set with height, NOT vertical padding —
+   otherwise buttons in one row end up with different heights.
+
+   Height is pinned three ways (height = min = max) on purpose.
+   `--fullWidth` carries flex: 1 1 auto, which is needed when buttons sit
+   in a ROW (Modal/BottomSheet share the row width). But in a column Stack
+   — how every screen is built — the main axis is vertical, and flex
+   would start controlling the HEIGHT, overriding it both ways:
+     • grow in a sparse column blew a full-width button up many times
+       its scale height, and with a full radius it turned into a circle;
+     • shrink in a crowded column squeezed a button down to ~20px and
+       the label spilled out.
+   CSS doesn't know the parent's direction, but min/max-height beat
+   flex — the control keeps its scale height in any direction. */
+.Button--sm { --btn-h: var(--control-sm); padding: 0 var(--space-12); font-size: var(--text-label-size);  line-height: var(--text-label-lh); }
+.Button--md { --btn-h: var(--control-md); padding: 0 var(--space-16); font-size: var(--text-body-size);   line-height: var(--text-body-lh); }
+.Button--lg { --btn-h: var(--control-lg); padding: 0 var(--space-20); font-size: var(--text-body-size);   line-height: var(--text-body-lh); }
+.Button--xl { --btn-h: var(--control-xl); padding: 0 var(--space-24); font-size: var(--text-title-size);  line-height: var(--text-title-lh); }
+
+.Button--sm,
+.Button--md,
+.Button--lg,
+.Button--xl {
+  height: var(--btn-h);
+  min-height: var(--btn-h);
+  max-height: var(--btn-h);
+}
+
+/* Square icon button: padding 0, width = height */
+.Button--iconOnly { padding: 0; }
+.Button--iconOnly.Button--sm { width: var(--control-sm); }
+.Button--iconOnly.Button--md { width: var(--control-md); }
+.Button--iconOnly.Button--lg { width: var(--control-lg); }
+.Button--iconOnly.Button--xl { width: var(--control-xl); }
+
+/* Fill container — a separate modifier, not width: 100% */
+.Button--fullWidth {
+  width: auto;
+  flex: 1 1 auto;
+  align-self: stretch;
+}
+
+.Button__label {
+  flex: 0 0 auto;   /* the label hugs, never stretches */
+}
+
+/* ==================== VARIANTS ====================
+   For each: default / hover / pressed / focus.
+   is-* classes mirror the pseudo-classes so states can be
+   shown statically. */
+
+/* --- primary: the main action, exactly one per screen --- */
+.Button--primary {
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-fg);
+  box-shadow: var(--shadow-1);
+}
+.Button--primary:hover:not(:disabled),
+.Button--primary.is-hover { background: var(--btn-primary-hover); box-shadow: var(--shadow-accent); }
+.Button--primary:active:not(:disabled),
+.Button--primary.is-pressed { background: var(--btn-primary-press); transform: scale(.97); box-shadow: var(--shadow-0); }
+
+/* --- secondary: the alternative next to primary --- */
+.Button--secondary {
+  background: var(--btn-secondary-bg);
+  color: var(--btn-secondary-fg);
+}
+.Button--secondary:hover:not(:disabled),
+.Button--secondary.is-hover { background: var(--btn-secondary-hover); }
+.Button--secondary:active:not(:disabled),
+.Button--secondary.is-pressed { background: var(--btn-secondary-press); transform: scale(.97); }
+
+/* --- ghost: tertiary, inside dense blocks --- */
+.Button--ghost {
+  background: transparent;
+  color: var(--fg-dim);
+}
+.Button--ghost:hover:not(:disabled),
+.Button--ghost.is-hover { background: var(--accent-subtle); color: var(--fg-default); }
+.Button--ghost:active:not(:disabled),
+.Button--ghost.is-pressed { background: var(--bg-surface-1); transform: scale(.97); }
+
+/* --- outline: an action on a colored surface or a card --- */
+.Button--outline {
+  background: transparent;
+  color: var(--fg-default);
+  box-shadow: inset 0 0 0 1px var(--border-strong);   /* Figma: Stroke inside */
+}
+.Button--outline:hover:not(:disabled),
+.Button--outline.is-hover { background: var(--accent-subtle); box-shadow: inset 0 0 0 1px var(--accent-border); }
+.Button--outline:active:not(:disabled),
+.Button--outline.is-pressed { background: var(--bg-surface-1); transform: scale(.97); }
+
+/* --- danger: an irreversible action --- */
+.Button--danger {
+  background: var(--danger-subtle);
+  color: var(--danger);
+  box-shadow: inset 0 0 0 1px var(--danger);
+}
+.Button--danger:hover:not(:disabled),
+.Button--danger.is-hover { background: var(--danger); color: var(--fg-on-accent); }
+.Button--danger:active:not(:disabled),
+.Button--danger.is-pressed { transform: scale(.97); }
+
+/* --- success: confirmation inside a success state --- */
+.Button--success {
+  background: var(--success-subtle);
+  color: var(--success);
+  box-shadow: inset 0 0 0 1px var(--success);
+}
+.Button--success:hover:not(:disabled),
+.Button--success.is-hover { background: var(--success); color: var(--fg-on-accent); }
+.Button--success:active:not(:disabled),
+.Button--success.is-pressed { transform: scale(.97); }
+
+/* --- link: inline in text --- */
+.Button--link {
+  height: auto;       /* the only variant without a fixed height — */
+  min-height: 0;      /* drop both the floor and the ceiling (the size */
+  max-height: none;   /* rule has the same specificity, so this wins) */
+  padding: 0;
+  background: transparent;
+  color: var(--fg-accent);
+  border-radius: var(--r-xs);
+}
+.Button--link:hover:not(:disabled),
+.Button--link.is-hover { text-decoration: underline; text-underline-offset: 3px; }
+.Button--link:active:not(:disabled),
+.Button--link.is-pressed { opacity: .7; }
+
+/* ==================== SHARED STATES ==================== */
+
+.Button:focus-visible,
+.Button.is-focus {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+.Button:disabled,
+.Button.is-disabled {
+  opacity: .4;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: var(--shadow-0);
+}
+
+.Button.is-loading {
+  cursor: progress;
+  pointer-events: none;
+}
+
+.Button__spinner {
+  flex: 0 0 auto;
+}

@@ -1,0 +1,178 @@
+/* ============================================================
+   L3 · CardVisual
+   column · W=fill · H=fixed(200) · pad 20 · space-between
+
+   Every color goes through var(): the literals live in
+   tokens/palette.css (the payment card block).
+   ============================================================ */
+
+.CardVisual {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-self: stretch;   /* Figma: Fill container */
+
+  height: 200px;
+  padding: var(--space-20);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  position: relative;   /* is-abs: anchor for the glow and the state veil */
+
+  transition: background var(--dur-slow) var(--ease-out);
+}
+
+/* ==================== SKIN ==================== */
+
+/* auto — follows the app theme */
+.CardVisual--auto {
+  background: var(--card-bg);
+  color: var(--c-paper);
+  box-shadow: var(--c-card-shadow);
+}
+
+/* dark / light — fixed plastic, independent of the UI theme */
+.CardVisual--dark {
+  background: var(--c-card-dark-bg);
+  color: var(--c-paper);
+  box-shadow: var(--c-card-shadow);
+}
+
+.CardVisual--light {
+  background: var(--c-card-light-bg);
+  color: var(--c-ink);
+  box-shadow: var(--c-card-shadow-light);
+}
+
+/* glass — the same technique as Surface--glass, at card size */
+.CardVisual--glass {
+  background: var(--glass-bg);
+  color: var(--fg-default);
+  box-shadow:
+    inset 0 1px 0 var(--glass-border),
+    inset 0 0 0 1px var(--glass-border),
+    var(--shadow-3);
+  backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+}
+
+/* Glow in the top corner — the card's signature detail */
+.CardVisual__glow {
+  position: absolute;   /* is-abs: decorative glow, outside the layout flow */
+  top: -40%;
+  right: -18%;
+  width: 260px;
+  height: 260px;
+  pointer-events: none;
+  /* --card-glow is a plain color token — it has to be spread as a soft
+     radial blob here, otherwise the glow paints a hard-edged rectangle. */
+  background: radial-gradient(closest-side, var(--card-glow), transparent);
+}
+.CardVisual--dark  .CardVisual__glow { background: var(--c-card-glow-dark); }
+.CardVisual--light .CardVisual__glow { background: var(--c-card-glow-light); }
+.CardVisual--glass .CardVisual__glow { background: var(--c-card-glow-glass); }
+
+/* ==================== CONTENT ==================== */
+
+.CardVisual__top {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-12);
+  position: relative;   /* is-abs: lifts the content above the decorative glow */
+}
+
+.CardVisual__chipRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-12);
+}
+
+/* Gold chip — a rectangle with a groove, like real plastic */
+.CardVisual__chip {
+  width: 34px;
+  height: 26px;
+  flex: 0 0 auto;
+  border-radius: var(--r-xs);
+  background: linear-gradient(135deg, var(--c-chip-gold) 0%, var(--c-chip-gold-deep) 100%);
+  box-shadow: inset 0 1px 0 var(--c-chip-highlight);
+  position: relative;   /* is-abs: anchor for the inner groove */
+}
+.CardVisual__chip::after {
+  content: '';
+  position: absolute;   /* is-abs: decorative groove inside the chip */
+  inset: 5px 4px;
+  border: 1px solid var(--c-chip-groove);
+  border-radius: var(--r-xs);
+}
+
+/* Card type — a service line, the way real cards print it, not a
+   logo. A network mark (VISA) here would claim a partnership that
+   doesn't exist, so the corner shows DEBIT / CREDIT / PREPAID at label
+   size, which also stays readable in the narrow strip on Home. */
+.CardVisual__kind {
+  font-family: var(--font-display);
+  font-size: var(--text-label-size);
+  line-height: var(--text-label-lh);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  flex: 0 0 auto;
+}
+
+.CardVisual__pan {
+  font-family: var(--font-mono);
+  font-size: var(--text-h3-size);
+  line-height: var(--text-h3-lh);
+  letter-spacing: 0.12em;
+  position: relative;   /* is-abs: lifts the content above the decorative glow */
+  opacity: .92;
+}
+
+.CardVisual__foot {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-12);
+  position: relative;   /* is-abs: lifts the content above the decorative glow */
+}
+
+.CardVisual__holder {
+  font-size: var(--text-caption-size);
+  line-height: var(--text-caption-lh);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: .75;
+}
+
+.CardVisual__expiry {
+  font-family: var(--font-mono);
+  font-size: var(--text-bodysm-size);
+  line-height: var(--text-bodysm-lh);
+  letter-spacing: 0.06em;
+  opacity: .75;
+}
+
+/* ==================== STATES ==================== */
+
+.CardVisual__veil {
+  position: absolute;   /* is-abs: veil over the whole card when inactive */
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-8);
+  background: var(--c-card-veil);
+  backdrop-filter: blur(3px);
+  color: var(--c-paper);
+}
+
+/* Text on the veil is always light — the Text tone mustn't fight the
+   dark backdrop (the selector changes color only, not layout). */
+.CardVisual__veil .Text {
+  color: var(--c-paper);
+}
+
+.CardVisual.is-frozen  { filter: saturate(.35); }
+.CardVisual.is-expired { filter: grayscale(1); }

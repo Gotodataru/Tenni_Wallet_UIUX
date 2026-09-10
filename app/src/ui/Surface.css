@@ -1,0 +1,43 @@
+/* L1 · Surface */
+
+.Surface {
+  display: flex;
+  min-width: 0;
+  align-self: stretch;   /* Figma: Fill container on the cross axis */
+}
+
+.Surface--column { flex-direction: column; }
+.Surface--row    { flex-direction: row; align-items: center; }
+
+/* Figma: Fill container on the main axis. No min-height: 0 — a surface
+   must never shrink below its content. */
+.Surface--fill   { flex: 1 1 0; }
+
+/* Levels: background + stroke + shadow */
+.Surface--l0 { background: transparent;         box-shadow: var(--shadow-0); }
+.Surface--l1 { background: var(--bg-surface-1); box-shadow: inset 0 0 0 1px var(--border-subtle); }
+.Surface--l2 { background: var(--bg-surface-2); box-shadow: inset 0 0 0 1px var(--border-subtle), var(--shadow-1); }
+.Surface--l3 { background: var(--bg-surface-3); box-shadow: inset 0 0 0 1px var(--border-subtle), var(--shadow-2); }
+
+/* Radii */
+.Surface--r-sm  { border-radius: var(--r-sm); }
+.Surface--r-md  { border-radius: var(--r-md); }
+.Surface--r-lg  { border-radius: var(--r-lg); }
+.Surface--r-xl  { border-radius: var(--r-xl); }
+.Surface--r-2xl { border-radius: var(--r-2xl); }
+
+/* Liquid glass — the project's signature layer */
+.Surface--glass {
+  background: var(--glass-bg);
+  box-shadow: inset 0 0 0 1px var(--glass-border), var(--shadow-2);
+  backdrop-filter: blur(var(--glass-blur)) saturate(140%);
+}
+
+/* Clickable surface */
+.Surface--interactive {
+  cursor: pointer;
+  transition: background-color var(--dur-fast) var(--ease-out),
+              transform var(--dur-instant) var(--ease-out);
+}
+.Surface--interactive:hover  { background: var(--bg-surface-2); }
+.Surface--interactive:active { transform: scale(.99); }

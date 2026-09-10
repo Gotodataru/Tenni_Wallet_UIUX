@@ -1,0 +1,39 @@
+/* ============================================================
+   L5 · AppBar
+   row · W=fill H=fixed(56) · pad 0/16 · gap 12 · align center
+   ============================================================ */
+
+.AppBar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-12);
+  align-self: stretch;   /* Figma: Fill container */
+
+  height: 56px;
+  padding: 0 var(--space-16);
+  background: var(--bg-canvas);
+}
+
+.AppBar--transparent {
+  background: transparent;
+}
+
+.AppBar__leading,
+.AppBar__trailing {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-8);
+  flex: 0 0 auto;
+  min-width: var(--control-md);   /* an empty slot keeps room for an IconButton so the other side doesn't jump */
+}
+
+.AppBar__center {
+  display: flex;
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.AppBar__center--title-left   { justify-content: flex-start; }
+.AppBar__center--title-center { justify-content: center; }

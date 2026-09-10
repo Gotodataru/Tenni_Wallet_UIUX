@@ -1,0 +1,53 @@
+/* The design system's public API. Import components only from here. */
+
+export { Icon } from '../icons/Icon.jsx'
+export { Text } from './Text.jsx'
+export { Stack } from './Stack.jsx'
+export { Surface } from './Surface.jsx'
+export { Divider } from './Divider.jsx'
+export { Layer } from './Layer.jsx'
+export { Button } from './Button.jsx'
+export { IconButton } from './IconButton.jsx'
+export { Input } from './Input.jsx'
+export { Toggle } from './Toggle.jsx'
+export { Checkbox } from './Checkbox.jsx'
+export { Radio } from './Radio.jsx'
+export { Segmented } from './Segmented.jsx'
+export { Chip } from './Chip.jsx'
+export { Badge } from './Badge.jsx'
+export { Keypad } from './Keypad.jsx'
+export { Slider } from './Slider.jsx'
+
+/* L3 · Data display */
+export { Avatar } from './Avatar.jsx'
+export { AssetIcon } from './AssetIcon.jsx'
+export { Amount } from './Amount.jsx'
+export { Balance } from './Balance.jsx'
+export { Skeleton } from './Skeleton.jsx'
+export { Sparkline } from './Sparkline.jsx'
+export { Donut } from './Donut.jsx'
+export { ProgressDots } from './ProgressDots.jsx'
+export { QRBlock } from './QRBlock.jsx'
+export { ListRow } from './ListRow.jsx'
+export { TransactionRow } from './TransactionRow.jsx'
+export { CardVisual } from './CardVisual.jsx'
+
+/* L4 · Feedback */
+export { Toast } from './Toast.jsx'
+export { Banner } from './Banner.jsx'
+export { Modal } from './Modal.jsx'
+export { BottomSheet } from './BottomSheet.jsx'
+export { EmptyState } from './EmptyState.jsx'
+export { LockOverlay } from './LockOverlay.jsx'
+
+/* L5 · Navigation and frame */
+export { StatusBar } from './StatusBar.jsx'
+export { AppBar } from './AppBar.jsx'
+export { NavItem } from './NavItem.jsx'
+export { TabBar } from './TabBar.jsx'
+export { HomeIndicator } from './HomeIndicator.jsx'
+export { Section } from './Section.jsx'
+export { Screen } from './Screen.jsx'
+
+/* Empty-state illustrations — plug into the EmptyState slot */
+export { Illustration, ILLUSTRATION_NAMES } from '../illustrations/Illustration.jsx'

@@ -1,0 +1,52 @@
+/* ============================================================
+   L1 · Layer
+   column · W=fill · H=hug · base layer in flow, over — out of flow
+   ============================================================ */
+
+.Layer {
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;   /* Figma: Fill container */
+  position: relative;    /* is-abs: anchor for the overlay — the whole point of the component */
+}
+
+.Layer__over {
+  position: absolute;   /* is-abs: the overlay, Absolute position in Figma */
+  display: flex;
+  flex-direction: column;
+  --layer-inset: var(--space-0);
+}
+
+/* Inset from the edge — from the 4-pt scale only */
+.Layer__over--inset-0  { --layer-inset: var(--space-0); }
+.Layer__over--inset-8  { --layer-inset: var(--space-8); }
+.Layer__over--inset-12 { --layer-inset: var(--space-12); }
+.Layer__over--inset-16 { --layer-inset: var(--space-16); }
+.Layer__over--inset-20 { --layer-inset: var(--space-20); }
+
+/* Anchors = constraints in Figma */
+.Layer__over--bottom    { inset: auto var(--layer-inset) var(--layer-inset) var(--layer-inset); }
+.Layer__over--top       { inset: var(--layer-inset) var(--layer-inset) auto var(--layer-inset); }
+.Layer__over--top-right { inset: var(--layer-inset) var(--layer-inset) auto auto; }
+.Layer__over--center    { inset: 0; align-items: center; justify-content: center; }
+
+/* ==================== stack — a fan of cards ====================
+   The base is shifted by (X, Y) with the Layer's own padding; over spans
+   from the top-left to X on the right at FULL height. The glass is taller
+   than the card by Y, the bottoms line up, and the card peeks out only
+   as a strip of width X on the right. Cropping over by Y at the bottom
+   would let the card stick out below and cut the holder name in half. */
+.Layer--stack       { padding: var(--layer-oy) 0 0 var(--layer-ox); }
+.Layer__over--stack { inset: 0 var(--layer-ox) 0 0; }
+
+.Layer--ox-16 { --layer-ox: var(--space-16); }
+.Layer--ox-24 { --layer-ox: var(--space-24); }
+.Layer--ox-32 { --layer-ox: var(--space-32); }
+.Layer--ox-48 { --layer-ox: var(--space-48); }
+.Layer--ox-64 { --layer-ox: var(--space-64); }
+
+.Layer--oy-8  { --layer-oy: var(--space-8); }
+.Layer--oy-12 { --layer-oy: var(--space-12); }
+.Layer--oy-16 { --layer-oy: var(--space-16); }
+.Layer--oy-24 { --layer-oy: var(--space-24); }
+.Layer--oy-32 { --layer-oy: var(--space-32); }

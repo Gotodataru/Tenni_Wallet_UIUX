@@ -1,0 +1,116 @@
+/* ============================================================
+   L2 · Input
+   column · W=fill H=hug · gap 6
+   field: row · W=fill H=fixed(48) · pad 0/16 · gap 8
+
+   The first spec said pad 0/14 · gap 10 — rounded to
+   var(--space-16) / var(--space-8), same as Toggle:
+   spacing must sit on the 4-pt scale (FIGMA_RULES §2, magic numbers).
+   ============================================================ */
+
+.Input {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  align-self: stretch;   /* Figma: Fill container */
+  min-width: 0;
+}
+
+.Input__label {
+  display: flex;
+}
+
+.Input__field {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-8);
+  align-self: stretch;
+  height: 48px;
+  padding: 0 var(--space-16);
+
+  border-radius: var(--r-md);
+  background: var(--bg-surface-1);
+  box-shadow: inset 0 0 0 1px var(--border-subtle);
+
+  transition: box-shadow var(--dur-fast) var(--ease-out),
+              background-color var(--dur-fast) var(--ease-out);
+}
+
+.Input__icon {
+  flex: 0 0 auto;
+}
+
+.Input__control {
+  flex: 1 1 0;
+  min-width: 0;   /* critical: otherwise long input stretches the row */
+  align-self: stretch;   /* Figma: Fill container vertically (not a height %) */
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--fg-default);
+  font-family: var(--font-sans);
+  font-size: var(--text-body-size);
+  line-height: var(--text-body-lh);
+}
+
+.Input__control::placeholder {
+  color: var(--fg-faint);
+}
+
+.Input__control:disabled {
+  cursor: not-allowed;
+}
+
+/* type=address — monospace, wallet addresses are read character by character */
+.Input--address .Input__control {
+  font-family: var(--font-mono);
+  font-size: var(--text-mono-size);
+  letter-spacing: 0.2px;
+}
+
+.Input__hint {
+  display: flex;
+}
+
+/* ==================== STATES ==================== */
+
+.Input.is-focus .Input__field {
+  background: var(--bg-surface-2);
+  box-shadow: inset 0 0 0 2px var(--border-focus);
+}
+
+.Input.is-filled .Input__field {
+  background: var(--bg-surface-2);
+}
+
+.Input.is-error .Input__field {
+  background: var(--danger-subtle);
+  box-shadow: inset 0 0 0 2px var(--danger);
+}
+
+.Input.is-success .Input__field {
+  box-shadow: inset 0 0 0 2px var(--success);
+}
+
+.Input.is-disabled .Input__field {
+  opacity: .5;
+}
+.Input.is-disabled .Input__control {
+  cursor: not-allowed;
+}
+
+.Input.is-readonly .Input__field {
+  background: transparent;
+  box-shadow: inset 0 0 0 1px var(--border-subtle);
+}
+.Input.is-readonly .Input__control {
+  cursor: default;
+}
+
+/* Slot for an interactive trailing control (Paste / Scan). Hug, never shrinks. */
+.Input__action {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+}

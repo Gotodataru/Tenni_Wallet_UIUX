@@ -1,0 +1,41 @@
+/* ============================================================
+   L4 · EmptyState
+   column · W=fill H=hug · pad 32/24 · gap 16 · align center
+   ============================================================ */
+
+.EmptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-16);
+  align-self: stretch;   /* Figma: Fill container */
+
+  padding: var(--space-32) var(--space-24);
+}
+
+.EmptyState__illustration {
+  display: flex;
+  flex: 0 0 auto;
+}
+
+/* Placeholder when no illustration is passed — 96×96, larger than an
+   icon in a circle (Avatar/AssetIcon) because here it is the hero */
+.EmptyState__placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 96px;
+  height: 96px;
+  border-radius: var(--r-full);
+  background: var(--bg-surface-2);
+  box-shadow: inset 0 0 0 1px var(--border-subtle);
+  color: var(--fg-faint);
+}
+
+.EmptyState__text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-6);
+  align-self: stretch;
+}

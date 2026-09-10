@@ -1,0 +1,6 @@
+/* Style entry point. Order matters: primitives → scales → semantics → base. */
+
+@import './tokens/palette.css';
+@import './tokens/scale.css';
+@import './tokens/semantic.css';
+@import './styles/base.css';

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tenni Wallet — Landing</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="ambient" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="#">
+        <img src="../brand/logo.svg" alt="Tenni Wallet" class="brand-mark" width="40" height="40">
+        <span class="brand-text">
+          <span class="brand-name">Tenni</span>
+          <span class="brand-sub">Wallet · 2026</span>
+        </span>
+      </a>
+
+      <div class="topbar-center">
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle theme">
+          <span class="t-thumb">
+            <svg class="t-icon t-sun" viewBox="0 0 24 24" width="14" height="14" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.75"/><path d="M12 3v2m0 14v2M3 12h2m14 0h2M5.6 5.6l1.4 1.4m10 10 1.4 1.4M5.6 18.4l1.4-1.4m10-10 1.4-1.4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+            <svg class="t-icon t-moon" viewBox="0 0 24 24" width="14" height="14" fill="none" aria-hidden="true"><path d="M21 12.8A8 8 0 1 1 11.2 3a6 6 0 0 0 9.8 9.8Z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/></svg>
+          </span>
+          <span class="t-labels">
+            <span class="t-label is-active">Dark</span>
+            <span class="t-label">Light</span>
+          </span>
+        </button>
+      </div>
+
+      <nav class="topnav" aria-label="Primary">
+        <a href="#showcase">Preview</a>
+        <a href="#features">Features</a>
+        <a href="#palette">Palette</a>
+      </nav>
+
+      <div class="topbar-meta">
+        <span class="dot" aria-hidden="true"></span>
+        <a href="../#case">Case study →</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="pill">
+          <span class="pulse" aria-hidden="true"></span>
+          Concept · iOS · 2026
+        </span>
+        <h1 class="display">Your card. Your coins. <em>One wallet.</em></h1>
+        <p class="lead">Tap your Tenni card at any terminal and pay straight from your crypto balance — the terminal sets the amount, you pick the asset. Send and receive with guards against the mistakes that lose money.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="../#case">
+            Open the prototype
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="btn btn-ghost" href="../#tokens">Design system</a>
+        </div>
+        <dl class="hero-stats">
+          <div><dt>7</dt><dd>Screens</dd></div>
+          <div><dt>42</dt><dd>Components</dd></div>
+          <div><dt>2</dt><dd>Themes</dd></div>
+        </dl>
+      </div>
+
+      <div class="showcase" id="showcase">
+        <!-- Single phone — theme flips on click -->
+        <article class="phone phone-dark" id="phone" aria-label="Tenni wallet main screen">
+          <div class="phone-bezel"></div>
+          <div class="notch" aria-hidden="true"></div>
+          <div class="status-bar">
+            <span class="status-time">9:41</span>
+            <span class="dynamic-island" aria-hidden="true"></span>
+            <span class="status-icons">
+              <svg viewBox="0 0 18 12" width="18" height="12" fill="none" aria-hidden="true"><path d="M1 11h2V8H1v3zm4 0h2V5H5v6zm4 0h2V2H9v9zm4 0h2V0h-2v11z" fill="currentColor"/></svg>
+              <svg viewBox="0 0 16 12" width="16" height="12" fill="none" aria-hidden="true"><path d="M8 2.4c2.1 0 4 .8 5.5 2.1l1.4-1.4A10 10 0 0 0 8 0 10 10 0 0 0 1.1 3.1l1.4 1.4A8 8 0 0 1 8 2.4zm0 4a4 4 0 0 1 2.8 1.2l1.4-1.4A6 6 0 0 0 8 4a6 6 0 0 0-4.2 1.8l1.4 1.4A4 4 0 0 1 8 6.4zm0 4 2-2-2-2-2 2 2 2z" fill="currentColor"/></svg>
+              <svg viewBox="0 0 26 12" width="26" height="12" fill="none" aria-hidden="true"><rect x="0.5" y="0.5" width="22" height="11" rx="2.5" stroke="currentColor"/><rect x="2" y="2" width="19" height="8" rx="1.5" fill="currentColor"/><rect x="23.5" y="4" width="2" height="4" rx="1" fill="currentColor"/></svg>
+            </span>
+          </div>
+
+          <div class="phone-body">
+            <header class="hdr">
+              <div class="hdr-balance">
+                <span class="hdr-eyebrow">Total balance</span>
+                <div class="hdr-amount">
+                  <span class="hdr-value" data-balance>$12,345.<em>67</em></span>
+                  <button class="hdr-eye" type="button" aria-label="Toggle balance" data-eye>
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/></svg>
+                  </button>
+                </div>
+                <span class="hdr-change">
+                  <svg viewBox="0 0 24 24" width="11" height="11" fill="none" aria-hidden="true"><path d="M7 14l5-5 5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  +$456.54 · +3.84%
+                </span>
+              </div>
+              <button class="hdr-avatar" type="button" aria-label="Profile">
+                <span class="ava-ring"></span>
+                <span class="ava-img"></span>
+              </button>
+            </header>
+
+            <section class="card-wrap">
+              <div class="card-real">
+                <div class="cr-row">
+                  <span class="cr-chip"></span>
+                  <span class="cr-kind">DEBIT</span>
+                </div>
+                <span class="cr-no">•••• •••• •••• 4291</span>
+                <div class="cr-foot">
+                  <span class="cr-name">NINA ROSS</span>
+                  <span class="cr-exp">12/29</span>
+                </div>
+                <div class="cr-glow"></div>
+              </div>
+
+              <div class="card-glass">
+                <div class="glass-top">
+                  <span class="glass-eyebrow">Pay with</span>
+                  <button class="card-dot" type="button" aria-label="Options">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none"><circle cx="5" cy="12" r="1.6" fill="currentColor"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/><circle cx="19" cy="12" r="1.6" fill="currentColor"/></svg>
+                  </button>
+                </div>
+                <div class="glass-row">
+                  <div class="glass-pay">
+                    <span class="gp-num">2.04</span>
+                    <span class="gp-coin">ETH</span>
+                  </div>
+                  <span class="gp-usd">≈ $8,128</span>
+                </div>
+                <div class="glass-foot">
+                  <span class="gf-l">Used when you tap</span>
+                  <button class="gf-btn" type="button">
+                    Pay
+                    <svg viewBox="0 0 24 24" width="12" height="12" fill="none"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </button>
+                </div>
+              </div>
+            </section>
+
+            <section class="actions" aria-label="Quick actions">
+              <button class="qa" type="button">
+                <span class="qa-ico"><svg viewBox="0 0 24 24" width="18" height="18" fill="none"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="qa-label">Send</span>
+              </button>
+              <button class="qa" type="button">
+                <span class="qa-ico"><svg viewBox="0 0 24 24" width="18" height="18" fill="none"><path d="M19 12H5m6 6-6-6 6-6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="qa-label">Receive</span>
+              </button>
+              <button class="qa" type="button">
+                <span class="qa-ico"><svg viewBox="0 0 24 24" width="18" height="18" fill="none"><path d="M7 7h11l-3-3M17 17H6l3 3" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="qa-label">Swap</span>
+              </button>
+              <button class="qa" type="button">
+                <span class="qa-ico"><svg viewBox="0 0 24 24" width="18" height="18" fill="none"><path d="M4 18l5-6 4 3 7-9" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="qa-label">Stats</span>
+              </button>
+            </section>
+
+            <section class="activity">
+              <div class="sect-head">
+                <h3 class="sect-title">Activity</h3>
+                <button class="link" type="button">All
+                  <svg viewBox="0 0 24 24" width="11" height="11" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+              </div>
+              <ul class="act-list">
+                <li>
+                  <span class="act-ico act-sent"><svg viewBox="0 0 24 24" width="14" height="14" fill="none"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <div class="act-info"><span class="act-title">Sent to Leo</span><span class="act-sub">Today · 10:30</span></div>
+                  <span class="act-amt">−0.005 BTC</span>
+                </li>
+                <li>
+                  <span class="act-ico act-pay"><svg viewBox="0 0 24 24" width="14" height="14" fill="none"><rect x="3" y="6" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.5"/><path d="M3 10h18M7 15h3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+                  <div class="act-info"><span class="act-title">Starbucks</span><span class="act-sub">Today · 09:12 · ••4291</span></div>
+                  <span class="act-amt">−$4.80</span>
+                </li>
+                <li>
+                  <span class="act-ico act-recv"><svg viewBox="0 0 24 24" width="14" height="14" fill="none"><path d="M19 12H5m6 6-6-6 6-6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <div class="act-info"><span class="act-title">From exchange</span><span class="act-sub">Yesterday · 18:45</span></div>
+                  <span class="act-amt pos">+0.002 ETH</span>
+                </li>
+              </ul>
+            </section>
+          </div>
+
+          <nav class="tabbar" aria-label="Primary navigation">
+            <button class="tab is-active" type="button" data-tab="home" aria-label="Home"><svg viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="m3 11 9-8 9 8v10a2 2 0 0 1-2 2h-4v-7H9v7H5a2 2 0 0 1-2-2V11Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></button>
+            <button class="tab" type="button" data-tab="pay" aria-label="Pay"><svg viewBox="0 0 24 24" width="20" height="20" fill="none"><rect x="2.5" y="6" width="19" height="13" rx="2.5" stroke="currentColor" stroke-width="1.5"/><path d="M2.5 10h19M6 15h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+            <button class="tab" type="button" data-tab="swap" aria-label="Swap"><svg viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M7 7h11l-3-3M17 17H6l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          </nav>
+        </article>
+
+        <!-- Stacked preview of the OTHER theme (20% peek) -->
+        <div class="phone-stack" id="phoneStack" aria-hidden="true">
+          <div class="phone phone-dark stack-back" id="stackBack"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="features" id="features">
+      <header class="section-head">
+        <span class="kicker">2026 Design Language</span>
+        <h2 class="section-title">Principles baked into the pixels</h2>
+      </header>
+      <ul class="feature-grid" role="list">
+        <li class="feature">
+          <span class="feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/><path d="M12 7v5l3 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </span>
+          <h3 class="feature-title">Soft kinetic type</h3>
+          <p class="feature-text">Inter for clarity, Space Grotesk for headlines. Variable font axes tuned for cinematic motion.</p>
+        </li>
+        <li class="feature">
+          <span class="feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none"><rect x="3" y="5" width="18" height="14" rx="2.5" stroke="currentColor" stroke-width="1.5"/><path d="M3 10h18M7 15h3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </span>
+          <h3 class="feature-title">Card-first payments</h3>
+          <p class="feature-text">Convert any coin to local fiat at the moment of tap. Network fees shown in real time.</p>
+        </li>
+        <li class="feature">
+          <span class="feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none"><path d="M12 3 3 8l9 5 9-5-9-5Zm-9 8 9 5 9-5M3 16l9 5 9-5" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+          </span>
+          <h3 class="feature-title">Liquid glass</h3>
+          <p class="feature-text">Frosted layers with backdrop-blur, inner highlight and a real card beneath for depth.</p>
+        </li>
+        <li class="feature">
+          <span class="feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none"><path d="M4 12a8 8 0 1 1 16 0 8 8 0 0 1-16 0Z" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v4l2 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </span>
+          <h3 class="feature-title">Haptics & motion</h3>
+          <p class="feature-text">Tap-to-pay in 0.4s. Spring physics on every transition, haptic ack on confirm.</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="palette" id="palette">
+      <header class="section-head">
+        <span class="kicker">Palette</span>
+        <h2 class="section-title">Three tennis surfaces</h2>
+      </header>
+      <ul class="swatches" role="list">
+        <li class="swatch s-ball"><span class="swatch-hex">#C8FF4D</span><em class="swatch-name">Ball · dark accent</em></li>
+        <li class="swatch s-court"><span class="swatch-hex">#3F6FD8</span><em class="swatch-name">Hard court · light accent</em></li>
+        <li class="swatch s-shadow"><span class="swatch-hex">#070D1A</span><em class="swatch-name">Night court · dark canvas</em></li>
+        <li class="swatch s-ink"><span class="swatch-hex">#FF7B5C</span><em class="swatch-name">Clay · down &amp; errors</em></li>
+        <li class="swatch s-paper"><span class="swatch-hex">#EEF2FA</span><em class="swatch-name">Chalk · text on dark</em></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span>Tenni Wallet · Design concept 2026 · Ball · hard court · clay</span>
+      <span class="kbd">⌘ K</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

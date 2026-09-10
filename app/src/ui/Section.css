@@ -1,0 +1,31 @@
+/* ============================================================
+   L5 · Section (screen component)
+   column · W=fill H=hug · gap 12
+   ============================================================ */
+
+.Section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+  align-self: stretch;   /* Figma: Fill container */
+}
+
+.Section--pad-0  { padding: 0; }
+.Section--pad-16 { padding: 0 var(--space-16); }
+
+.Section__header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-12);
+  align-self: stretch;
+}
+
+.Section__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+  flex: 1 1 auto;
+  align-self: stretch;
+}
