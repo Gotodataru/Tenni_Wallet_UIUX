@@ -122,7 +122,7 @@ function SparklineSection() {
         <Sparkline data={UP_DATA} tone="up" showFill showDots />
         <Sparkline data={DOWN_DATA} tone="down" showFill showDots />
       </Spec>
-      <Spec title="range === 0 — regression case" column>
+      <Spec title="range === 0, regression case" column>
         <Sparkline data={FLAT_DATA} tone="neutral" showDots />
         <Text variant="caption" tone="faint">all 14 values are 1000</Text>
       </Spec>
@@ -143,13 +143,13 @@ const PORTFOLIO = [
 function DonutSection() {
   return (
     <Section title="Donut" hint="W=fixed(160) H=fixed(160). Segments via stroke-dasharray, starting at the top (rotate −90).">
-      <Spec title="Live example — portfolio allocation">
+      <Spec title="Live example: portfolio allocation">
         <Donut segments={PORTFOLIO} showCenter centerValue="3" centerLabel="assets" thickness={16} />
         <Stack gap={8}>
           {PORTFOLIO.map((s) => (
             <Stack key={s.label} dir="row" gap={8} align="center">
               <div style={{ width: 10, height: 10, borderRadius: 'var(--r-full)', background: s.color, flex: '0 0 auto' }} />
-              <Text variant="bodySm">{s.label} — {s.value}%</Text>
+              <Text variant="bodySm">{s.label} {s.value}%</Text>
             </Stack>
           ))}
         </Stack>
@@ -183,7 +183,7 @@ function ProgressDotsSection() {
 
 function QRBlockSection() {
   return (
-    <Section title="QRBlock" hint="column · W=hug H=hug · pad 20 · gap 16 · center. ⚠ A deterministic decorative pattern, not a scannable QR — a real encoder plugs in at integration.">
+    <Section title="QRBlock" hint="column · W=hug H=hug · pad 20 · gap 16 · center. ⚠ A deterministic decorative pattern, not a scannable QR. A real encoder plugs in at integration.">
       <Spec title="Sizes">
         <Cell label="200" center><QRBlock value="bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh" size={200} /></Cell>
         <Cell label="240 + logo slot" center><QRBlock value="bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh" size={240} withLogo logo={<AssetIcon symbol="btc" size={32} />} /></Cell>
@@ -202,18 +202,18 @@ function ListRowSection() {
   return (
     <Section
       title="ListRow"
-      hint="row · W=fill H=fixed(68|56) · pad 0/16 · gap 12. The most reused component after Button — Activity, Settings, Profile, Send, Receive and Pay are built on it."
+      hint="row · W=fill H=fixed(68|56) · pad 0/16 · gap 12. The most reused component after Button: Activity, Settings, Profile, Send, Receive and Pay are built on it."
     >
-      <Spec title="Slots instead of a list of types" contract="leading / trailing — ReactNode = Instance swap in Figma" column>
+      <Spec title="Slots instead of a list of types" contract="leading / trailing: ReactNode = Instance swap in Figma" column>
         <Text variant="bodySm" tone="dim">
           The first spec said <code>leading (avatar|asset|icon|none)</code>. It is built with slots
           instead: in Figma a slot is exactly an Instance swap property. An enum would force ListRow
-          to know the props of Avatar, AssetIcon and Checkbox and pass them all through — Figma has
+          to know the props of Avatar, AssetIcon and Checkbox and pass them all through, and Figma has
           no equivalent for that.
         </Text>
       </Spec>
 
-      <Spec title="leading — different slots" contract="hug, size comes from the nested component" column>
+      <Spec title="leading: different slots" contract="hug, size comes from the nested component" column>
         <Surface level={1} pad={0} gap={0}>
           <ListRow leading={<Avatar type="initials" initials="LP" />} title="Leo Park" subtitle="Transfer to a contact" trailing={<Amount value={1200} sign="minus" tone="neutral" size="sm" />} divider />
           <ListRow leading={<AssetIcon symbol="btc" size={40} />} title="Bitcoin" subtitle="0.0485 BTC" trailing={<Amount value={2968.2} sign="plus" showArrow size="sm" />} meta="+2.4%" divider />
@@ -222,7 +222,7 @@ function ListRowSection() {
         </Surface>
       </Spec>
 
-      <Spec title="trailing — different slots" contract="hug · column · align end · gap 2" column>
+      <Spec title="trailing: different slots" contract="hug · column · align end · gap 2" column>
         <Surface level={1} pad={0} gap={0}>
           <ListRow leading={<AssetIcon symbol="eth" size={40} />} title="Amount" subtitle="An amount with an arrow" trailing={<Amount value={890.5} sign="plus" showArrow size="sm" />} meta="24h" divider />
           <ListRow size="sm" leading={<Avatar type="icon" icon="face-id" />} title="Toggle" trailing={<Toggle defaultChecked aria-label="Face ID" />} divider />
@@ -232,7 +232,7 @@ function ListRowSection() {
         </Surface>
       </Spec>
 
-      <Spec title="min-width: 0 — the detail that matters" contract="without it a long address pushes trailing off screen" column>
+      <Spec title="min-width: 0 matters" contract="without it a long address pushes trailing off screen" column>
         <Surface level={1} pad={0} gap={0}>
           <ListRow
             leading={<AssetIcon symbol="btc" size={40} />}
@@ -242,11 +242,11 @@ function ListRowSection() {
           />
         </Surface>
         <Text variant="caption" tone="faint">
-          title and subtitle end in an ellipsis and trailing stays put — that is min-width: 0 on the body
+          title and subtitle end in an ellipsis and trailing stays put. That is min-width: 0 on the body
         </Text>
       </Spec>
 
-      <Spec title="States" contract="shown statically — the future Figma Component Set" column>
+      <Spec title="States" contract="shown statically, the future Figma Component Set" column>
         <Surface level={1} pad={0} gap={0}>
           <ListRow leading={<Avatar type="icon" icon="user" />} title="default" subtitle="regular row" chevron divider />
           <ListRow leading={<Avatar type="icon" icon="user" />} title="pressed" subtitle="being tapped" state="pressed" chevron divider />
@@ -255,7 +255,7 @@ function ListRowSection() {
         </Surface>
       </Spec>
 
-      <Spec title="state=swiped" contract="the gesture doesn't transfer to Figma — the open state does" column>
+      <Spec title="state=swiped" contract="the gesture doesn't transfer to Figma, the open state does" column>
         <Surface level={1} pad={0} gap={0}>
           <ListRow
             leading={<AssetIcon symbol="usdt" size={40} />}
@@ -267,7 +267,7 @@ function ListRowSection() {
         </Surface>
       </Spec>
 
-      <Spec title="Live example — choosing a network" column>
+      <Spec title="Live example: choosing a network" column>
         <Surface level={1} pad={0} gap={0}>
           {[
             ['eth', 'Ethereum', 'ERC-20 · fee ~$2.10'],
@@ -297,7 +297,7 @@ function TransactionRowSection() {
       title="TransactionRow"
       hint="A preset of ListRow, not a copy of its markup. Leading is a circle by transaction type, trailing is Amount. Spending stays neutral; only incoming money is colored."
     >
-      <Spec title="5 types — icon, tone and sign are set automatically" column>
+      <Spec title="5 types, icon, tone and sign set automatically" column>
         <Surface level={1} pad={0} gap={0}>
           <TransactionRow type="sent" title="Sent to Leo" subtitle="Today · 10:30" value={0.005} currency="" unit="BTC" precision={3} divider />
           <TransactionRow type="received" title="From exchange" subtitle="Yesterday · 18:45" value={0.002} currency="" unit="ETH" precision={3} divider />
@@ -307,17 +307,17 @@ function TransactionRowSection() {
         </Surface>
       </Spec>
 
-      <Spec title="Data states — pending / failed" contract="override icon, tone and the caption under the amount without touching the ListRow layout" column>
+      <Spec title="Data states: pending / failed" contract="override icon, tone and the caption under the amount without touching the ListRow layout" column>
         <Surface level={1} pad={0} gap={0}>
           <TransactionRow type="sent" title="Sent to Sam" subtitle="Just now" value={250} state="pending" divider />
           <TransactionRow type="sent" title="Sent to exchange" subtitle="5 minutes ago" value={99.9} state="failed" />
         </Surface>
       </Spec>
 
-      <Spec title="Precision — crypto is not rounded to 2 decimals" column>
+      <Spec title="Precision: crypto is not rounded to 2 decimals" column>
         <Text variant="bodySm" tone="dim">
           Amount has a <code>precision</code> prop: with 2 decimals 0.005 BTC would round to
-          0.01 — almost double. The same value with precision 2 (wrong for crypto) and 5 (right):
+          0.01, almost double. The same value with precision 2 (wrong for crypto) and 5 (right):
         </Text>
         <Stack dir="row" gap={24}>
           <Cell label="precision=2 (cash)" center><Amount value={0.005} currency="" suffix=" BTC" precision={2} sign="minus" tone="neutral" /></Cell>
@@ -340,12 +340,12 @@ function CardVisualSection() {
         <Text variant="bodySm" tone="dim">
           On Home the "card" is two stacked things: the card itself and the glass "Pay with" panel
           in front of it. Only the card is a component. The panel is a payment composer assembled on
-          the screen from Surface glass + Text + Chip + Button, and the stacking is `Layer` — in Figma,
+          the screen from Surface glass + Text + Chip + Button, and the stacking is `Layer`. In Figma,
           two instances with the top one set to Absolute position.
         </Text>
       </Spec>
 
-      <Spec title="skin" contract="auto follows the theme · dark/light — fixed plastic · glass" column>
+      <Spec title="skin" contract="auto follows the theme · dark/light are fixed plastic · glass" column>
         <CardVisual skin="auto" />
         <Stack dir="row" gap={16} fillCross>
           <Stack fill><CardVisual skin="dark" kind="debit" /></Stack>
@@ -398,7 +398,7 @@ function CardVisualSection() {
           </Layer>
         </div>
         <Text variant="caption" tone="faint">
-          The glass panel is assembled entirely from system components — no new CSS
+          The glass panel is assembled entirely from system components, no new CSS
         </Text>
       </Spec>
     </Section>

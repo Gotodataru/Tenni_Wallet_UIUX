@@ -64,7 +64,7 @@ function LoggedOutStep({ onRestore }) {
       <EmptyState
         illustration={<Illustration name="generic" size={112} />}
         title="You're signed out"
-        body="This is a concept — nothing was saved. Sign in again to keep exploring."
+        body="This is a concept, so nothing was saved. Sign in again to keep exploring."
         action
         actionLabel="Sign in again"
         onAction={onRestore}

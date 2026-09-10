@@ -48,7 +48,7 @@ function HomeSection({ theme }) {
 
   return (
     <Section title="Home" hint="Balance, the card with the Pay composer, quick actions, portfolio, activity.">
-      <Spec title="Cold start — real timing" column>
+      <Spec title="Cold start with real timing" column>
         <Text variant="bodySm" tone="dim">
           900 ms of skeletons under every block, then content. Swap and Stake answer with a toast instead of doing nothing.
         </Text>
@@ -80,7 +80,7 @@ function PaySection({ theme }) {
 
   return (
     <Section title="Pay" hint="Tap-to-pay charged in crypto. The terminal sends the amount; the user picks the asset and confirms.">
-      <Spec title="Live flow — try both outcomes" column>
+      <Spec title="Live flow: try both outcomes" column>
         <div style={{ maxWidth: 320 }}>
           <Segmented items={['Approved', 'Declined']} active={outcomes.indexOf(outcome)} onChange={(i) => setOutcome(outcomes[i])} />
         </div>
@@ -136,7 +136,7 @@ function ActivitySection({ theme }) {
 
 function SettingsSection({ theme }) {
   return (
-    <Section title="Settings + Profile" hint="Lists on ListRow with toggles. The Dark theme toggle is live — it switches the screen (and, in the prototype, the whole app).">
+    <Section title="Settings + Profile" hint="Lists on ListRow with toggles. The Dark theme toggle is live: it switches the screen (and, in the prototype, the whole app).">
       <Grid title="Both steps">
         {SETTINGS_STEPS.map((s) => (
           <Small key={`${s}-${theme}`} label={LABEL[s]}><SettingsScreen step={s} theme={theme} scaled /></Small>
@@ -149,7 +149,7 @@ function SettingsSection({ theme }) {
 export function Screens({ theme }) {
   return (
     <>
-      <Section hint="Every screen of the prototype in every state. The screens are assembled only from system components — there is no screen-level CSS.">
+      <Section hint="Every screen of the prototype in every state. The screens are assembled only from system components. There is no screen-level CSS.">
         <Stack dir="row" gap={8} wrap>
           <a className="CaseLink CaseLink--primary" href="#case">Open the clickable prototype</a>
         </Stack>

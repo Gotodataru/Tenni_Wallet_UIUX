@@ -3,12 +3,12 @@ import { byPack, ICON_NAMES } from '../icons/paths.js'
 import { Section, Spec, Cell } from './parts.jsx'
 
 const PACK_TITLE = {
-  navigation: 'Navigation — structure and transitions',
-  wallet:     'Wallet — money actions',
-  status:     'Status — states and safety',
-  security:   'Security — sign-in and keys',
-  settings:   'Settings — profile and system',
-  assets:     'Assets — coins and payment marks',
+  navigation: 'Navigation: structure and transitions',
+  wallet:     'Wallet: money actions',
+  status:     'Status: states and safety',
+  security:   'Security: sign-in and keys',
+  settings:   'Settings: profile and system',
+  assets:     'Assets: coins and payment marks',
 }
 
 export function Icons() {
@@ -21,13 +21,13 @@ export function Icons() {
       <div className="Note">
         <Icon name="alert-triangle" size={20} tone="warning" />
         <Text variant="bodySm">
-          No Visa, Mastercard or Apple Pay logos on purpose — they are registered
+          No Visa, Mastercard or Apple Pay logos on purpose. They are registered
           trademarks and can't be redrawn by hand; official assets come from each
           company's brand center. The assets pack uses neutral chip, contactless and nfc marks instead.
         </Text>
       </div>
 
-      <Spec title="Sizes" contract="16 / 20 / 24 / 32 · flex: 0 0 auto — never shrinks">
+      <Spec title="Sizes" contract="16 / 20 / 24 / 32 · flex: 0 0 auto, never shrinks">
         {[16, 20, 24, 32].map((size) => (
           <Cell key={size} label={`${size}px`} center>
             <Icon name="send" size={size} />

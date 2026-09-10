@@ -60,7 +60,7 @@ export function Tokens() {
     <Section
       hint="Three layers: primitives (palette) → semantics (theme, two modes) → scales. Components may only use the semantic layer."
     >
-      <Spec title="Palette concept — the tennis ball" contract="Figma: Variables «palette»">
+      <Spec title="Palette concept: the tennis ball" contract="Figma: Variables «palette»">
         {SURFACES.map(([name, title, role]) => <Swatch key={name} name={name} title={title} role={role} />)}
       </Spec>
 
@@ -71,7 +71,7 @@ export function Tokens() {
       <div className="Note">
         <Icon name="alert-triangle" size={20} tone="warning" />
         <Text variant="bodySm">
-          <b>--fg-faint</b> is 3.99:1 on the dark canvas — below WCAG AA (4.5:1). It is
+          <b>--fg-faint</b> is 3.99:1 on the dark canvas, below WCAG AA (4.5:1). It is
           allowed for decoration and text 24px and larger only. Secondary text uses
           <b> --fg-dim</b> (8.8:1). The light theme is monochrome on purpose: lime on
           paper is 1.2:1, so ink takes the accent role and "up" is the ball darkened to olive.
@@ -100,7 +100,7 @@ export function Tokens() {
         ))}
       </Spec>
 
-      <Spec title="Type scale" contract="line-height in px only — unitless values don't transfer to Figma" column>
+      <Spec title="Type scale" contract="line-height in px only, unitless values don't transfer to Figma" column>
         {TYPE.map(([variant, metrics, role]) => (
           <Stack key={variant} dir="row" gap={20} align="baseline">
             <Text variant="mono" tone="accent" style={{ width: 84, flex: '0 0 auto' }}>{variant}</Text>

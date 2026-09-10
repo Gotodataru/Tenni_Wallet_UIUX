@@ -55,7 +55,7 @@ function BiometricStep({ faceId, onFaceId, notify, onNotify, onNext }) {
           <Stack gap={4} align="center">
             <Text variant="h2" align="center">Protect your wallet</Text>
             <Text variant="bodySm" tone="dim" align="center">
-              Face ID confirms sign-ins and payments — faster than a passcode
+              Face ID confirms sign-ins and payments. It’s faster than a passcode.
             </Text>
           </Stack>
         </Stack>
@@ -127,7 +127,7 @@ function ChoiceStep({ picked, onPick, onRestart, onFinish }) {
             title="The demo stops here"
             body={picked === 'create'
               ? 'Next the app generates your keys and asks you to back up a recovery phrase. A public demo should never show or ask for one.'
-              : 'Next the app asks for your recovery phrase. A public demo should never ask for one — not even a fake one.'}
+              : 'Next the app asks for your recovery phrase. A public demo should never ask for one, not even a fake one.'}
           />
         )}
       </Stack>

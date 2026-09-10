@@ -137,7 +137,7 @@ function ResultStep({ step, asset, onRetry, onChangeAsset, onDone }) {
         <EmptyState
           illustration={<Icon name="spinner" size={48} tone="accent" className="Icon--spin" />}
           title="Processing payment"
-          body={`${MERCHANT.name} · $${num(TOTAL)}. Keep this screen open — it usually takes a couple of seconds.`}
+          body={`${MERCHANT.name} · $${num(TOTAL)}. Keep this screen open. It usually takes a couple of seconds.`}
         />
       </Stack>
     )
@@ -174,7 +174,7 @@ function ResultStep({ step, asset, onRetry, onChangeAsset, onDone }) {
           body="The merchant's bank didn't approve the payment. Nothing was charged."
         />
       </Stack>
-      <Banner tone="warning" title="What you can do" body="Try again, or pay with a different asset — the rate will be recalculated." />
+      <Banner tone="warning" title="What you can do" body="Try again or pay with another asset. The rate will be recalculated." />
       <Stack gap={12}>
         <Button variant="primary" size="xl" fullWidth iconLeading="refresh" onClick={onRetry}>Try again</Button>
         <Button variant="secondary" size="lg" fullWidth iconLeading="swap" onClick={onChangeAsset}>Pay with another asset</Button>

@@ -40,7 +40,7 @@ function AppBarSection() {
         <div className="Navigation__barFrame"><AppBar layout="title-center" title="Send" onBack={() => {}} trailing={<IconButton variant="ghost" size={32} icon="qr" aria-label="QR" />} /></div>
       </Spec>
 
-      <Spec title="transparent — over screen content">
+      <Spec title="transparent, over screen content">
         <div className="Navigation__frameDark">
           <AppBar transparent layout="title-center" title="Details" onBack={() => {}} />
         </div>
@@ -53,7 +53,7 @@ function TabBarSection() {
   const [active, setActive] = useState('home')
 
   return (
-    <Section title="TabBar + NavItem" hint="row · W=fill H=fixed(64) · pad 0/8. NavItem: column · W=fill H=fill · gap 4 · center — equal-width tabs.">
+    <Section title="TabBar + NavItem" hint="row · W=fill H=fixed(64) · pad 0/8. NavItem: column · W=fill H=fill · gap 4 · center, equal-width tabs.">
       <Spec title="Live example" column>
         <div className="Navigation__barFrame">
           <TabBar items={TABS} active={active} onChange={setActive} />
@@ -65,18 +65,18 @@ function TabBarSection() {
         <Cell label="solid" center>
           <div className="Navigation__barFrame"><TabBar items={TABS} active="home" theme="solid" onChange={() => {}} /></div>
         </Cell>
-        <Cell label="glass — over content" center>
+        <Cell label="glass, over content" center>
           <div className="Navigation__frameDark">
             <TabBar items={TABS} active="pay" theme="glass" onChange={() => {}} />
           </div>
         </Cell>
       </Spec>
 
-      <Spec title="labels=false — icons only">
+      <Spec title="labels=false, icons only">
         <div className="Navigation__barFrame"><TabBar items={TABS} active="scan" labels={false} onChange={() => {}} /></div>
       </Spec>
 
-      <Spec title="NavItem — states">
+      <Spec title="NavItem states">
         <Cell label="default" center><div style={{ width: 64, height: 56, display: 'flex' }}><NavItem icon="home" label="Home" /></div></Cell>
         <Cell label="active" center><div style={{ width: 64, height: 56, display: 'flex' }}><NavItem icon="home" label="Home" state="active" /></div></Cell>
         <Cell label="disabled" center><div style={{ width: 64, height: 56, display: 'flex' }}><NavItem icon="home" label="Home" state="disabled" /></div></Cell>
@@ -113,7 +113,7 @@ function SectionCompSection() {
 
       <Spec title="No action, padding=16" column>
         <UISection title="Quick actions" padding={16}>
-          <Text variant="bodySm" tone="dim">content — any children, placeholder text here</Text>
+          <Text variant="bodySm" tone="dim">content: any children, placeholder text here</Text>
         </UISection>
       </Spec>
     </Section>
@@ -142,12 +142,12 @@ function ScreenSection() {
           <b>1.</b> <code>appBar</code>/<code>tabBar</code> are slots, not booleans: every screen has its
           own title and its own active tab. <b>2.</b> <code>theme</code> sets <code>data-theme</code> on
           the screen itself, so a dark screen can live inside a light page (see below). <b>3.</b> Safe
-          areas apply only when the mock bars are off — otherwise the inset would double. <b>4.</b>
+          areas apply only when the mock bars are off, otherwise the inset would double. <b>4.</b>
           <code> size=fluid</code> lets the same component be the real app shell, not just a mockup.
         </Text>
       </Spec>
 
-      <Spec title="Live example — the full frame" contract="statusBar + appBar + content (scroll) + tabBar + homeIndicator">
+      <Spec title="Live example: the full frame" contract="statusBar + appBar + content (scroll) + tabBar + homeIndicator">
         <div className="Device">
           <Screen theme="dark" appBar={appBar} tabBar={tabBar} contentPadding={16}>
             <Stack gap={12} style={{ paddingTop: 'var(--space-16)' }}>
@@ -168,7 +168,7 @@ function ScreenSection() {
         </div>
       </Spec>
 
-      <Spec title="theme — the screen carries its own theme" contract="data-theme is set on Screen, not on the document">
+      <Spec title="theme: the screen carries its own theme" contract="data-theme is set on Screen, not on the document">
         <Cell label="theme=dark" center>
           <div className="Device--sm">
             <Screen className="Device__scaled" theme="dark" appBar={<AppBar title="Dark" onBack={() => {}} />} tabBar={tabBar} contentPadding={16} />
@@ -181,7 +181,7 @@ function ScreenSection() {
         </Cell>
       </Spec>
 
-      <Spec title="No TabBar / no bars" contract="slot not passed — the block is simply absent">
+      <Spec title="No TabBar / no bars" contract="slot not passed, the block is simply absent">
         <Cell label="no tabBar" center>
           <div className="Device--sm">
             <Screen className="Device__scaled" theme="dark" appBar={<AppBar title="Details" onBack={() => {}} />} contentPadding={16} />

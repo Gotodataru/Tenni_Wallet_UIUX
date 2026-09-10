@@ -10,7 +10,7 @@ const TONES = ['info', 'success', 'warning', 'danger']
 
 function ToastSection() {
   return (
-    <Section title="Toast" hint="row · W=fill H=hug · pad 12/16 · gap 12 · radius lg. The card only — position, stacking and the timer belong to the screen.">
+    <Section title="Toast" hint="row · W=fill H=hug · pad 12/16 · gap 12 · radius lg. The card only. Position, stacking and the timer belong to the screen.">
       <Spec title="Tones" column>
         {TONES.map((tone) => (
           <Toast key={tone} tone={tone} message={`A ${tone} message`} />
@@ -26,7 +26,7 @@ function ToastSection() {
 
 function BannerSection() {
   return (
-    <Section title="Banner" hint="row · W=fill H=hug · pad 12/16 · gap 8. Lives in the screen flow — “No connection”, “Not enough funds”, “The rate changed”.">
+    <Section title="Banner" hint="row · W=fill H=hug · pad 12/16 · gap 8. Lives in the screen flow: “No connection”, “Not enough funds”, “The rate changed”.">
       <Spec title="Tones × title" column>
         {TONES.map((tone) => (
           <Banner key={tone} tone={tone} title="Banner title" body="Supporting text under the title, may run longer than one line." />
@@ -53,7 +53,7 @@ function ModalSection() {
         <Modal icon="check-circle" title="Done" body="Your transfer is on its way and will appear in Activity in a few seconds." actions={[{ label: 'Got it' }]} />
       </Spec>
 
-      <Spec title="Live example — with a scrim" contract="the scrim is demo scaffolding, not part of Modal" column>
+      <Spec title="Live example with a scrim" contract="the scrim is demo scaffolding, not part of Modal" column>
         <Button variant="secondary" size="md" onClick={() => setOpen(true)}>Open modal</Button>
         {open && (
           <div className="Feedback__scrimBox">
@@ -97,7 +97,7 @@ function BottomSheetSection() {
       <Spec title="No grabber / no header">
         <div className="Feedback__sheetFrame" style={{ height: 200 }}>
           <BottomSheet grabber={false} header={false}>
-            <Text variant="bodySm" tone="dim">Minimal configuration — content only</Text>
+            <Text variant="bodySm" tone="dim">Minimal configuration: content only</Text>
           </BottomSheet>
         </div>
       </Spec>
@@ -120,7 +120,7 @@ function EmptyStateSection() {
       title="EmptyState"
       hint="column · W=fill H=hug · pad 32/24 · gap 16 · center. illustration is a slot (ReactNode), so adding the SVG set didn't change the component API."
     >
-      <Spec title="Illustration set — 6" contract="120×120 canvas · r=46 background circle · 2.5 stroke · exactly one accent per drawing">
+      <Spec title="Illustration set" contract="120×120 canvas · r=46 background circle · 2.5 stroke · exactly one accent per drawing">
         {ILLUSTRATION_NAMES.map((name) => (
           <Cell key={name} label={name} center>
             <Illustration name={name} size={104} />
@@ -142,9 +142,9 @@ function EmptyStateSection() {
         ))}
       </Spec>
 
-      <Spec title="Fallback without an illustration" contract="the default when the slot is empty — the component still works">
+      <Spec title="Fallback without an illustration" contract="the default when the slot is empty">
         <div className="Feedback__emptyFrame">
-          <EmptyState icon="search" title="No illustration" body="An icon in a circle — the slot's default" />
+          <EmptyState icon="search" title="No illustration" body="An icon in a circle, the slot's default" />
         </div>
       </Spec>
     </Section>
@@ -155,8 +155,8 @@ const LOCK_STATES = ['idle', 'scanning', 'success', 'failed']
 
 function LockOverlaySection() {
   return (
-    <Section title="LockOverlay" hint="column · W=fill H=fill · center · gap 24. Doesn't position itself — fills the container the screen gives it.">
-      <Spec title="Face ID — 4 states">
+    <Section title="LockOverlay" hint="column · W=fill H=fill · center · gap 24. Doesn't position itself, it fills the container the screen gives it.">
+      <Spec title="Face ID, 4 states">
         {LOCK_STATES.map((state) => (
           <Cell key={state} label={state} center>
             <div className="Feedback__lockFrame">
@@ -165,7 +165,7 @@ function LockOverlaySection() {
           </Cell>
         ))}
       </Spec>
-      <Spec title="PIN — failed (no fallback to itself)">
+      <Spec title="PIN, failed (no fallback to itself)">
         <div className="Feedback__lockFrame">
           <LockOverlay method="pin" state="failed" />
         </div>

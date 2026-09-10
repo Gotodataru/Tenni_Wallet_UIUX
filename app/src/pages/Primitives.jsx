@@ -4,7 +4,7 @@ import { Section, Spec, Cell } from './parts.jsx'
 export function Primitives() {
   return (
     <>
-      <Section title="Stack" hint="A direct twin of Figma Auto Layout and the only way to lay things out — margin and grid are not allowed.">
+      <Section title="Stack" hint="A direct twin of Figma Auto Layout and the only way to lay things out. Margin and grid are not allowed.">
         <Spec title="Direction and gap" contract="dir=row|column · gap from the 4-pt scale" column>
           <Stack dir="row" gap={8}>
             {[1, 2, 3].map((i) => <Box key={i} label="gap 8" />)}
@@ -17,7 +17,7 @@ export function Primitives() {
         <Spec title="Sizing" contract="hug (default) · fill = flex: 1 1 0 · fillCross = align-self: stretch" column>
           <Stack dir="row" gap={8} fillCross>
             <Box label="hug" />
-            <Stack fill><Box label="fill — takes the rest" /></Stack>
+            <Stack fill><Box label="fill takes the rest" /></Stack>
             <Box label="hug" />
           </Stack>
         </Spec>
@@ -31,23 +31,23 @@ export function Primitives() {
         </Spec>
       </Section>
 
-      <Section title="Text" hint="10 type styles × 8 tones. The only way to render text — there are no bare spans with a font size.">
+      <Section title="Text" hint="10 type styles × 8 tones. The only way to render text, so there are no bare spans with a font size.">
         <Spec title="Tones" column>
           {['default', 'dim', 'faint', 'accent', 'success', 'danger', 'warning'].map((tone) => (
             <Text key={tone} variant="body" tone={tone}>
-              {tone} — Wallet balance $12,345.67
+              {tone}: Wallet balance $12,345.67
             </Text>
           ))}
         </Spec>
 
         <Spec title="Truncate and tabular numbers" contract="truncate → Figma: Truncate text · numeric → tabular figures" column>
           <Stack dir="row" gap={12} fillCross>
-            <Text variant="mono" fill truncate>bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh — a long address truncates instead of breaking the row</Text>
+            <Text variant="mono" fill truncate>bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh: a long address truncates instead of breaking the row</Text>
           </Stack>
           <Stack gap={2}>
             <Text variant="title" numeric>1,234.50</Text>
             <Text variant="title" numeric>9,876.10</Text>
-            <Text variant="bodySm" tone="dim">digits line up in columns — tabular-nums</Text>
+            <Text variant="bodySm" tone="dim">digits line up in columns (tabular-nums)</Text>
           </Stack>
         </Spec>
       </Section>
@@ -64,7 +64,7 @@ export function Primitives() {
           ))}
         </Spec>
 
-        <Spec title="Glass" contract="backdrop-filter blur(20px) — the project's signature layer">
+        <Spec title="Glass" contract="backdrop-filter blur(20px)">
           <div style={{
             display: 'flex', gap: 'var(--space-16)', padding: 'var(--space-24)',
             borderRadius: 'var(--r-xl)',
@@ -85,9 +85,9 @@ export function Primitives() {
       <Section title="Divider" hint="row · W=fill · H=fixed(1)">
         <Spec title="Insets" column>
           <Divider inset={0} />
-          <Text variant="bodySm" tone="dim">inset 0 — full width</Text>
+          <Text variant="bodySm" tone="dim">inset 0: full width</Text>
           <Divider inset={56} />
-          <Text variant="bodySm" tone="dim">inset 56 — starts after a 40px avatar + 16 gap</Text>
+          <Text variant="bodySm" tone="dim">inset 56: starts after a 40px avatar + 16 gap</Text>
         </Spec>
       </Section>
     </>

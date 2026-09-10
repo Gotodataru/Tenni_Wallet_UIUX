@@ -17,7 +17,7 @@ const FACTS = [
 ]
 
 const TRY = [
-  'Tap Pay on the card — the terminal sends the amount, you pick the asset',
+  'Tap Pay on the card. The terminal sends the amount, you pick the asset',
   'Send → type anything into the address field, then paste an Ethereum address',
   'Send → Max: it leaves room for the network fee',
   'More → Dark theme switches the whole prototype',
@@ -27,25 +27,25 @@ const TRY = [
 const DECISIONS = [
   {
     title: 'The terminal sets the amount, not the user',
-    body: 'Paying at a card terminal starts with the merchant\'s request: amount in local currency, its dollar value, and one choice — which asset to pay with. The conversion fee is included in what gets charged, so the crypto amount matches the total on every step.',
+    body: 'Paying at a card terminal starts with the merchant\'s request: amount in local currency, its dollar value, and one choice: which asset to pay with. The conversion fee is included in what gets charged, so the crypto amount matches the total on every step.',
     screen: <PayScreen step="request" scaled />,
     label: 'Pay · terminal request',
   },
   {
     title: 'Every money-losing mistake has a guard',
-    body: 'The address field checks the format and catches an address from another network before you can continue. The review step shows the full address grouped by four characters — never truncated in the middle. Max sends the balance minus the fee, and the amount check always includes the fee.',
+    body: 'The address field checks the format and catches an address from another network before you can continue. The review step shows the full address grouped by four characters and never truncated in the middle. Max sends the balance minus the fee, and the amount check always includes the fee.',
     screen: <SendScreen step="review" scaled />,
     label: 'Send · review',
   },
   {
     title: 'Color means something, and never alone',
-    body: 'The tennis-ball palette: the lime ball is the accent and "up", clay is "down" and errors, grass and moss greens are the surfaces — one green in the system. Everyday spending stays neutral and every change carries an ▲/▼ arrow. Lime on paper is 1.2:1, so the light theme is monochrome: ink takes the accent role and "up" is the ball darkened to olive.',
+    body: 'The tennis-ball palette: the lime ball is the accent and "up", clay is "down" and errors, grass and moss greens are the surfaces. There is one green in the system. Everyday spending stays neutral and every change carries an ▲/▼ arrow. Lime on paper is 1.2:1, so the light theme is monochrome: ink takes the accent role and "up" is the ball darkened to olive.',
     screen: <HomeScreen state="default" theme="light" scaled />,
     label: 'Home · light theme',
   },
   {
     title: 'The address is shown once, in full',
-    body: 'Receive shows the address in one place only — the QR caption is off, so there is no second, truncated copy to compare against. The network warning names the exact network, because a wrong-network transfer is unrecoverable.',
+    body: 'Receive shows the address in one place only. The QR caption is off, so there is no second, truncated copy to compare against. The network warning names the exact network, because a wrong-network transfer is unrecoverable.',
     screen: <ReceiveScreen asset="usdt" scaled />,
     label: 'Receive · Tether (TRC-20)',
   },
@@ -56,13 +56,13 @@ const STATES = [
   'Pay: processing, success, declined with two ways out',
   'Send: invalid and wrong-network address, not enough funds',
   'Activity: pending and failed transactions, nothing found',
-  'Onboarding: a clear stop before the recovery phrase — a public demo never asks for one',
+  'Onboarding: a clear stop before the recovery phrase, since a public demo never asks for one',
 ]
 
 const NEXT = [
   'Usability test of the Pay flow with 5 people who already hold crypto',
   'Figma library: the layout already follows Auto Layout rules, so import is rename-and-combine, not redraw',
-  'Swap and staking flows — the entry points exist, the flows don\'t yet',
+  'Swap and staking flows: the entry points exist, the flows don\'t yet',
 ]
 
 function Bullets({ items, icon = 'check' }) {
@@ -113,7 +113,7 @@ export function Case({ theme }) {
         </Spec>
       </Section>
 
-      <Section title="Clickable prototype" hint="All seven screens wired into one app. It runs right here — no Figma, no install.">
+      <Section title="Clickable prototype" hint="All seven screens wired into one app. It runs right here, no Figma and no install.">
         <Spec title="Try this">
           <div className="Device">
             <PrototypeApp theme={theme} />
@@ -147,7 +147,7 @@ export function Case({ theme }) {
         <Spec title="The code is the spec" column>
           <Text variant="body" tone="dim">
             Components are laid out with the subset of CSS that maps one-to-one to Figma Auto Layout:
-            flex, gap and padding only — no margins, no percentages, no grid. A linter enforces it on
+            flex, gap and padding only. No margins, no percentages, no grid. A linter enforces it on
             every build, and every component documents its sizing contract (hug / fill / fixed) the way
             a designer sets it in Figma.
           </Text>

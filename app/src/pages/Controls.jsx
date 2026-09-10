@@ -41,7 +41,7 @@ export function Controls() {
           ))}
         </Spec>
 
-        <Spec title="Sizes" contract="sm 32 · md 40 · lg 48 · xl 56 — set by height, not by padding">
+        <Spec title="Sizes" contract="sm 32 · md 40 · lg 48 · xl 56, set by height, not padding">
           {SIZES.map((size) => (
             <Cell key={size} label={size} center>
               <Button variant="primary" size={size}>Send</Button>
@@ -49,7 +49,7 @@ export function Controls() {
           ))}
         </Spec>
 
-        <Spec title="States" contract="shown statically — this becomes the Figma Component Set">
+        <Spec title="States" contract="shown statically, this becomes the Figma Component Set">
           {STATES.map((state) => (
             <Cell key={state} label={state} center>
               <Button variant="primary" size="md" state={state === 'default' ? undefined : state}>
@@ -132,7 +132,7 @@ function IconButtonSection() {
   return (
     <Section
       title="IconButton"
-      hint="3 variants × 3 sizes × 6 states + badge. The touch target is at least 44×44 even at size 32 — extended with a pseudo-element."
+      hint="3 variants × 3 sizes × 6 states + badge. The touch target is at least 44×44 even at size 32, extended with a pseudo-element."
     >
       <Spec title="Variants and when to use them" contract="row · W=fixed(size) H=fixed(size) · pad 0 · center" column>
         {IB_VARIANTS.map(([variant, why]) => (
@@ -148,7 +148,7 @@ function IconButtonSection() {
         ))}
       </Spec>
 
-      <Spec title="Sizes" contract="32 · 40 · 48 — icon inside 16 / 20 / 24">
+      <Spec title="Sizes" contract="32 · 40 · 48, icon inside 16 / 20 / 24">
         {IB_SIZES.map((size) => (
           <Cell key={size} label={`${size}px`} center>
             <IconButton variant="solid" size={size} icon="send" aria-label="Send" />
@@ -156,7 +156,7 @@ function IconButtonSection() {
         ))}
       </Spec>
 
-      <Spec title="States · solid" contract="shown statically — becomes the Figma Component Set">
+      <Spec title="States · solid" contract="shown statically, becomes the Figma Component Set">
         {IB_STATES.map((state) => (
           <Cell key={state} label={state} center>
             <IconButton variant="solid" icon="bell" state={state === 'default' ? undefined : state} aria-label="Notifications" />
@@ -172,7 +172,7 @@ function IconButtonSection() {
         ))}
       </Spec>
 
-      <Spec title="Badge" contract="the one legal absolute element outside the touch target — a dot over the icon">
+      <Spec title="Badge" contract="the one legal absolute element outside the touch target">
         <Cell label="no badge" center><IconButton variant="solid" icon="bell" aria-label="Notifications" /></Cell>
         <Cell label="badge" center><IconButton variant="solid" icon="bell" badge aria-label="New notifications" /></Cell>
       </Spec>
@@ -204,7 +204,7 @@ function InputSection() {
         ))}
       </Spec>
 
-      <Spec title="Live example — amount mask" contract="digits → comma thousands, dot decimal" column>
+      <Spec title="Live example: amount mask" contract="digits → comma thousands, dot decimal" column>
         <Input
           type="amount"
           label="Transfer amount"
@@ -216,11 +216,11 @@ function InputSection() {
         <Text variant="caption" tone="faint">raw value in state: “{live}”</Text>
       </Spec>
 
-      <Spec title="Action slot" contract="action — an interactive trailing control (Instance swap)" column>
+      <Spec title="Action slot" contract="action: an interactive trailing control (Instance swap)" column>
         <Input type="address" label="Recipient address" placeholder="bc1q…" action={<Button variant="ghost" size="sm">Paste</Button>} />
       </Spec>
 
-      <Spec title="States" contract="all 7 shown at once — the future Figma Component Set" column>
+      <Spec title="States" contract="all 7 at once, the future Figma Component Set" column>
         {INPUT_STATES.map((state) => (
           <Input
             key={state}
@@ -267,7 +267,7 @@ function ToggleSection() {
           <Toggle checked={live} onChange={setLive} aria-label="Face ID" />
           <Stack gap={2}>
             <Text variant="body">Face ID</Text>
-            <Text variant="bodySm" tone="dim">Unlock with a glance — currently {live ? 'on' : 'off'}</Text>
+            <Text variant="bodySm" tone="dim">Unlock with a glance, currently {live ? 'on' : 'off'}</Text>
           </Stack>
         </Stack>
       </Spec>
@@ -282,7 +282,7 @@ function CheckRadioSection() {
   const [group, setGroup] = useState('card')
 
   return (
-    <Section title="Checkbox / Radio" hint="W=fixed(22) H=fixed(22). The control only — the label next to it is composed with Stack, same as Toggle.">
+    <Section title="Checkbox / Radio" hint="W=fixed(22) H=fixed(22). The control only. The label next to it is composed with Stack, same as Toggle.">
       <Spec title="Checkbox · states">
         {CR_STATES.map((state) => (
           <Cell key={state} label={state} center>
@@ -310,7 +310,7 @@ function CheckRadioSection() {
         ))}
       </Spec>
 
-      <Spec title="Live example — payment method" contract="Radio group with labels via Stack" column>
+      <Spec title="Live example: payment method" contract="Radio group with labels via Stack" column>
         {[
           ['card', 'Card', 'Debit •••• 4242'],
           ['crypto', 'Crypto', 'USDT (TRC-20)'],
@@ -332,7 +332,7 @@ function SegmentedSection() {
   const [tab, setTab] = useState(0)
 
   return (
-    <Section title="Segmented" hint="row · W=fill H=fixed(40) · pad 4 · gap 2. Equal-width segments — flex: 1 1 0.">
+    <Section title="Segmented" hint="row · W=fill H=fixed(40) · pad 4 · gap 2. Equal-width segments, flex: 1 1 0.">
       <Spec title="Live example" column>
         <Segmented items={['Crypto', 'Cash', 'NFT']} active={tab} onChange={setTab} />
         <Text variant="bodySm" tone="dim">selected segment: {tab}</Text>
@@ -399,7 +399,7 @@ function BadgeSection() {
         <Cell label="tone accent" center><Badge variant="count" count={2} tone="accent" /></Cell>
       </Spec>
 
-      <Spec title="In context — over an IconButton">
+      <Spec title="In context, over an IconButton">
         <Cell label="notifications" center>
           <IconButton variant="solid" icon="bell" badge aria-label="New notifications" />
         </Cell>
@@ -413,14 +413,14 @@ function KeypadSection() {
 
   return (
     <Section title="Keypad" hint="column · W=fill H=hug · gap 8 · key fill H=fixed(56). Modes: amount (decimal point) and pin (Face ID).">
-      <Spec title="Live example — amount mode" contract="one decimal point, 2 decimals max" column>
+      <Spec title="Live example: amount mode" contract="one decimal point, 2 decimals max" column>
         <Text variant="display" align="center">${amount}</Text>
         <div style={{ maxWidth: 320, alignSelf: 'center', width: 320 }}>
           <Keypad mode="amount" onKey={(k) => setAmount((v) => typeKey(v, k))} onBackspace={() => setAmount(backspace)} />
         </div>
       </Spec>
 
-      <Spec title="pin mode — with Face ID">
+      <Spec title="pin mode with Face ID">
         <div style={{ maxWidth: 320 }}>
           <Keypad mode="pin" showBiometric onKey={() => {}} onBackspace={() => {}} onBiometric={() => {}} />
         </div>
@@ -435,7 +435,7 @@ function SliderSection() {
 
   return (
     <Section title="Slider" hint="column · W=fill H=hug · gap 8. Used for slippage on Swap and fee speed on Send.">
-      <Spec title="Live example — slippage" column>
+      <Spec title="Live example: slippage" column>
         <Slider
           min={0.1} max={5} step={0.1}
           value={slippage} onChange={setSlippage}
@@ -444,7 +444,7 @@ function SliderSection() {
         />
       </Spec>
 
-      <Spec title="Live example — fee speed, with ticks" column>
+      <Spec title="Live example: fee speed with ticks" column>
         <Slider
           min={0} max={100} step={25}
           value={fee} onChange={setFee}

@@ -37,8 +37,8 @@ const nameFor = (address) => RECENTS.find((r) => r.address === address.trim())?.
 
 const ADDRESS_ERROR = {
   invalid: "This doesn't look like a Bitcoin address",
-  eth: 'This is an Ethereum address — BTC sent to it will be lost',
-  tron: 'This is a Tron address — BTC sent to it will be lost',
+  eth: 'This is an Ethereum address. BTC sent here will be lost',
+  tron: 'This is a Tron address. BTC sent here will be lost',
 }
 
 /** Recipient card — the full address, never truncated. */
@@ -67,7 +67,7 @@ function AddressStep({ address, onChange, onNext }) {
       const text = await navigator.clipboard.readText()
       if (text) { onChange(text.trim()); setPasteNote(null); return }
     } catch { /* clipboard blocked */ }
-    setPasteNote('Clipboard is empty or blocked — pick a recent recipient below')
+    setPasteNote('Clipboard is empty or blocked. Pick a recent recipient below')
   }
 
   return (
@@ -84,7 +84,7 @@ function AddressStep({ address, onChange, onNext }) {
         onChange={(v) => { onChange(v); setPasteNote(null) }}
         state={valid ? 'success' : undefined}
         error={ADDRESS_ERROR[kind]}
-        hint={pasteNote || (valid ? 'Bitcoin network · check the first and last 4 characters' : 'Transfers can’t be reversed — only send to addresses you trust')}
+        hint={pasteNote || (valid ? 'Bitcoin network · check the first and last 4 characters' : 'Transfers can’t be reversed. Only send to addresses you trust')}
         action={<Button variant="ghost" size="sm" onClick={paste}>Paste</Button>}
       />
 
@@ -178,7 +178,7 @@ function ReviewStep({ address, value, onConfirm, onEdit }) {
         <ListRow size="sm" title="Total" trailing={<Amount value={amount + FEE} currency="" suffix={` ${BTC.ticker}`} precision={5} size="sm" tone="neutral" />} />
       </Surface>
 
-      <Banner tone="warning" title="Check the address" body="Blockchain transfers can't be reversed — compare the recipient character by character" />
+      <Banner tone="warning" title="Check the address" body="Blockchain transfers can't be reversed. Compare the recipient character by character" />
 
       <Stack gap={12} fill justify="end">
         <Button variant="primary" size="xl" fullWidth iconLeading="face-id" onClick={onConfirm}>

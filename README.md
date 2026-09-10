@@ -1,10 +1,10 @@
 # Tenni Wallet
 
-A concept crypto wallet with a debit card — UX case study, clickable prototype
+A concept crypto wallet with a debit card: UX case study, clickable prototype
 and a coded design system.
 
-**Live:** [gotodataru.github.io/Tenni_Wallet_UIUX](https://gotodataru.github.io/Tenni_Wallet_UIUX/) —
-case study, prototype, every screen in every state, and the design system in one place.
+**Live:** [gotodataru.github.io/Tenni_Wallet_UIUX](https://gotodataru.github.io/Tenni_Wallet_UIUX/).
+The case study, the prototype, every screen in every state and the design system in one place.
 Landing page: [/landing](https://gotodataru.github.io/Tenni_Wallet_UIUX/landing/).
 
 ---
@@ -23,7 +23,7 @@ Key decisions:
 - **Every money-losing mistake has a guard.** The address field catches typos
   and wrong-network addresses; review shows the full address grouped by four
   characters; Max leaves room for the network fee.
-- **Color means something, and never alone.** The tennis-ball palette — the lime
+- **Color means something, and never alone.** The tennis-ball palette: the lime
   ball (accent, up), grass and moss greens (surfaces), clay (down, errors).
   Spending stays neutral; every change carries an ▲/▼ arrow.
 - **States, not just happy paths.** Loading, empty, error, declined, pending,
@@ -31,21 +31,21 @@ Key decisions:
 
 ## What's inside
 
-- **7 screens** wired into one clickable prototype — Onboarding, Home, Pay,
+- **7 screens** wired into one clickable prototype: Onboarding, Home, Pay,
   Send, Receive, Activity, Settings + Profile
-- **42 components** — from primitives (`Text`, `Stack`, `Surface`) to product
+- **42 components**, from primitives (`Text`, `Stack`, `Surface`) to product
   blocks (`ListRow`, `CardVisual`, `LockOverlay`); screens are assembled from
   them with no screen-level CSS
 - **64 icons** in 6 packs on one geometry (24×24 viewBox, 1.75 stroke)
-- **Tokens** — palette, semantic layer with Dark/Light modes, 4-pt spacing,
+- **Tokens**: palette, semantic layer with Dark/Light modes, 4-pt spacing,
   type scale with px line heights, radii, shadows, motion
-- **Landing page** (`landing/`) — static, no build step
+- **Landing page** (`landing/`), static, no build step
 
 ## Built for Figma handoff
 
 Components use only the subset of CSS that maps one-to-one to Figma Auto Layout:
 no `margin` (only `gap`/`padding`), no percentage sizes, no `grid`. It isn't a
-style preference — `npm run check:figma` fails the build on any violation.
+style preference: `npm run check:figma` fails the build on any violation.
 Details: [`docs/FIGMA_RULES.md`](docs/FIGMA_RULES.md); every component's sizing
 contract: [`docs/COMPONENTS.md`](docs/COMPONENTS.md).
 
