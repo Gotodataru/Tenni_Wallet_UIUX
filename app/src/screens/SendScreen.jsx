@@ -41,8 +41,12 @@ const ADDRESS_ERROR = {
   tron: 'This is a Tron address. BTC sent here will be lost',
 }
 
-/** Recipient card — the full address, never truncated. */
-function Recipient({ address }) {
+/**
+ * Recipient card — the full address, never truncated.
+ * onEdit — on Review: the address is the field that loses money, so fixing
+ * it must not mean closing the flow and starting over.
+ */
+function Recipient({ address, onEdit }) {
   const name = nameFor(address)
   return (
     <Surface level={1} radius="lg" pad={12} gap={12} dir="row">
@@ -53,6 +57,7 @@ function Recipient({ address }) {
         <Text variant="caption" tone="dim">{name || 'Recipient'}</Text>
         <Text variant="mono">{group(address.trim())}</Text>
       </Stack>
+      {onEdit && <Button variant="ghost" size="sm" onClick={onEdit}>Edit</Button>}
     </Surface>
   )
 }
@@ -155,7 +160,7 @@ function AmountStep({ address, value, onKey, onBackspace, onMax, onNext }) {
   )
 }
 
-function ReviewStep({ address, value, onConfirm, onEdit }) {
+function ReviewStep({ address, value, onConfirm, onEdit, onEditAddress }) {
   const amount = parseAmount(value)
 
   return (
@@ -164,7 +169,7 @@ function ReviewStep({ address, value, onConfirm, onEdit }) {
         <ProgressDots total={3} active={2} />
       </Stack>
 
-      <Recipient address={address} />
+      <Recipient address={address} onEdit={onEditAddress} />
 
       <Stack gap={4} align="center">
         <Text variant="caption" tone="dim">You're sending</Text>
@@ -293,7 +298,10 @@ export function SendScreen({ step: stepProp, theme = 'dark', scaled = false, onE
         )}
 
         {step === 'review' && (
-          <ReviewStep address={address} value={value} onConfirm={() => go('confirm')} onEdit={() => go('amount')} />
+          <ReviewStep
+            address={address} value={value}
+            onConfirm={() => go('confirm')} onEdit={() => go('amount')} onEditAddress={() => go('address')}
+          />
         )}
 
         {step === 'confirm' && <ConfirmStep onDone={() => go('success')} />}
