@@ -12,7 +12,7 @@ Notation: `W`/`H` — width/height. `hug` = Hug contents, `fill` = Fill containe
 
 | Group | Prefix | Values |
 |---|---|---|
-| Color — primitives | `--c-*` | ball, court, clay, night court, chalk, neutrals, assets, card |
+| Color — primitives | `--c-*` | ball, court and moss, clay, court shadow, linen, light neutrals, status, assets, card |
 | Color — semantic | `--bg-*`, `--fg-*`, `--border-*`, `--accent-*`, status | two modes: Dark / Light |
 | Typography | `--font-*`, `--text-*` | 10 styles, line-height in px |
 | Spacing (4-pt) | `--space-0..64` | 13 |

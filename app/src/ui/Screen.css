@@ -43,11 +43,17 @@
   align-self: stretch;
 }
 
+/* The scrollbar is hidden: a phone has none, and on Windows Chrome draws
+   a 15px desktop bar with arrows right inside the iPhone frame. Wheel,
+   touch and keyboard scrolling still work. */
 .Screen__content--scroll {
   overflow-y: auto;
   overscroll-behavior: contain;
   -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
 }
+
+.Screen__content--scroll::-webkit-scrollbar { display: none; }
 
 .Screen__content--clip {
   overflow: hidden;

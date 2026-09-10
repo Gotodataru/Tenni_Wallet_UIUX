@@ -182,7 +182,10 @@ a.Kitchen__brand { color: inherit; text-decoration: none; }
   gap: var(--space-16);
 }
 
-.Spec__body--column { flex-direction: column; align-items: stretch; }
+/* nowrap matters: in a wrapping (multi-line) container a line is as wide as
+   its widest item, so rows never shrink to the card, `truncate` never kicks
+   in, and on a phone the whole page scrolls sideways. */
+.Spec__body--column { flex-direction: column; flex-wrap: nowrap; align-items: stretch; }
 
 /* Cell with a caption under the example */
 .Cell {
@@ -307,7 +310,8 @@ a.Kitchen__brand { color: inherit; text-decoration: none; }
   .Kitchen__brand { padding: 0; }
   /* The sidebar turns into one horizontally scrolling row of links,
      so the content starts on the first screen instead of after the menu. */
-  .Kitchen__navGroup { flex-direction: row; overflow-x: auto; gap: var(--space-4); padding: var(--space-8) 0 0 0; }
+  .Kitchen__navGroup { flex-direction: row; overflow-x: auto; scrollbar-width: none; gap: var(--space-4); padding: var(--space-8) 0 0 0; }
+  .Kitchen__navGroup::-webkit-scrollbar { display: none; }
   .Kitchen__navGroupTitle { display: none; }
   .Kitchen__link { flex: 0 0 auto; white-space: nowrap; }
   .Kitchen__main { padding: var(--space-24); gap: var(--space-32); }

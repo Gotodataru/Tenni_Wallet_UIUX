@@ -24,30 +24,34 @@ const TRY = [
   'More → Log out walks you through onboarding and back',
 ]
 
+/**
+ * previews(theme) — the screens follow the page theme, like the prototype
+ * above them. The palette decision is the exception: its text compares the
+ * two themes, so it always shows both, side by side and labeled.
+ */
 const DECISIONS = [
   {
     title: 'The terminal sets the amount, not the user',
     body: 'Paying at a card terminal starts with the merchant\'s request: amount in local currency, its dollar value, and one choice: which asset to pay with. The conversion fee is included in what gets charged, so the crypto amount matches the total on every step.',
-    screen: <PayScreen step="request" scaled />,
-    label: 'Pay · terminal request',
+    previews: (theme) => [{ label: 'Pay · terminal request', screen: <PayScreen step="request" theme={theme} scaled /> }],
   },
   {
     title: 'Every money-losing mistake has a guard',
     body: 'The address field checks the format and catches an address from another network before you can continue. The review step shows the full address grouped by four characters and never truncated in the middle. Max sends the balance minus the fee, and the amount check always includes the fee.',
-    screen: <SendScreen step="review" scaled />,
-    label: 'Send · review',
+    previews: (theme) => [{ label: 'Send · review', screen: <SendScreen step="review" theme={theme} scaled /> }],
   },
   {
     title: 'Color means something, and never alone',
     body: 'The tennis-ball palette: the lime ball is the accent and "up", clay is "down" and errors, grass and moss greens are the surfaces. There is one green in the system. Everyday spending stays neutral and every change carries an ▲/▼ arrow. Lime on paper is 1.2:1, so the light theme is monochrome: ink takes the accent role and "up" is the ball darkened to olive.',
-    screen: <HomeScreen state="default" theme="light" scaled />,
-    label: 'Home · light theme',
+    previews: () => [
+      { label: 'Home · dark theme', screen: <HomeScreen state="default" theme="dark" scaled /> },
+      { label: 'Home · light theme', screen: <HomeScreen state="default" theme="light" scaled /> },
+    ],
   },
   {
     title: 'The address is shown once, in full',
     body: 'Receive shows the address in one place only. The QR caption is off, so there is no second, truncated copy to compare against. The network warning names the exact network, because a wrong-network transfer is unrecoverable.',
-    screen: <ReceiveScreen asset="usdt" scaled />,
-    label: 'Receive · Tether (TRC-20)',
+    previews: (theme) => [{ label: 'Receive · Tether (TRC-20)', screen: <ReceiveScreen asset="usdt" theme={theme} scaled /> }],
   },
 ]
 
@@ -127,9 +131,11 @@ export function Case({ theme }) {
       <Section title="Key decisions">
         {DECISIONS.map((d) => (
           <Spec key={d.title} title={d.title}>
-            <Cell label={d.label} center>
-              <div className="Device--sm">{d.screen}</div>
-            </Cell>
+            {d.previews(theme).map(({ label, screen }) => (
+              <Cell key={label} label={label} center>
+                <div className="Device--sm">{screen}</div>
+              </Cell>
+            ))}
             <Stack gap={8} className="CaseText">
               <Text variant="body" tone="dim">{d.body}</Text>
             </Stack>
