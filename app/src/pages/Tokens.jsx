@@ -2,10 +2,10 @@ import { Stack, Text, Icon } from '../ui/index.js'
 import { Section, Spec, Cell } from './parts.jsx'
 
 const SURFACES = [
-  ['--c-ball', 'Ball', 'the only accent · up'],
-  ['--c-court-deep', 'Court', 'the card · glow'],
-  ['--c-base', 'Night', 'dark canvas'],
-  ['--c-chalk', 'Chalk', 'text on dark'],
+  ['--c-ball', 'Ball', 'brand accent · up'],
+  ['--c-court', 'Court', 'secondary green'],
+  ['--c-moss', 'Moss', 'the card'],
+  ['--c-base', 'Court shadow', 'dark canvas'],
   ['--c-clay', 'Clay', 'down · errors'],
 ]
 
@@ -60,7 +60,7 @@ export function Tokens() {
     <Section
       hint="Three layers: primitives (palette) → semantics (theme, two modes) → scales. Components may only use the semantic layer."
     >
-      <Spec title="Palette concept — a night match under floodlights" contract="Figma: Variables «palette»">
+      <Spec title="Palette concept — the tennis ball" contract="Figma: Variables «palette»">
         {SURFACES.map(([name, title, role]) => <Swatch key={name} name={name} title={title} role={role} />)}
       </Spec>
 
@@ -71,10 +71,10 @@ export function Tokens() {
       <div className="Note">
         <Icon name="alert-triangle" size={20} tone="warning" />
         <Text variant="bodySm">
-          <b>--fg-faint</b> is 3.8:1 on the dark canvas — below WCAG AA (4.5:1). It is
+          <b>--fg-faint</b> is 3.99:1 on the dark canvas — below WCAG AA (4.5:1). It is
           allowed for decoration and text 24px and larger only. Secondary text uses
-          <b> --fg-dim</b> (8.0:1). In the light theme the ball can't be text on paper
-          (1.2:1): actions turn ink, the ball becomes a highlight fill, and "up" is olive.
+          <b> --fg-dim</b> (8.8:1). The light theme is monochrome on purpose: lime on
+          paper is 1.2:1, so ink takes the accent role and "up" is the ball darkened to olive.
         </Text>
       </div>
 

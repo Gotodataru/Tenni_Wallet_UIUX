@@ -3,50 +3,50 @@
    Raw values. Never used by components directly — only through
    the semantic layer (semantic.css). In Figma: Variables "palette".
 
-   Concept — a night match under floodlights:
-   · ball   — optic yellow, the only accent: actions and "up";
-   · court  — electric cobalt of a hard court: the card and the glow;
-   · night  — neutral black, the dark canvas;
-   · chalk  — the court lines, text on dark;
-   · clay   — "down" and errors.
+   Concept — the tennis-ball palette:
+   · ball   — the lime brand accent and "up";
+   · court  — grass and moss greens, the dark surfaces;
+   · clay   — Roland Garros terracotta: "down" and errors.
    ============================================================ */
 
 :root {
-  /* --- Ball (the accent) --- */
-  --c-ball:        #D8F81E;   /* 16.7:1 on --c-base */
-  --c-ball-glow:   #E6FF55;
-  --c-ball-deep:   #BCD90E;
-  --c-ball-olive:  #3F6A00;   /* the ball darkened for paper: 6.0:1 on --c-paper (AA) */
+  /* --- Ball (brand accent) --- */
+  --c-ball:        #C8FF4D;
+  --c-ball-glow:   #D9FF85;
+  --c-ball-deep:   #9FE63A;
+  --c-ball-olive:  #4D7A00;   /* the ball darkened for the light theme: 4.7:1 on --c-paper (AA) */
 
-  /* --- Court (electric cobalt) --- */
-  --c-court:       #4A78FF;
-  --c-court-deep:  #2448F0;   /* white text on it 6.4:1 */
-  --c-court-night: #0E1C8C;
+  /* --- Court (secondary) --- */
+  --c-court:       #7BD389;
+  --c-court-deep:  #4FA364;
+  --c-moss:        #2F5A3A;
 
-  /* --- Clay — "down" and errors --- */
-  --c-clay:        #FF6B5A;   /* 7.2:1 on --c-base */
-  --c-clay-deep:   #C23A2B;   /* 5.0:1 on --c-paper */
+  /* --- Clay — "down" and errors.
+         One green in the system: up is the ball itself, down is clay —
+         warm, from the same tennis world as the ball and the grass. --- */
+  --c-clay:        #FF7B5C;   /* 7.4:1 on --c-base */
+  --c-clay-deep:   #B8432B;   /* AA on --c-paper */
 
-  /* --- Night (dark surfaces) --- */
-  --c-shadow:      #12151D;
-  --c-shadow-2:    #1A1E29;
-  --c-base:        #06070B;
-  --c-base-2:      #0B0D13;
+  /* --- Court shadow (dark surfaces) --- */
+  --c-shadow:      #1B2A1A;
+  --c-shadow-2:    #243523;
+  --c-base:        #0A1208;
+  --c-base-2:      #0E1A0C;
 
-  /* --- Chalk (text on dark) --- */
-  --c-chalk:       #F2F4F8;   /* 18.3:1 on --c-base */
+  /* --- Linen (light text on dark) --- */
+  --c-linen:       #F4FFE6;
 
-  /* --- Light-theme neutrals (warm white, never cool grey) --- */
-  --c-ink:         #0B0C10;
-  --c-ink-2:       #23252C;
-  --c-slate:       #474A55;
-  --c-slate-2:     #2A2C33;
-  --c-gray:        #6B6E78;
-  --c-paper:       #F7F7F3;
-  --c-paper-2:     #EFEFE9;
-  --c-paper-3:     #E2E2DA;
+  /* --- Light-theme neutrals --- */
+  --c-ink:         #1A1A1F;
+  --c-ink-2:       #3A3A40;
+  --c-slate:       #4A4A52;
+  --c-slate-2:     #2C2C33;
+  --c-gray:        #6E6E76;
+  --c-paper:       #F4F4F1;
+  --c-paper-2:     #ECECE7;
+  --c-paper-3:     #DCDCD6;
 
-  /* --- Status: dark theme --- */
+  /* --- Status: dark theme (up/down are ball and clay above) --- */
   --c-warn-d:      #FFC46B;
   --c-info-d:      #7BD3FF;
 
@@ -64,22 +64,22 @@
   /* --- Absolute neutrals (theme-independent: toggle thumb etc.) --- */
   --c-white: #FFFFFF;
 
-  /* --- Payment card. Theme-independent: physical plastic stays
-         the same color in a light UI. --- */
+  /* --- Payment card. Theme-independent: a dark card stays dark
+         in a light UI, like physical plastic. --- */
   --c-chip-gold:       #D4AF6A;
   --c-chip-gold-deep:  #8A6F3A;
   --c-chip-highlight:  rgba(255, 255, 255, .35);
   --c-chip-groove:     rgba(0, 0, 0, .28);
 
-  --c-card-dark-bg:    linear-gradient(135deg, #12151D 0%, #1A1E29 55%, #06070B 100%);
-  --c-card-light-bg:   linear-gradient(135deg, #F7F7F3 0%, #E2E2DA 60%, #CFCFC6 100%);
+  --c-card-dark-bg:    linear-gradient(135deg, #1B2A1A 0%, #2F5A3A 58%, #0A1208 100%);
+  --c-card-light-bg:   linear-gradient(135deg, #F4F4F1 0%, #DCDCD6 60%, #C9C9C2 100%);
 
-  --c-card-shadow:       0 18px 40px -10px rgba(0, 0, 0, .5), inset 0 1px 0 rgba(255, 255, 255, .10);
-  --c-card-shadow-light: 0 18px 40px -14px rgba(11, 12, 16, .32), inset 0 1px 0 rgba(255, 255, 255, .9);
+  --c-card-shadow:       0 18px 40px -10px rgba(0, 0, 0, .5), inset 0 1px 0 rgba(255, 255, 255, .08);
+  --c-card-shadow-light: 0 18px 40px -14px rgba(26, 26, 31, .32), inset 0 1px 0 rgba(255, 255, 255, .9);
 
-  --c-card-glow-dark:  radial-gradient(closest-side, rgba(216, 248, 30, .28), transparent);
+  --c-card-glow-dark:  radial-gradient(closest-side, rgba(200, 255, 77, .22), transparent);
   --c-card-glow-light: radial-gradient(closest-side, rgba(255, 255, 255, .85), transparent);
   --c-card-glow-glass: radial-gradient(closest-side, rgba(255, 255, 255, .18), transparent);
 
-  --c-card-veil: rgba(6, 7, 11, .62);
+  --c-card-veil: rgba(10, 18, 8, .62);
 }

@@ -23,10 +23,9 @@ Key decisions:
 - **Every money-losing mistake has a guard.** The address field catches typos
   and wrong-network addresses; review shows the full address grouped by four
   characters; Max leaves room for the network fee.
-- **Color means something, and never alone.** A night match under floodlights —
-  a black canvas, the card in hard-court cobalt, the optic-yellow ball as the only
-  accent (actions, up), clay for down and errors. Spending stays neutral; every
-  change carries an ▲/▼ arrow.
+- **Color means something, and never alone.** The tennis-ball palette — the lime
+  ball (accent, up), grass and moss greens (surfaces), clay (down, errors).
+  Spending stays neutral; every change carries an ▲/▼ arrow.
 - **States, not just happy paths.** Loading, empty, error, declined, pending,
   failed, not enough funds.
 

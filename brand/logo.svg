@@ -1,18 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#E6FF55"/>
-      <stop offset="55%" stop-color="#D8F81E"/>
-      <stop offset="100%" stop-color="#BCD90E"/>
+      <stop offset="0%" stop-color="#D9FF85"/>
+      <stop offset="55%" stop-color="#C8FF4D"/>
+      <stop offset="100%" stop-color="#9FE63A"/>
     </linearGradient>
     <radialGradient id="ball" cx="35%" cy="30%" r="80%">
-      <stop offset="0%" stop-color="#4A78FF"/>
-      <stop offset="60%" stop-color="#2448F0"/>
-      <stop offset="100%" stop-color="#0E1C8C"/>
+      <stop offset="0%" stop-color="#1A1A1F"/>
+      <stop offset="60%" stop-color="#0F0F12"/>
+      <stop offset="100%" stop-color="#050505"/>
     </radialGradient>
     <linearGradient id="letters" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#E6FF55"/>
-      <stop offset="100%" stop-color="#D8F81E"/>
+      <stop offset="0%" stop-color="#D9FF85"/>
+      <stop offset="100%" stop-color="#9FE63A"/>
     </linearGradient>
   </defs>
 
@@ -20,9 +20,9 @@
   <rect x="0" y="0" width="800" height="800" rx="160" ry="160" fill="url(#bg)"/>
   <rect x="24" y="24" width="752" height="752" rx="140" ry="140" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="2"/>
 
-  <!-- Cobalt court ball -->
+  <!-- Tennis ball -->
   <circle cx="400" cy="400" r="240" fill="url(#ball)"/>
-  <ellipse cx="330" cy="310" rx="120" ry="80" fill="rgba(255,255,255,.06)"/>
+  <ellipse cx="330" cy="310" rx="120" ry="80" fill="rgba(255,255,255,.08)"/>
 
   <!-- TW monogram as outlines (no font dependency) -->
   <g fill="url(#letters)">

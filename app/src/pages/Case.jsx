@@ -39,7 +39,7 @@ const DECISIONS = [
   },
   {
     title: 'Color means something, and never alone',
-    body: 'A night match under floodlights: a black canvas, the card in the electric cobalt of a hard court, and the optic-yellow ball as the only accent — actions and "up". Clay is "down" and errors; everyday spending stays neutral and every change carries an ▲/▼ arrow. On paper the ball is 1.2:1, so in the light theme actions turn ink and the ball becomes a highlight fill.',
+    body: 'The tennis-ball palette: the lime ball is the accent and "up", clay is "down" and errors, grass and moss greens are the surfaces — one green in the system. Everyday spending stays neutral and every change carries an ▲/▼ arrow. Lime on paper is 1.2:1, so the light theme is monochrome: ink takes the accent role and "up" is the ball darkened to olive.',
     screen: <HomeScreen state="default" theme="light" scaled />,
     label: 'Home · light theme',
   },
