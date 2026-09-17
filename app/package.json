@@ -8,7 +8,8 @@
     "build": "node scripts/check-figma.mjs && vite build && node scripts/copy-landing.mjs",
     "lint": "oxlint src",
     "preview": "vite preview",
-    "check:figma": "node scripts/check-figma.mjs"
+    "check:figma": "node scripts/check-figma.mjs",
+    "figma:tokens": "node scripts/build-figma-tokens.mjs"
   },
   "dependencies": {
     "react": "^19.2.8",
