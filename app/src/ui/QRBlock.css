@@ -62,5 +62,10 @@
   justify-content: center;
   gap: var(--space-8);
   border-radius: var(--r-md);
-  background: rgba(26, 26, 31, .82);
+  background: var(--c-qr-veil);
+  color: var(--c-paper);   /* the veil is dark in both themes, so the text is a fixed light, like CardVisual__veil */
+}
+
+.QRBlock__overlay .Text {
+  color: var(--c-paper);
 }

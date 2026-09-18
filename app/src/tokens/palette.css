@@ -82,4 +82,5 @@
   --c-card-glow-glass: radial-gradient(closest-side, rgba(255, 255, 255, .18), transparent);
 
   --c-card-veil: rgba(10, 18, 8, .62);
+  --c-qr-veil:   rgba(26, 26, 31, .82);   /* over an expired QR: dark in both themes */
 }

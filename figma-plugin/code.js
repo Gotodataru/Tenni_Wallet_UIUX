@@ -46,7 +46,8 @@ const TOKENS = {
     "c-card-glow-dark": "radial-gradient(closest-side, rgba(200, 255, 77, .22), transparent)",
     "c-card-glow-light": "radial-gradient(closest-side, rgba(255, 255, 255, .85), transparent)",
     "c-card-glow-glass": "radial-gradient(closest-side, rgba(255, 255, 255, .18), transparent)",
-    "c-card-veil": "rgba(10, 18, 8, .62)"
+    "c-card-veil": "rgba(10, 18, 8, .62)",
+    "c-qr-veil": "rgba(26, 26, 31, .82)"
   },
   "scale": {
     "space-0": "0px",

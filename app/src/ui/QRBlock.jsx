@@ -84,8 +84,8 @@ export function QRBlock({ value = 'demo', size = 200, withLogo = false, logo, st
 
         {state === 'expired' && (
           <div className="QRBlock__overlay">
-            <Icon name="refresh" size={24} tone="inverse" />
-            <Text variant="label" tone="inverse">Code expired</Text>
+            <Icon name="refresh" size={24} tone="inherit" />
+            <Text variant="label">Code expired</Text>
           </div>
         )}
       </div>
