@@ -11,7 +11,6 @@
   position: relative;   /* is-abs: anchor for the badge below */
 
   border-radius: var(--r-full);
-  overflow: hidden;
   background: var(--bg-surface-3);
   color: var(--fg-dim);
 }
@@ -29,6 +28,8 @@
 .Avatar__image {
   flex: 1 1 auto;      /* Figma: Fill container on both axes, no width/height % */
   align-self: stretch;
+  min-width: 0;
+  border-radius: inherit;   /* the image clips itself, so the badge is not cut by the avatar */
   object-fit: cover;
 }
 
