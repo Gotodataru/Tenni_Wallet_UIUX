@@ -438,19 +438,45 @@ async function buildIcons(theme) {
       comp.clipsContent = false
       comp.layoutSizingHorizontal = 'FIXED'
       comp.layoutSizingVertical = 'FIXED'
-      comp.description = `${pack} · 24×24, live area 20×20, stroke 1.75. Source: app/src/icons/paths.js`
+      comp.description = `${pack} · 24×24, live area 20×20, stroke 1.75 outlined into one filled vector. Source: app/src/icons/paths.js`
       for (const child of [...comp.children]) child.remove()
 
+      // One filled vector per icon: strokes are outlined and everything is
+      // flattened. An instance swap carries color overrides layer by layer, so
+      // a multi-layer icon would get only its first layer recolored. Outlined
+      // strokes also scale with the icon the way the SVG does.
       const svg = figma.createNodeFromSvg(icon.svg)
-      for (const child of [...svg.children]) {
-        comp.appendChild(child)
-        const nodes = 'findAll' in child ? [child, ...child.findAll()] : [child]
-        for (const n of nodes) {
-          if ('strokes' in n && n.strokes.length) n.strokes = bind(n.strokes)
-          if ('fills' in n && Array.isArray(n.fills) && n.fills.length) n.fills = bind(n.fills)
-          if ('constraints' in n) n.constraints = { horizontal: 'SCALE', vertical: 'SCALE' }
+      const parts = []
+      for (const n of [...svg.findAll()]) {
+        if (!('strokes' in n) || n.type === 'GROUP' || n.type === 'FRAME') continue
+        const hasFill = Array.isArray(n.fills) && n.fills.length > 0
+        if (n.strokes.length) {
+          n.strokeCap = 'ROUND'
+          n.strokeJoin = 'ROUND'
+          const outline = n.outlineStroke()
+          if (outline) {
+            // outlineStroke() lands on the page with coordinates local to the svg frame
+            const { x: ox, y: oy } = outline
+            svg.appendChild(outline)
+            outline.x = ox
+            outline.y = oy
+            parts.push(outline)
+          }
         }
+        if (hasFill) {
+          n.strokes = []
+          parts.push(n)
+        } else if (n.strokes.length) n.remove()
       }
+      const flat = figma.flatten(parts, svg)
+      const { x: fx, y: fy } = flat
+      comp.appendChild(flat)
+      flat.x = fx
+      flat.y = fy
+      flat.name = 'Vector'
+      flat.fills = bind([{ type: 'SOLID', color: { r: 0, g: 0, b: 0 } }])
+      flat.strokes = []
+      flat.constraints = { horizontal: 'SCALE', vertical: 'SCALE' }
       svg.remove()
     }
   }
