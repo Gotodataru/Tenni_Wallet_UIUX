@@ -24,8 +24,8 @@
               box-shadow var(--dur-fast) var(--ease-out);
 }
 
-.Chip--sm { height: var(--control-sm); font-size: var(--text-caption-size); line-height: var(--text-caption-lh); }
-.Chip--md { height: 32px; }
+.Chip--sm { height: var(--control-xs); font-size: var(--text-caption-size); line-height: var(--text-caption-lh); }
+.Chip--md { height: var(--control-sm); }
 
 .Chip__label { flex: 0 0 auto; }
 
