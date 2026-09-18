@@ -24,7 +24,10 @@ const STEPS = ['address', 'amount', 'review', 'confirm', 'success']
 const BTC = HOLDINGS.find((h) => h.symbol === 'btc')
 const FEE = 0.00012
 const DECIMALS = 8
-const DEFAULT_AMOUNT = '0.01'
+// The catalog shows a filled example; the live flow starts empty, so a typed
+// amount is never appended to one the user didn't enter
+const EXAMPLE_AMOUNT = '0.01'
+const EMPTY_AMOUNT = '0'
 const TX_HASH = 'a3f7e21c9b4d0f6e8a1c5b3d7f9e2a4c6b8d0f1e3a5c7b9d1f3e5a7c9b0d2f4e'
 
 const RECENTS = [
@@ -246,11 +249,11 @@ function SuccessStep({ address, value, onDone }) {
 export function SendScreen({ step: stepProp, theme = 'dark', scaled = false, onExit }) {
   const [innerStep, setInnerStep] = useState('address')
   const [address, setAddress] = useState(stepProp ? RECENTS[0].address : '')
-  const [value, setValue] = useState(DEFAULT_AMOUNT)
+  const [value, setValue] = useState(stepProp ? EXAMPLE_AMOUNT : EMPTY_AMOUNT)
   const step = stepProp || innerStep
 
   const go = (s) => { if (!stepProp) setInnerStep(s) }
-  const restart = () => { setAddress(''); setValue(DEFAULT_AMOUNT); go('address'); onExit?.() }
+  const restart = () => { setAddress(''); setValue(EMPTY_AMOUNT); go('address'); onExit?.() }
 
   const handleKey = (key) => setValue((v) => typeKey(v, key, { decimals: DECIMALS, maxInt: 3 }))
   const handleBackspace = () => setValue(backspace)

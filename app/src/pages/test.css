@@ -26,3 +26,11 @@
 .Device.TestApp__device {
   align-self: center;
 }
+
+/* A laptop window is often shorter than the phone (860px frame + 48px page
+   padding). Scale the frame so Continue and the tab bar never fall below
+   the fold: 860 × zoom + 48 fits each max-height. */
+@media (max-height: 907px) { .Device.TestApp__device { zoom: .9; } }
+@media (max-height: 821px) { .Device.TestApp__device { zoom: .8; } }
+@media (max-height: 735px) { .Device.TestApp__device { zoom: .7; } }
+@media (max-height: 649px) { .Device.TestApp__device { zoom: .6; } }

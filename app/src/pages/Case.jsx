@@ -14,7 +14,7 @@ const RESEARCH = `${REPO}/blob/master/research/README.md`
 
 const TLDR = [
   ['Problem', 'Crypto is easy to buy and hard to spend: paying at a till means mental math, and a wrong address loses the money for good.'],
-  ['What I did', 'Pay and Send flows designed through their failures, a design system in code, and the same system as a Figma library with 20 screens and a prototype.'],
+  ['What I did', 'Pay and Send flows designed through their failures, a design system in code, and its Figma counterpart: 33 components on variables, 20 screens and a prototype with 4 flows.'],
   ['What is proven', 'Not yet with people. A 5-person test with thresholds set in advance is written and runs next.'],
 ]
 

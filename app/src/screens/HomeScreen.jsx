@@ -34,7 +34,8 @@ function PayComposer({ onPay }) {
       <Stack fill justify="between" gap={12}>
         <Stack dir="row" justify="between" align="center">
           <Text variant="caption" tone="dim">Pay with</Text>
-          <IconButton variant="ghost" size={32} icon="more" aria-label="Choose asset" />
+          {/* The asset is picked on the Pay screen, so both entries open it */}
+          <IconButton variant="ghost" size={32} icon="more" aria-label="Choose asset" onClick={onPay} />
         </Stack>
 
         <Stack dir="row" justify="between" align="end">
@@ -179,7 +180,9 @@ export function HomeScreen({ state: stateProp, theme = 'dark', scaled = false, o
           </Surface>
         ) : (
           <Layer anchor="stack" offset="64 24" over={<PayComposer onPay={() => onNavigate?.('pay')} />}>
-            <CardVisual skin="auto" kind="debit" holder={USER.holder} last4={CARD_LAST4} />
+            {/* The holder sits entirely under the glass; CSS blur is weaker than
+                Figma's at the same radius, so the name would ghost through */}
+            <CardVisual skin="auto" kind="debit" holder="" last4={CARD_LAST4} />
           </Layer>
         )}
 
