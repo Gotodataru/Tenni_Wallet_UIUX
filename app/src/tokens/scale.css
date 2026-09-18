@@ -58,7 +58,7 @@
   /* --- Fonts --- */
   --font-sans:    'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
-  --font-mono:    ui-monospace, 'SF Mono', 'Cascadia Code', Consolas, monospace;
+  --font-mono:    'Roboto Mono', ui-monospace, 'SF Mono', 'Cascadia Code', Consolas, monospace;
 
   /* --- Type scale.
          line-height in px ONLY — unitless values don't transfer to Figma

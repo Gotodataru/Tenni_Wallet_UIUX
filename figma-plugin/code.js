@@ -90,7 +90,7 @@ const TOKENS = {
     "home-indicator-h": "34px",
     "font-sans": "'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif",
     "font-display": "'Space Grotesk', 'Inter', system-ui, sans-serif",
-    "font-mono": "ui-monospace, 'SF Mono', 'Cascadia Code', Consolas, monospace",
+    "font-mono": "'Roboto Mono', ui-monospace, 'SF Mono', 'Cascadia Code', Consolas, monospace",
     "text-display-size": "40px",
     "text-display-lh": "44px",
     "text-display-w": "700",
