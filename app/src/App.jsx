@@ -9,6 +9,7 @@ import { Controls } from './pages/Controls.jsx'
 import { Data } from './pages/Data.jsx'
 import { Feedback } from './pages/Feedback.jsx'
 import { Navigation } from './pages/Navigation.jsx'
+import { TestApp } from './pages/TestApp.jsx'
 import { ICON_NAMES } from './icons/paths.js'
 import './pages/kitchen.css'
 
@@ -61,8 +62,13 @@ function useTheme() {
   return [theme, () => setTheme((t) => (t === 'dark' ? 'light' : 'dark'))]
 }
 
+// #test is the prototype alone, for usability sessions: no catalog around it
 export default function App() {
   const routeId = useHashRoute('case')
+  return routeId === 'test' ? <TestApp /> : <Catalog routeId={routeId} />
+}
+
+function Catalog({ routeId }) {
   const [theme, toggleTheme] = useTheme()
   const route = ROUTES.find((r) => r.id === routeId) || ROUTES[0]
   const El = route.El

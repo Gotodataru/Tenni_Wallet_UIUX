@@ -1,0 +1,28 @@
+/* ============================================================
+   #test — full-window prototype for usability sessions
+   column · W=fill H=fixed(viewport) · centered on desktop
+   ============================================================ */
+
+.TestApp {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100dvh;
+  padding: var(--space-24);
+  background: var(--bg-canvas);
+}
+
+/* The phone: the app is the whole viewport, the Screen fills it */
+.TestApp--phone {
+  align-items: stretch;
+  justify-content: flex-start;
+  height: 100dvh;
+  padding: 0;
+}
+
+/* .Device hugs the left edge in the catalog; here it is the only thing on the page.
+   Two classes: kitchen.css loads after this file and would win a tie. */
+.Device.TestApp__device {
+  align-self: center;
+}

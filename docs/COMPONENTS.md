@@ -373,6 +373,9 @@ props: theme, size (mock|fluid), statusBar, appBar, tabBar, homeIndicator,
 `theme` sets `data-theme` on the screen itself, so a dark screen can live in a
 light page. Safe areas apply only when the mock bars are off. `fluid` makes the
 same component the real app shell. The phone bezel is not part of Screen.
+A host that runs the screens as an app sets `size`, the mock bars and `safeTop`
+once through the `ScreenDefaults` context (the `#test` route does); explicit
+props still win.
 
 ### Section (screen component)
 ```

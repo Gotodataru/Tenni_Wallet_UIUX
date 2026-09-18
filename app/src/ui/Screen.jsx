@@ -1,3 +1,5 @@
+import { useContext } from 'react'
+import { ScreenDefaults } from './ScreenDefaults.js'
 import { StatusBar } from './StatusBar.jsx'
 import { HomeIndicator } from './HomeIndicator.jsx'
 import './Screen.css'
@@ -43,26 +45,38 @@ import './Screen.css'
  *    fills the viewport with no rounded corners) instead of being
  *    rewritten on the first real launch.
  *
+ * 5. ScreenDefaults — a context for the app shell.
+ *    Screens are built as mocks and don't know where they are shown.
+ *    A host that runs them as a real app (the test route) sets size,
+ *    mock bars and safe areas once here, instead of every screen
+ *    taking three more props. Explicit props still win.
+ *
  * ⚠ The phone bezel is NOT part of Screen — the same boundary as Modal
  * without its scrim and CardVisual without the payment composer: the
  * component is the screen, not the device. The catalog draws the bezel.
  */
 export function Screen({
   theme,
-  size = 'mock',
-  statusBar = true,
+  size: sizeProp,
+  statusBar: statusBarProp,
   statusBarTheme,
   time,
   appBar,
   tabBar,
-  homeIndicator = true,
-  safeTop = false,
+  homeIndicator: homeIndicatorProp,
+  safeTop: safeTopProp,
   scroll = true,
   contentPadding = 0,
   children,
   className = '',
   ...rest
 }) {
+  const defaults = useContext(ScreenDefaults)
+  const size = sizeProp ?? defaults.size ?? 'mock'
+  const statusBar = statusBarProp ?? defaults.statusBar ?? true
+  const homeIndicator = homeIndicatorProp ?? defaults.homeIndicator ?? true
+  const safeTop = safeTopProp ?? defaults.safeTop ?? false
+
   const cls = [
     'Screen',
     `Screen--${size}`,

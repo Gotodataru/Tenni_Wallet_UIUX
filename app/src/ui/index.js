@@ -48,6 +48,7 @@ export { TabBar } from './TabBar.jsx'
 export { HomeIndicator } from './HomeIndicator.jsx'
 export { Section } from './Section.jsx'
 export { Screen } from './Screen.jsx'
+export { ScreenDefaults } from './ScreenDefaults.js'
 
 /* Empty-state illustrations — plug into the EmptyState slot */
 export { Illustration, ILLUSTRATION_NAMES } from '../illustrations/Illustration.jsx'
