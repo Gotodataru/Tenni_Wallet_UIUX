@@ -77,7 +77,9 @@
   outline-offset: 2px;
 }
 
-.IconButton:disabled,
+/* Loading also sets the disabled attribute (no double submit), but it must
+   not fade: the user just pressed it and is waiting for the result. */
+.IconButton:disabled:not(.is-loading),
 .IconButton.is-disabled {
   opacity: .4;
   cursor: not-allowed;
