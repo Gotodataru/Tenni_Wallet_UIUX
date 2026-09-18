@@ -75,6 +75,7 @@ const TOKENS = {
     "control-md": "40px",
     "control-lg": "48px",
     "control-xl": "56px",
+    "icon-3xs": "12px",
     "icon-2xs": "14px",
     "icon-xs": "16px",
     "icon-sm": "20px",
