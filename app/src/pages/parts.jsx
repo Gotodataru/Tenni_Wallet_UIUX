@@ -4,9 +4,9 @@ import { Text } from '../ui/index.js'
 
 export function Section({ title, hint, children }) {
   return (
-    <section className="Section">
+    <section className="DocSection">
       {(title || hint) && (
-        <div className="Section__head">
+        <div className="DocSection__head">
           {/* title is optional: a page whose header already names it
               doesn't repeat the same word as its first section title. */}
           {title && <Text variant="h2">{title}</Text>}
