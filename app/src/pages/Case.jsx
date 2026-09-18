@@ -8,6 +8,15 @@ import { ICON_NAMES } from '../icons/paths.js'
 import { Section, Spec, Cell } from './parts.jsx'
 
 const REPO = 'https://github.com/Gotodataru/Tenni_Wallet_UIUX'
+const FIGMA = 'https://www.figma.com/design/0ZzLBKXtXVnVgLirNT7KtM/Tenni-Wallet-Design-System'
+const FIGMA_PROTO = 'https://www.figma.com/proto/0ZzLBKXtXVnVgLirNT7KtM/Tenni-Wallet-Design-System?node-id=20-3577&starting-point-node-id=20%3A3577'
+const RESEARCH = `${REPO}/blob/master/research/README.md`
+
+const TLDR = [
+  ['Problem', 'Crypto is easy to buy and hard to spend: paying at a till means mental math, and a wrong address loses the money for good.'],
+  ['What I did', 'Pay and Send flows designed through their failures, a design system in code, and the same system as a Figma library with 20 screens and a prototype.'],
+  ['What is proven', 'Not yet with people. A 5-person test with thresholds set in advance is written and runs next.'],
+]
 
 const FACTS = [
   ['Product', 'Crypto wallet with a debit card'],
@@ -64,8 +73,7 @@ const STATES = [
 ]
 
 const NEXT = [
-  'Usability test of the Pay flow with 5 people who already hold crypto',
-  'Figma library: the layout already follows Auto Layout rules, so import is rename-and-combine, not redraw',
+  'Usability test with 5 people: the protocol and its thresholds are written, the sessions are next',
   'Swap and staking flows: the entry points exist, the flows don\'t yet',
 ]
 
@@ -100,10 +108,24 @@ export function Case({ theme }) {
           <Stack dir="row" gap={8} wrap>
             <a className="CaseLink CaseLink--primary" href="#screens">All screens and states</a>
             <a className="CaseLink" href="#tokens">Design system</a>
+            <a className="CaseLink" href={FIGMA} target="_blank" rel="noreferrer">View in Figma</a>
+            <a className="CaseLink" href={FIGMA_PROTO} target="_blank" rel="noreferrer">Figma prototype</a>
+            <a className="CaseLink" href={RESEARCH} target="_blank" rel="noreferrer">Test protocol</a>
             <a className="CaseLink" href="landing/">Landing page</a>
             <a className="CaseLink" href={REPO} target="_blank" rel="noreferrer">Source on GitHub</a>
           </Stack>
         </Stack>
+
+        <Spec title="In short" column>
+          <Stack gap={12}>
+            {TLDR.map(([k, v]) => (
+              <Stack key={k} gap={2}>
+                <Text variant="caption" tone="dim">{k}</Text>
+                <Text variant="body">{v}</Text>
+              </Stack>
+            ))}
+          </Stack>
+        </Spec>
 
         <Spec title="At a glance" column>
           <Stack dir="row" gap={24} wrap>
