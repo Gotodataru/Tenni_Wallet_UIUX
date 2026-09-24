@@ -37,7 +37,7 @@ const TYPE = [
   ['body', '15/20', 'Body text'],
   ['bodySm', '13/18', 'Secondary text'],
   ['label', '13/16', 'Button and field label'],
-  ['caption', '11/14', 'Tag, timestamp'],
+  ['caption', '12/16', 'Tag, timestamp'],
   ['mono', '13/18', 'Wallet address, hash'],
 ]
 

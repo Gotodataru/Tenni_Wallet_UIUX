@@ -50,7 +50,7 @@ function HomeSection({ theme }) {
     <Section title="Home" hint="Balance with the week's change, the card with the Pay with row, quick actions, activity.">
       <Spec title="Cold start with real timing" column>
         <Text variant="bodySm" tone="dim">
-          900 ms of skeletons under every block, then content. Swap and Stake answer with a toast instead of doing nothing.
+          900 ms of skeletons under every block, then content. The … tile opens a sheet with Swap and Stake, marked Soon.
         </Text>
         <Stack dir="row" gap={12}>
           <Button variant="secondary" size="sm" iconLeading="refresh" onClick={() => setBootKey((k) => k + 1)}>Replay</Button>
