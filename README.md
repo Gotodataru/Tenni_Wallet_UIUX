@@ -41,10 +41,10 @@ Key decisions:
 
 - **7 screens** wired into one clickable prototype: Onboarding, Home, Pay,
   Send, Receive, Activity, Settings + Profile
-- **42 components**, from primitives (`Text`, `Stack`, `Surface`) to product
+- **43 components**, from primitives (`Text`, `Stack`, `Surface`) to product
   blocks (`ListRow`, `CardVisual`, `LockOverlay`); screens are assembled from
   them with no screen-level CSS
-- **64 icons** in 6 packs on one geometry (24×24 viewBox, 2 stroke), plus filled twins for the active tab
+- **67 icons** in 6 packs on one geometry (24×24 viewBox, 2 stroke): 64 line icons plus filled twins of three tab icons
 - **Tokens**: palette, semantic layer with Dark/Light modes, 4-pt spacing,
   type scale with px line heights, radii, shadows, motion
 - **Landing page** (`landing/`), static, no build step

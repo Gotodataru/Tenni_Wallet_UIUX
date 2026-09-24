@@ -2,9 +2,9 @@ import { Text } from '../ui/index.js'
 
 /** Catalog chrome: section, example card, labeled cell. */
 
-export function Section({ title, hint, children }) {
+export function Section({ id, title, hint, children }) {
   return (
-    <section className="DocSection">
+    <section className="DocSection" id={id}>
       {(title || hint) && (
         <div className="DocSection__head">
           {/* title is optional: a page whose header already names it

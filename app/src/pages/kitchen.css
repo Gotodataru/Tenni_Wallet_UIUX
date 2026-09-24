@@ -438,3 +438,59 @@ a.Kitchen__brand { color: inherit; text-decoration: none; }
   transform: scale(.44);
   transform-origin: top left;
 }
+
+/* --- Case hero: the product before the words. Documentation chrome. --- */
+.CaseHero {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-48);
+  padding: var(--space-40);
+  border-radius: var(--r-2xl);
+  background: var(--bg-surface-1);
+  overflow: hidden;
+}
+.CaseHero__copy { flex: 1 1 320px; min-width: 0; }
+.CaseHero__phones {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: var(--space-24);
+  flex: 0 0 auto;
+}
+.CaseHero__second { transform: translateY(40px); }
+.CaseHero__phones { padding-bottom: var(--space-40); }
+
+/* A phone at 0.62 — big enough to read the card, two fit side by side */
+.Device--hero {
+  display: flex;
+  flex: 0 0 auto;
+  width: 258px;
+  height: 539px;
+  padding: var(--space-8);
+  overflow: hidden;
+  border-radius: var(--r-2xl);
+  background: var(--phone-bezel);
+  box-shadow: var(--shadow-4);
+}
+.Device__hero {
+  flex: 0 0 auto;
+  transform: scale(.62);
+  transform-origin: top left;
+}
+
+/* Before/after shots in the iteration section */
+.CaseShot {
+  display: block;
+  width: 240px;
+  height: auto;
+  border-radius: var(--r-2xl);
+  box-shadow: var(--shadow-3);
+}
+
+@media (max-width: 720px) {
+  .CaseHero { padding: var(--space-24); gap: var(--space-24); }
+  .CaseHero__second { display: none; }
+}
+

@@ -6,6 +6,8 @@ import { SendScreen } from '../screens/SendScreen.jsx'
 import { ReceiveScreen } from '../screens/ReceiveScreen.jsx'
 import { ICON_NAMES } from '../icons/paths.js'
 import { Section, Spec, Cell } from './parts.jsx'
+import homeBefore from '../assets/case/home-before.webp'
+import homeAfter from '../assets/case/home-after.webp'
 
 const REPO = 'https://github.com/Gotodataru/Tenni_Wallet_UIUX'
 const FIGMA = 'https://www.figma.com/design/0ZzLBKXtXVnVgLirNT7KtM/Tenni-Wallet-Design-System'
@@ -22,7 +24,7 @@ const FACTS = [
   ['Product', 'Crypto wallet with a debit card'],
   ['Platform', 'iOS, 390 × 844'],
   ['Scope', 'UX flows · UI · design system · coded prototype'],
-  ['System', `42 components · ${ICON_NAMES.length} icons · 2 themes`],
+  ['System', `43 components · ${ICON_NAMES.length} icons · 2 themes`],
 ]
 
 const TRY = [
@@ -51,7 +53,7 @@ const DECISIONS = [
   },
   {
     title: 'Color means something, and never alone',
-    body: 'The tennis-ball palette: the lime ball is the accent and "up", clay is "down" and errors, grass and moss greens are the surfaces. There is one green in the system. Everyday spending stays neutral and every change carries an ▲/▼ arrow. Lime on paper is 1.2:1, so the light theme is monochrome: ink takes the accent role and "up" is the ball darkened to olive.',
+    body: 'A tennis ball on a neutral court: graphite and paper are the surfaces, the lime ball is the card, the primary action and "up", clay is "down" and errors. The ball is the only color on the screen, so it always means something. Everyday spending stays neutral and every change carries an ▲/▼ arrow. Lime on paper is 1.2:1, so in the light theme ink takes the accent role and "up" is the ball darkened to olive.',
     previews: () => [
       { label: 'Home · dark theme', screen: <HomeScreen state="default" theme="dark" scaled /> },
       { label: 'Home · light theme', screen: <HomeScreen state="default" theme="light" scaled /> },
@@ -77,6 +79,16 @@ const NEXT = [
   'Swap and staking flows: the entry points exist, the flows don\'t yet',
 ]
 
+/** What a design review changed — the iteration, told plainly. */
+const REVIEW = [
+  ['Everything was green', 'Background, surfaces, card and chart were all tinted green, so the lime accent had nothing to stand out against. The base is now neutral graphite and the ball color lives in a few places only.'],
+  ['The card didn\'t read as a card', 'A near-square glass panel with blurred color blobs and a second card peeking out with clipped text. Now it is one card in real ISO proportions, with the tennis ball\'s seam as its only print.'],
+  ['Every label shouted', 'About a dozen uppercase labels on one screen flattened the hierarchy. Labels are sentence case now; size and weight carry the order.'],
+  ['Boxes in boxes', 'Every group had a 1px frame, inside another frame. Groups now separate by spacing and a tone step.'],
+  ['All actions looked equal', 'Four identical circles for Send, Receive, Swap and Stake. The two everyday actions are wide tiles now, the rest sit under More.'],
+  ['The same number three times', '+3.84% appeared under the balance, in a chip and in a portfolio chart. It stays once, in the balance line.'],
+]
+
 function Bullets({ items, icon = 'check' }) {
   return (
     <Stack gap={8}>
@@ -90,30 +102,44 @@ function Bullets({ items, icon = 'check' }) {
   )
 }
 
+function scrollToPrototype() {
+  document.getElementById('prototype')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+}
+
 export function Case({ theme }) {
   return (
     <>
       <Section>
-        <Stack gap={16}>
-          <Stack gap={0}>
-            <Text variant="display">Your card. Your coins.</Text>
-            <Text variant="display" tone="accent">One wallet.</Text>
+        {/* Hero: the product first, the words second — a recruiter decides
+            in seconds, so the card has to be on screen before any text. */}
+        <div className="CaseHero">
+          <Stack gap={20} className="CaseHero__copy">
+            <Stack gap={0}>
+              <Text variant="display">Your card. Your coins.</Text>
+              <Text variant="display" tone="accent">One wallet.</Text>
+            </Stack>
+            <Text variant="body" tone="dim">
+              A concept wallet for people who keep their money in crypto but spend it in the real
+              world. Tap the card, pick the coin, pay, with no mental math and no fear of a wrong address.
+            </Text>
+            <Stack dir="row" gap={8} wrap>
+              <button type="button" className="CaseLink CaseLink--primary" onClick={scrollToPrototype}>Try the prototype</button>
+              <a className="CaseLink" href="#screens">All screens and states</a>
+            </Stack>
           </Stack>
-          <Text variant="body" tone="dim">
-            Tenni is a concept wallet for people who keep their money in crypto but spend it in the
-            real world: tap the card at any terminal and pay from your crypto balance, send and
-            receive without fear of a wrong address. Hypothesis: the hard part isn't buying crypto,
-            it's spending it safely and without mental math.
-          </Text>
-          <Stack dir="row" gap={8} wrap>
-            <a className="CaseLink CaseLink--primary" href="#screens">All screens and states</a>
-            <a className="CaseLink" href="#tokens">Design system</a>
-            <a className="CaseLink" href={FIGMA} target="_blank" rel="noreferrer">View in Figma</a>
-            <a className="CaseLink" href={FIGMA_PROTO} target="_blank" rel="noreferrer">Figma prototype</a>
-            <a className="CaseLink" href={RESEARCH} target="_blank" rel="noreferrer">Test protocol</a>
-            <a className="CaseLink" href="landing/">Landing page</a>
-            <a className="CaseLink" href={REPO} target="_blank" rel="noreferrer">Source on GitHub</a>
-          </Stack>
+          <div className="CaseHero__phones" aria-hidden="true">
+            <div className="Device--hero"><div className="Device__hero"><HomeScreen state="default" theme={theme} /></div></div>
+            <div className="Device--hero CaseHero__second"><div className="Device__hero"><PayScreen step="success" theme={theme} /></div></div>
+          </div>
+        </div>
+
+        <Stack dir="row" gap={8} wrap>
+          <a className="CaseLink" href="#tokens">Design system</a>
+          <a className="CaseLink" href={FIGMA} target="_blank" rel="noreferrer">View in Figma</a>
+          <a className="CaseLink" href={FIGMA_PROTO} target="_blank" rel="noreferrer">Figma prototype</a>
+          <a className="CaseLink" href={RESEARCH} target="_blank" rel="noreferrer">Test protocol</a>
+          <a className="CaseLink" href="landing/">Landing page</a>
+          <a className="CaseLink" href={REPO} target="_blank" rel="noreferrer">Source on GitHub</a>
         </Stack>
 
         <Spec title="In short" column>
@@ -139,7 +165,7 @@ export function Case({ theme }) {
         </Spec>
       </Section>
 
-      <Section title="Clickable prototype" hint="All seven screens wired into one app. It runs right here, no Figma and no install.">
+      <Section id="prototype" title="Clickable prototype" hint="All seven screens wired into one app. It runs right here, no Figma and no install.">
         <Spec title="Try this">
           <div className="Device">
             <PrototypeApp theme={theme} />
@@ -163,6 +189,25 @@ export function Case({ theme }) {
             </Stack>
           </Spec>
         ))}
+      </Section>
+
+      <Section title="Iteration after a design review" hint="A designer looked at the first version and called it cheap. The flows held up; the visuals didn't. This is what was wrong and what changed.">
+        <Spec title="Home, before and after">
+          <Cell label="Before" center>
+            <img className="CaseShot" src={homeBefore} width="390" height="844" alt="The first version of Home: green-tinted background, a glass panel over a blurred card, four round action buttons, uppercase labels" />
+          </Cell>
+          <Cell label="After" center>
+            <img className="CaseShot" src={homeAfter} width="390" height="844" alt="The redesigned Home: neutral graphite background, a tennis-ball colored card with its seam, a Pay with row, Send and Receive tiles" />
+          </Cell>
+          <Stack gap={16} className="CaseText">
+            {REVIEW.map(([k, v]) => (
+              <Stack key={k} gap={2}>
+                <Text variant="title">{k}</Text>
+                <Text variant="body" tone="dim">{v}</Text>
+              </Stack>
+            ))}
+          </Stack>
+        </Spec>
       </Section>
 
       <Section title="States, not just happy paths">
