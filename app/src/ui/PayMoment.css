@@ -103,8 +103,10 @@
   animation: PayMoment-pop var(--dur-slow) var(--ease-spring) 250ms both;
 }
 
-/* Success is the ball itself; the canvas ring separates it from the lime card */
-.PayMoment--success  .PayMoment__badge { background: var(--c-ball); color: var(--c-ink); }
+/* Ink circle, ball-colored check drawn heavier than the icon set: the one
+   mark that has to read from arm's length */
+.PayMoment--success  .PayMoment__badge { background: var(--c-ink); color: var(--c-ball); }
+.PayMoment__badge { --icon-stroke: 3; }
 .PayMoment--declined .PayMoment__badge { background: var(--danger); color: var(--c-white); }
 
 @keyframes PayMoment-pop {

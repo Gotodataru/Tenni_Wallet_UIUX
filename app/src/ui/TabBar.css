@@ -39,7 +39,7 @@
 }
 .TabBar--floating .NavItem {
   position: relative;   /* is-abs: lifts the tab above the capsule */
-  height: var(--control-md);
+  height: var(--touch-min);   /* 44: the minimum touch target */
   align-self: center;
 }
 /* The active tab: a ball-colored pill with its label in a row */

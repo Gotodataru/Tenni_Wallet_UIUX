@@ -54,6 +54,7 @@
 }
 
 .Chip.is-interactive {
+  position: relative;   /* is-abs: anchor for the touch target below */
   cursor: pointer;
 }
 .Chip.is-interactive:hover {
@@ -66,3 +67,14 @@
   outline: 2px solid var(--border-focus);
   outline-offset: 2px;
 }
+
+/* Touch target ≥44 tall (WCAG 2.2 / Apple HIG) for a 24–32px chip,
+   the same technique as Button sm/md */
+.Chip.is-interactive::after {
+  content: '';
+  position: absolute;   /* is-abs: extends the hit area, out of flow */
+  inset: 50% 0 auto;
+  height: var(--touch-min);
+  transform: translateY(-50%);
+}
+

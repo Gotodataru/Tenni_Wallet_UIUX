@@ -66,7 +66,8 @@ export function ActivityScreen({ filter: filterProp, theme = 'dark', scaled = fa
           iconLeading="search"
         />
 
-        <Stack dir="row" gap={8} wrap>
+        {/* gap 12: 32px chips + 12 = 44, so the touch targets don't overlap */}
+        <Stack dir="row" gap={12} wrap>
           {FILTERS.map((f) => (
             <Chip
               key={f.id}
