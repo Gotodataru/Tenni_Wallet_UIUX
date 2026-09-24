@@ -217,3 +217,17 @@
 
 .CardVisual.is-frozen  { filter: saturate(.35); }
 .CardVisual.is-expired { filter: grayscale(1); }
+
+/* ==================== SIZE sm ====================
+   280×176 — the same ISO ratio, for the card as an object (PayMoment) */
+.CardVisual--sm {
+  align-self: auto;
+  width: 280px;
+  height: 176px;
+  flex: 0 0 auto;
+  padding: var(--space-16);
+  border-radius: var(--r-lg);
+}
+.CardVisual--sm .CardVisual__brand { font-size: var(--text-h3-size); line-height: var(--text-h3-lh); }
+.CardVisual--sm .CardVisual__pan   { font-size: var(--text-body-size); line-height: var(--text-body-lh); }
+

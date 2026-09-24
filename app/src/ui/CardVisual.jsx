@@ -12,6 +12,8 @@ import './CardVisual.css'
  *   └ row: [holder / PAN (last 4)] … expiry
  *   224 at the 358 a phone screen gives it = the ISO card ratio 1.586,
  *   so it reads as a card and not as one more panel.
+ *   size=sm — fixed 280×176 (same ratio), pad 16: the card as an object
+ *   inside another block (PayMoment).
  *
  * ── What this component does NOT include ──────────────────────────
  * The "Pay with 2.04 ETH" row under the card on Home. It is a payment
@@ -64,6 +66,7 @@ const STATE_NOTE = {
 
 export function CardVisual({
   skin = 'ball',
+  size = 'md',
   kind = 'debit',
   last4 = '4291',
   holder = 'NINA ROSS',
@@ -76,6 +79,7 @@ export function CardVisual({
   const cls = [
     'CardVisual',
     `CardVisual--${skin}`,
+    size === 'sm' && 'CardVisual--sm',
     state !== 'active' && `is-${state}`,
     className,
   ].filter(Boolean).join(' ')

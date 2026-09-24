@@ -2,7 +2,7 @@ import { useState } from 'react'
 import {
   Avatar, AssetIcon, Amount, Balance, Skeleton,
   Sparkline, Donut, ProgressDots, QRBlock, ListRow, TransactionRow, CardVisual,
-  Stack, Text, Button, Icon, Toggle, Checkbox, Surface, IconButton,
+  Stack, Text, Button, Icon, Toggle, Checkbox, Surface, IconButton, PayMoment,
 } from '../ui/index.js'
 import { Section, Spec, Cell } from './parts.jsx'
 
@@ -389,12 +389,32 @@ function CardVisualSection() {
   )
 }
 
+function PayMomentSection() {
+  const [key, setKey] = useState(0)
+  return (
+    <Section
+      title="PayMoment"
+      hint="W=fixed(320) H=fixed(240). The card at the moment of payment: waves while processing, one ball-like bounce on success, a flinch on decline. Static with reduced motion."
+    >
+      <Spec title="state" contract="processing · success · declined — in Figma, variants joined with Smart Animate" column>
+        <Stack dir="row" gap={16} key={key}>
+          <PayMoment state="processing" />
+          <PayMoment state="success" />
+          <PayMoment state="declined" />
+        </Stack>
+        <Stack dir="row"><Button variant="secondary" size="sm" iconLeading="refresh" onClick={() => setKey((k) => k + 1)}>Replay</Button></Stack>
+      </Spec>
+    </Section>
+  )
+}
+
 export function Data() {
   return (
     <>
       <ListRowSection />
       <TransactionRowSection />
       <CardVisualSection />
+      <PayMomentSection />
       <AvatarSection />
       <AssetIconSection />
       <AmountSection />

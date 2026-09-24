@@ -1,0 +1,119 @@
+/* ============================================================
+   L4 · PayMoment
+   W=fixed(320) H=fixed(240) · the card centered, waves and badge
+   out of flow (Absolute position in Figma)
+   ============================================================ */
+
+.PayMoment {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 320px;
+  height: 240px;
+  position: relative;   /* is-abs: anchor for the waves and the badge */
+}
+
+.PayMoment__card {
+  display: flex;
+  position: relative;   /* is-abs: anchor for the badge, above the waves */
+}
+
+/* ==================== WAVES ==================== */
+
+.PayMoment__waves {
+  position: absolute;   /* is-abs: rings behind the card, centered */
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.PayMoment__waves span {
+  position: absolute;   /* is-abs: the three rings share one center */
+  width: 220px;
+  height: 220px;
+  border-radius: var(--r-full);
+  box-shadow: inset 0 0 0 2px var(--accent);
+  opacity: 0;
+}
+
+.PayMoment--processing .PayMoment__waves span { animation: PayMoment-wave 1800ms var(--ease-out) infinite; }
+.PayMoment--processing .PayMoment__waves span:nth-child(2) { animation-delay: 600ms; }
+.PayMoment--processing .PayMoment__waves span:nth-child(3) { animation-delay: 1200ms; }
+
+/* Success: one last ring, then quiet */
+.PayMoment--success .PayMoment__waves span:first-child { animation: PayMoment-wave 700ms var(--ease-out) 1; }
+
+@keyframes PayMoment-wave {
+  0%   { transform: scale(.7);  opacity: .55; }
+  100% { transform: scale(1.7); opacity: 0; }
+}
+
+/* ==================== CARD ==================== */
+
+/* Processing: the card hovers while it talks to the terminal */
+.PayMoment--processing .PayMoment__card { animation: PayMoment-hover 2400ms var(--ease-in-out) infinite; }
+
+@keyframes PayMoment-hover {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+
+/* Success: one bounce, like a ball off the court — drop, squash, settle */
+.PayMoment--success .PayMoment__card { animation: PayMoment-bounce 900ms var(--ease-out) 1; transform-origin: 50% 100%; }
+
+@keyframes PayMoment-bounce {
+  0%   { transform: translateY(-6px); }
+  30%  { transform: translateY(10px) scale(1.03, .95); }
+  55%  { transform: translateY(-8px) scale(.99, 1.01); }
+  75%  { transform: translateY(2px); }
+  100% { transform: translateY(0); }
+}
+
+/* Declined: a flinch sideways, and the plastic dulls */
+.PayMoment--declined .PayMoment__card {
+  animation: PayMoment-flinch 480ms var(--ease-out) 1;
+  filter: saturate(.25);
+  transition: filter var(--dur-slow) var(--ease-out);
+}
+
+@keyframes PayMoment-flinch {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-10px); }
+  40% { transform: translateX(8px); }
+  60% { transform: translateX(-5px); }
+  80% { transform: translateX(3px); }
+}
+
+/* ==================== BADGE ==================== */
+
+.PayMoment__badge {
+  position: absolute;   /* is-abs: straddles the card's right edge, mid-height — clear of the printed text */
+  top: var(--space-64);
+  right: -24px;
+  width: var(--control-lg);
+  height: var(--control-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--r-full);
+  box-shadow: 0 0 0 4px var(--bg-canvas), var(--shadow-2);
+  animation: PayMoment-pop var(--dur-slow) var(--ease-spring) 250ms both;
+}
+
+.PayMoment--success  .PayMoment__badge { background: var(--c-ink);  color: var(--c-ball); }
+.PayMoment--declined .PayMoment__badge { background: var(--danger); color: var(--c-white); }
+
+@keyframes PayMoment-pop {
+  from { transform: scale(0); }
+  to   { transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .PayMoment__card,
+  .PayMoment__badge,
+  .PayMoment__waves span { animation: none; }
+  .PayMoment--processing .PayMoment__waves span:first-child { opacity: .3; transform: scale(1.2); }
+}

@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react'
 import {
   Screen, AppBar, IconButton, Avatar, Stack, Text, Chip, Button, Surface,
   ListRow, AssetIcon, EmptyState, Icon, Banner, ProgressDots, Amount,
+  PayMoment,
 } from '../ui/index.js'
-import { HOLDINGS, RATES } from './data.js'
+import { HOLDINGS, RATES, CARD_LAST4 } from './data.js'
 import { num } from './format.js'
 
 /**
@@ -135,7 +136,7 @@ function ResultStep({ step, asset, onRetry, onChangeAsset, onDone }) {
     return (
       <Stack fill justify="center">
         <EmptyState
-          illustration={<Icon name="spinner" size={48} tone="accent" className="Icon--spin" />}
+          illustration={<PayMoment state="processing" last4={CARD_LAST4} />}
           title="Processing payment"
           body={`${MERCHANT.name} · $${num(TOTAL)}. Keep this screen open. It usually takes a couple of seconds.`}
         />
@@ -148,7 +149,7 @@ function ResultStep({ step, asset, onRetry, onChangeAsset, onDone }) {
       <Stack fill gap={20}>
         <Stack fill justify="center">
           <EmptyState
-            illustration={<Icon name="check-circle" size={56} tone="success" />}
+            illustration={<PayMoment state="success" last4={CARD_LAST4} />}
             title="Paid"
             body={`${MERCHANT.name} · $${num(TOTAL)} charged from your ${asset.ticker} balance`}
           />
@@ -166,10 +167,10 @@ function ResultStep({ step, asset, onRetry, onChangeAsset, onDone }) {
     <Stack fill gap={20}>
       <Stack fill justify="center">
         {/* Not the "offline" illustration: the network is fine, the
-            merchant's bank said no. Same icon-in-circle as success, so
-            the two outcomes of one payment read as a pair. */}
+            merchant's bank said no. The same card as success, with a
+            cross instead of a check, so the two outcomes read as a pair. */}
         <EmptyState
-          illustration={<Icon name="x-circle" size={56} tone="danger" />}
+          illustration={<PayMoment state="declined" last4={CARD_LAST4} />}
           title="Payment declined"
           body="The merchant's bank didn't approve the payment. Nothing was charged."
         />
