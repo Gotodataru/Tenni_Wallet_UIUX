@@ -343,6 +343,12 @@ W=fixed(320) H=fixed(240) · CardVisual sm (280×176) centered · waves (3 rings
 props: state (processing|success|declined), last4
 The card at the moment of payment: waves + hover while processing, one ball-like bounce and a check on success, a flinch, desaturation and a cross on decline. Static under prefers-reduced-motion. In Figma: three State variants joined with Smart Animate.
 
+### CardStage
+
+column · W=fill H=fixed(300) · center · light (Absolute position) behind · CardVisual md rotated −6°
+props: holder, last4
+The card as the hero of a screen (onboarding welcome): a soft ball-colored light behind it; on mount it drops in and settles with one bounce. Static under prefers-reduced-motion.
+
 ## L5 · Navigation and frame
 
 ### StatusBar
@@ -400,8 +406,8 @@ props: title, action, actionLabel, onAction, padding (0|16)
 | L1 Primitives | 6 — Icon, Text, Stack, Divider, Layer, Surface |
 | L2 Controls | 11 — Button, IconButton, Input, Toggle, Checkbox, Radio, Segmented, Chip, Badge, Keypad, Slider |
 | L3 Data display | 12 — Avatar, AssetIcon, Amount, Balance, Skeleton, Sparkline, Donut, ProgressDots, QRBlock, ListRow, TransactionRow, CardVisual |
-| L4 Feedback | 7 — Toast, Banner, Modal, BottomSheet, EmptyState, LockOverlay, PayMoment (+ 6 illustrations) |
+| L4 Feedback | 8 — Toast, Banner, Modal, BottomSheet, EmptyState, LockOverlay, PayMoment, CardStage (+ 6 illustrations) |
 | L5 Navigation | 7 — StatusBar, AppBar, TabBar, NavItem, HomeIndicator, Section, Screen |
-| **Total** | **43** |
+| **Total** | **44** |
 
 Plus 71 icons in 6 packs (68 line, including 4 spending categories, + 3 filled tab twins) and 10 type styles.

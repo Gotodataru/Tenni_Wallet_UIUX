@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import {
   Screen, AppBar, Stack, Text, Button, Surface, ListRow, Toggle,
-  Avatar, CardVisual, ProgressDots, Banner,
+  Avatar, CardStage, ProgressDots, Banner,
 } from '../ui/index.js'
 import { USER, CARD_LAST4 } from './data.js'
 
@@ -21,9 +21,9 @@ const STEPS = ['welcome', 'biometric', 'choice']
 
 function WelcomeStep({ onNext }) {
   return (
-    <Stack fill justify="between" gap={32}>
-      <Stack fill justify="center" gap={32}>
-        <CardVisual skin="ball" kind="debit" holder={USER.holder} last4={CARD_LAST4} />
+    <Stack fill justify="between" gap={24}>
+      <Stack fill justify="center" gap={24}>
+        <CardStage holder={USER.holder} last4={CARD_LAST4} />
         <Stack gap={12}>
           <Stack gap={0}>
             <Text variant="display">Your card.</Text>

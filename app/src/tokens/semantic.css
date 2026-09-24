@@ -90,6 +90,7 @@
   --phone-screen: linear-gradient(180deg, #131316 0%, #0B0B0D 100%);
   --card-bg:      linear-gradient(135deg, #26262A 0%, #1C1C1F 55%, #0B0B0D 100%);
   --card-glow:    rgba(200, 255, 77, .22);
+  --card-stage-light: radial-gradient(closest-side, rgba(200, 255, 77, .22), transparent);
 
   /* --- Glass --- */
   --glass-bg:     rgba(245, 245, 240, .07);
@@ -170,6 +171,7 @@
   --phone-screen: linear-gradient(180deg, #F8F8F4 0%, #ECECE7 50%, #DCDCD6 100%);
   --card-bg:      linear-gradient(135deg, #1A1A1F 0%, #3A3A40 60%, #15151A 100%);
   --card-glow:    rgba(200, 200, 200, .25);
+  --card-stage-light: radial-gradient(closest-side, rgba(200, 255, 77, .45), transparent);
 
   --glass-bg:     rgba(255, 255, 255, .62);
   --glass-border: rgba(255, 255, 255, .85);

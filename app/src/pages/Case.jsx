@@ -24,7 +24,7 @@ const FACTS = [
   ['Product', 'Crypto wallet with a debit card'],
   ['Platform', 'iOS, 390 × 844'],
   ['Scope', 'UX flows · UI · design system · coded prototype'],
-  ['System', `43 components · ${ICON_NAMES.length} icons · 2 themes`],
+  ['System', `44 components · ${ICON_NAMES.length} icons · 2 themes`],
 ]
 
 const TRY = [

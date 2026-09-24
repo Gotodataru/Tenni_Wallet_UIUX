@@ -107,7 +107,7 @@ function Catalog({ routeId }) {
           <Stack gap={6}>
             <Text variant="h1">{route.title || route.label}</Text>
             <Text variant="bodySm" tone="dim">
-              {ICON_NAMES.length} icons · 43 components · 7 screens · built to Figma Auto Layout rules
+              {ICON_NAMES.length} icons · 44 components · 7 screens · built to Figma Auto Layout rules
             </Text>
           </Stack>
           <Button

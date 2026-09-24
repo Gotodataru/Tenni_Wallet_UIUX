@@ -38,6 +38,7 @@ export { Banner } from './Banner.jsx'
 export { Modal } from './Modal.jsx'
 export { BottomSheet } from './BottomSheet.jsx'
 export { PayMoment } from './PayMoment.jsx'
+export { CardStage } from './CardStage.jsx'
 export { EmptyState } from './EmptyState.jsx'
 export { LockOverlay } from './LockOverlay.jsx'
 

@@ -41,7 +41,7 @@ Key decisions:
 
 - **7 screens** wired into one clickable prototype: Onboarding, Home, Pay,
   Send, Receive, Activity, Settings + Profile
-- **43 components**, from primitives (`Text`, `Stack`, `Surface`) to product
+- **44 components**, from primitives (`Text`, `Stack`, `Surface`) to product
   blocks (`ListRow`, `CardVisual`, `LockOverlay`); screens are assembled from
   them with no screen-level CSS
 - **71 icons** in 6 packs on one geometry (24×24 viewBox, 2 stroke): 68 line icons (with four spending categories) plus filled twins of three tab icons
