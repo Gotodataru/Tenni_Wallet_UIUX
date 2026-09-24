@@ -197,3 +197,7 @@
 .Button__spinner {
   flex: 0 0 auto;
 }
+
+/* shape=rounded — the card's corner family, for action tiles */
+.Button--rounded { border-radius: var(--r-lg); }
+

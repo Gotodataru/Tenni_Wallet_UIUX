@@ -7,6 +7,7 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  position: relative;   /* is-abs: anchor for the overlay slot */
   background: var(--bg-canvas);
   color: var(--fg-default);
 }
@@ -65,3 +66,20 @@
 .Screen__content--pad-16 { padding: var(--space-16); }
 .Screen__content--pad-20 { padding: var(--space-20); }
 .Screen__content--pad-24 { padding: var(--space-24); }
+
+/* ==================== OVERLAY ====================
+   Scrim over the whole screen, the sheet slides up from the bottom. */
+.Screen__overlay {
+  position: absolute;   /* is-abs: covers the screen, Absolute position in Figma */
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background: var(--bg-overlay);
+  animation: Screen-fade var(--dur-base) var(--ease-out);
+}
+.Screen__overlay > * { animation: Screen-rise var(--dur-slow) var(--ease-out); }
+
+@keyframes Screen-fade { from { opacity: 0; } }
+@keyframes Screen-rise { from { transform: translateY(24px); opacity: 0; } }
+

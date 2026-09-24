@@ -16,7 +16,7 @@ export function Icons() {
 
   return (
     <Section
-      hint={`${ICON_NAMES.length} icons in ${packs.length} packs. Shared geometry: 24×24 viewBox, 20×20 live area, 1.75 stroke, round caps, currentColor.`}
+      hint={`${ICON_NAMES.length} icons in ${packs.length} packs. Shared geometry: 24×24 viewBox, 20×20 live area, 2 stroke, round caps, currentColor.`}
     >
       <div className="Note">
         <Icon name="alert-triangle" size={20} tone="warning" />

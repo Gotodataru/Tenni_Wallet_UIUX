@@ -61,7 +61,7 @@ function TabBarSection() {
         <Text variant="bodySm" tone="dim">active tab: {active}</Text>
       </Spec>
 
-      <Spec title="theme solid / glass">
+      <Spec title="theme floating (default) / solid / glass">
         <Cell label="solid" center>
           <div className="Navigation__barFrame"><TabBar items={TABS} active="home" theme="solid" onChange={() => {}} /></div>
         </Cell>

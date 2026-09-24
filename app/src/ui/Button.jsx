@@ -16,6 +16,7 @@ import './Button.css'
  *   label    — Text property
  *   iconLeading / iconTrailing — Boolean + Instance swap
  *   fullWidth — Boolean (hug → fill)
+ *   shape     — Variant: pill (default) | rounded — the card's corner (r-lg), for tiles
  *
  * `state` works two ways at once — as real :hover/:active in the
  * browser and as a forced class in the catalog, so every state can
@@ -32,6 +33,7 @@ export function Button({
   iconTrailing,
   iconOnly = false,
   fullWidth = false,
+  shape = 'pill',
   className = '',
   children,
   ...rest
@@ -46,6 +48,7 @@ export function Button({
     `Button--${size}`,
     state && `is-${state}`,
     fullWidth && 'Button--fullWidth',
+    shape === 'rounded' && 'Button--rounded',
     iconOnly && 'Button--iconOnly',
     className,
   ].filter(Boolean).join(' ')

@@ -102,3 +102,7 @@
   background: var(--danger);
   box-shadow: 0 0 0 2px var(--bg-canvas);
 }
+
+/* shape=rounded — the card's corner family, next to Button shape=rounded */
+.IconButton--rounded { border-radius: var(--r-lg); }
+

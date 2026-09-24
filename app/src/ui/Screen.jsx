@@ -55,6 +55,9 @@ import './Screen.css'
  * without its scrim and CardVisual without the payment composer: the
  * component is the screen, not the device. The catalog draws the bezel.
  */
+/* overlay — a slot over the whole screen: scrim + a BottomSheet or Modal
+   pinned to the bottom. In Figma: a frame set to Absolute position,
+   fill = bg-overlay, the sheet inside at the bottom. */
 export function Screen({
   theme,
   size: sizeProp,
@@ -67,6 +70,8 @@ export function Screen({
   safeTop: safeTopProp,
   scroll = true,
   contentPadding = 0,
+  overlay,
+  onOverlayClose,
   children,
   className = '',
   ...rest
@@ -101,6 +106,13 @@ export function Screen({
       <div className={contentCls}>{children}</div>
       {tabBar}
       {homeIndicator && <HomeIndicator theme={barTheme} />}
+      {overlay && (
+        // A scrim over the whole screen with the sheet at the bottom.
+        // Tapping the scrim (not the sheet) closes it.
+        <div className="Screen__overlay" onClick={(e) => e.target === e.currentTarget && onOverlayClose?.()}>
+          {overlay}
+        </div>
+      )}
     </div>
   )
 }

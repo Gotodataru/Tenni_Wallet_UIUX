@@ -83,8 +83,9 @@
   --ease-in-out: cubic-bezier(.4, 0, .2, 1);
   --ease-spring: cubic-bezier(.34, 1.56, .64, 1);
 
-  /* --- Icon stroke width --- */
-  --icon-stroke: 1.75;
+  /* --- Icon stroke width. 2, not 1.75: next to the dense ball card a
+         hairline icon looked flimsy — the two need the same weight. --- */
+  --icon-stroke: 2;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -19,6 +19,7 @@
   --bg-surface-1:  rgba(245, 245, 240, .05);
   --bg-surface-2:  rgba(245, 245, 240, .08);
   --bg-surface-3:  rgba(245, 245, 240, .12);
+  --bg-elevated:   var(--c-shadow);   /* opaque: sheets, the floating tab bar */
   --bg-inverse:    var(--c-linen);
   --bg-overlay:    rgba(5, 5, 6, .72);
   /* One soft neutral light from the top — no colored haze: the ball is
@@ -109,6 +110,7 @@
   --bg-surface-1:  rgba(255, 255, 255, .72);
   --bg-surface-2:  #FFFFFF;
   --bg-surface-3:  var(--c-paper);
+  --bg-elevated:   #FFFFFF;
   --bg-inverse:    var(--c-ink);
   --bg-overlay:    rgba(26, 26, 31, .48);
   --bg-ambient:

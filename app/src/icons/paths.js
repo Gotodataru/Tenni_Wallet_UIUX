@@ -102,4 +102,17 @@ export const byPack = () =>
     names: Object.keys(ICONS).filter((n) => ICONS[n].pack === pack),
   }))
 
+/* Filled twins of the tab icons: the active tab shows the filled one,
+   the way iOS marks where you are. Named <icon>-fill; NavItem picks the
+   twin up automatically when it exists. */
+const STROKE = { fill: 'none', stroke: 'currentColor', strokeWidth: 'var(--icon-stroke)', strokeLinecap: 'round', strokeLinejoin: 'round' }
+ICONS['home-fill'] = { pack: 'navigation', fill: true, d: 'M3.5 10.6 12 3.8l8.5 6.8V19a2 2 0 0 1-2 2h-3.2v-6.2H8.7V21H5.5a2 2 0 0 1-2-2v-8.4Z' }
+ICONS['pay-fill'] = { pack: 'navigation', fill: true, el: [
+  ['path', { fillRule: 'evenodd', d: 'M5 6h9a2.5 2.5 0 0 1 2.5 2.5v7A2.5 2.5 0 0 1 14 18H5a2.5 2.5 0 0 1-2.5-2.5v-7A2.5 2.5 0 0 1 5 6Zm-2.5 3.2h14v1.6h-14Z' }],
+  ['path', { ...STROKE, d: 'M19 9.2a4 4 0 0 1 0 5.6M21.3 7.2a7 7 0 0 1 0 9.6' }],
+] }
+ICONS['clock-fill'] = { pack: 'navigation', fill: true, el: [
+  ['path', { fillRule: 'evenodd', d: 'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Zm-1 4h2v4.75l2.7 1.7-1.06 1.7L11 12.85Z' }],
+] }
+
 export const ICON_NAMES = Object.keys(ICONS)

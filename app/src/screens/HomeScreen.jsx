@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
 import {
   Screen, TabBar, Avatar, Balance, CardVisual, AssetIcon, ListRow,
-  Surface, Stack, Text, Button, Section, TransactionRow, IconButton,
-  Skeleton, EmptyState, Illustration, Banner, Toast,
+  Surface, Stack, Button, Section, TransactionRow, IconButton, Chip,
+  Skeleton, EmptyState, Illustration, Banner, BottomSheet,
 } from '../ui/index.js'
+import { Icon } from '../icons/Icon.jsx'
 import { TABS, USER, RATES, HOLDINGS, TOTAL, WEEK_DELTA, WEEK_GAIN, TRANSACTIONS, CARD_LAST4, txRowProps } from './data.js'
 import { num } from './format.js'
 
@@ -20,15 +21,11 @@ import { num } from './format.js'
  * Built only from system components. No screen-level CSS.
  */
 
-const QUICK_ACTIONS = [
-  { id: 'send',    icon: 'send',    label: 'Send' },
-  { id: 'receive', icon: 'receive', label: 'Receive' },
-  { id: 'swap',    icon: 'swap',    label: 'Swap' },
-  { id: 'stake',   icon: 'stake',   label: 'Stake' },
+/** Actions under More — this demo doesn't build them, and the sheet says so. */
+const MORE_ACTIONS = [
+  { id: 'swap',  icon: 'swap',  title: 'Swap',  subtitle: 'Trade one coin for another' },
+  { id: 'stake', icon: 'stake', title: 'Stake', subtitle: 'Earn on ETH and SOL' },
 ]
-
-/** Actions this demo doesn't build — they answer with a toast instead of doing nothing. */
-const NOT_IN_DEMO = { swap: 'Swap', stake: 'Staking' }
 
 const ETH = HOLDINGS.find((h) => h.symbol === 'eth')
 
@@ -49,29 +46,51 @@ function PayWith({ onPay }) {
   )
 }
 
-function QuickActions({ loading = false, onAction }) {
+/** Quick actions with a hierarchy: the two everyday actions are wide
+    tiles, the rest folds into More. Four equal circles said every action
+    matters the same — they don't. Tiles use the card's corner (rounded). */
+function QuickActions({ loading = false, onAction, onMore }) {
   if (loading) {
     return (
-      <Stack dir="row" gap={12} fillCross>
-        {QUICK_ACTIONS.map((a) => (
-          <Stack key={a.id} fill align="center" gap={8}>
-            <Skeleton shape="circle" w={48} h={48} />
-            <Skeleton shape="line" w={48} h={12} />
-          </Stack>
-        ))}
+      <Stack dir="row" gap={8} fillCross>
+        <Stack fill><Skeleton shape="rect" h={48} radius="var(--r-lg)" /></Stack>
+        <Stack fill><Skeleton shape="rect" h={48} radius="var(--r-lg)" /></Stack>
+        <Skeleton shape="rect" w={48} h={48} radius="var(--r-lg)" />
       </Stack>
     )
   }
 
   return (
-    <Stack dir="row" gap={12} fillCross>
-      {QUICK_ACTIONS.map((a) => (
-        <Stack key={a.id} fill align="center" gap={8}>
-          <IconButton variant="solid" size={48} icon={a.icon} aria-label={a.label} onClick={() => onAction?.(a.id)} />
-          <Text variant="bodySm" tone="dim">{a.label}</Text>
-        </Stack>
-      ))}
+    <Stack dir="row" gap={8} fillCross>
+      <Stack fill>
+        <Button variant="secondary" size="lg" shape="rounded" fullWidth iconLeading="send" onClick={() => onAction?.('send')}>Send</Button>
+      </Stack>
+      <Stack fill>
+        <Button variant="secondary" size="lg" shape="rounded" fullWidth iconLeading="receive" onClick={() => onAction?.('receive')}>Receive</Button>
+      </Stack>
+      <IconButton variant="solid" size={48} shape="rounded" icon="more" aria-label="More actions: Swap, Stake" onClick={onMore} />
     </Stack>
+  )
+}
+
+/** The More sheet. Swap and Stake are marked "Soon" — honest about the demo,
+    instead of a tap that does nothing or a toast that flashes by. */
+function MoreSheet({ onClose }) {
+  return (
+    <BottomSheet title="More actions" onClose={onClose}>
+      <Surface level={1} radius="lg" pad={0} gap={0}>
+        {MORE_ACTIONS.map((a, i) => (
+          <ListRow
+            key={a.id}
+            leading={<Icon name={a.icon} size={24} tone="dim" />}
+            title={a.title}
+            subtitle={a.subtitle}
+            trailing={<Chip variant="neutral" size="sm">Soon</Chip>}
+            divider={i < MORE_ACTIONS.length - 1}
+          />
+        ))}
+      </Surface>
+    </BottomSheet>
   )
 }
 
@@ -86,7 +105,7 @@ function QuickActions({ loading = false, onAction }) {
 export function HomeScreen({ state: stateProp, theme = 'dark', scaled = false, onNavigate }) {
   const [masked, setMasked] = useState(false)
   const [bootState, setBootState] = useState('loading')
-  const [notice, setNotice] = useState(null)
+  const [moreOpen, setMoreOpen] = useState(false)
 
   useEffect(() => {
     if (stateProp) return
@@ -94,18 +113,7 @@ export function HomeScreen({ state: stateProp, theme = 'dark', scaled = false, o
     return () => clearTimeout(t)
   }, [stateProp])
 
-  useEffect(() => {
-    if (!notice) return
-    const t = setTimeout(() => setNotice(null), 2200)
-    return () => clearTimeout(t)
-  }, [notice])
-
   const state = stateProp || bootState
-
-  function handleAction(id) {
-    if (NOT_IN_DEMO[id]) setNotice(`${NOT_IN_DEMO[id]} isn't part of this demo yet`)
-    else onNavigate?.(id)
-  }
 
   const tabBar = (
     <TabBar items={TABS} active="home" onChange={(id) => id !== 'home' && onNavigate?.(id)} />
@@ -117,13 +125,13 @@ export function HomeScreen({ state: stateProp, theme = 'dark', scaled = false, o
       theme={theme}
       tabBar={tabBar}
       contentPadding={16}
+      overlay={moreOpen && <MoreSheet onClose={() => setMoreOpen(false)} />}
+      onOverlayClose={() => setMoreOpen(false)}
     >
       <Stack gap={24}>
         {state === 'error' && (
           <Banner tone="danger" body="Couldn't update your balance" action actionLabel="Retry" />
         )}
-
-        {notice && <Toast tone="info" message={notice} />}
 
         {/* --- Header: balance on the left, avatar on the right --- */}
         <Stack dir="row" justify="between" align="start" gap={12}>
@@ -164,7 +172,7 @@ export function HomeScreen({ state: stateProp, theme = 'dark', scaled = false, o
           </Stack>
         )}
 
-        <QuickActions loading={state === 'loading'} onAction={handleAction} />
+        <QuickActions loading={state === 'loading'} onAction={(id) => onNavigate?.(id)} onMore={() => setMoreOpen(true)} />
 
         {/* --- Activity --- */}
         <Section title="Activity" action actionLabel="See all" onAction={() => onNavigate?.('activity')}>

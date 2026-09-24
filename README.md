@@ -44,7 +44,7 @@ Key decisions:
 - **42 components**, from primitives (`Text`, `Stack`, `Surface`) to product
   blocks (`ListRow`, `CardVisual`, `LockOverlay`); screens are assembled from
   them with no screen-level CSS
-- **64 icons** in 6 packs on one geometry (24×24 viewBox, 1.75 stroke)
+- **64 icons** in 6 packs on one geometry (24×24 viewBox, 2 stroke), plus filled twins for the active tab
 - **Tokens**: palette, semantic layer with Dark/Light modes, 4-pt spacing,
   type scale with px line heights, radii, shadows, motion
 - **Landing page** (`landing/`), static, no build step

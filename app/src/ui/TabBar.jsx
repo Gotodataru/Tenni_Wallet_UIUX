@@ -8,9 +8,16 @@ import './TabBar.css'
  * └ NavItem ×5 · fill
  *
  * props: items — [{ id, icon, label, badge }] (4–5 tabs),
- *        active (id), onChange(id), theme (solid|glass), labels (bool)
+ *        active (id), onChange(id), theme (floating|solid|glass), labels (bool)
+ *
+ * floating (default) — a capsule that floats above the bottom edge; the
+ * active tab becomes a ball-colored pill with its label, the others are
+ * icons only (their label stays as the accessible name). One strong
+ * "you are here" instead of four equal labels.
+ * Figma: row · pad 0/24/8 · the capsule is a rectangle set to Absolute
+ * position behind the tabs; the active NavItem is a hug row.
  */
-export function TabBar({ items, active, onChange, theme = 'solid', labels = true, className = '', ...rest }) {
+export function TabBar({ items, active, onChange, theme = 'floating', labels = true, className = '', ...rest }) {
   const cls = ['TabBar', `TabBar--${theme}`, className].filter(Boolean).join(' ')
 
   return (
@@ -21,7 +28,7 @@ export function TabBar({ items, active, onChange, theme = 'solid', labels = true
           icon={item.icon}
           label={item.label}
           badge={item.badge}
-          showLabels={labels}
+          showLabels={theme === 'floating' ? item.id === active : labels}
           state={item.id === active ? 'active' : 'default'}
           onClick={() => onChange?.(item.id)}
         />

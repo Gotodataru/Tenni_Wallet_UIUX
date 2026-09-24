@@ -14,7 +14,7 @@
   padding: var(--space-8) var(--space-20) var(--space-24);
   border-radius: var(--r-xl) var(--r-xl) 0 0;
 
-  background: var(--bg-surface-2);
+  background: var(--bg-elevated);   /* opaque: it sits on a scrim */
   box-shadow: var(--shadow-4);
 }
 

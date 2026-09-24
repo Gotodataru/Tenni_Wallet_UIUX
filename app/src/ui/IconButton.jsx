@@ -26,6 +26,7 @@ export function IconButton({
   state,
   icon,
   badge = false,
+  shape = 'circle',
   className = '',
   'aria-label': ariaLabel,
   ...rest
@@ -37,6 +38,7 @@ export function IconButton({
     'IconButton',
     `IconButton--${variant}`,
     `IconButton--${size}`,
+    shape === 'rounded' && 'IconButton--rounded',
     state && `is-${state}`,
     className,
   ].filter(Boolean).join(' ')

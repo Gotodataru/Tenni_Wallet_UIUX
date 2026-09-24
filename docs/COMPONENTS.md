@@ -359,7 +359,8 @@ symmetric when exact centering matters. Empty slots are kept only in
 ```
 TabBar: row · W=fill H=fixed(64) · pad 0/8 └ NavItem × n · fill
 NavItem: column · W=fill H=fill · gap 4 · center
-props: items, active, onChange, theme (solid|glass), labels · NavItem state (default|active|disabled), badge
+props: items, active, onChange, theme (floating|solid|glass), labels · NavItem state (default|active|disabled), badge
+floating (default): a capsule over the bottom edge; the active tab is a ball-colored pill with its label, the rest are icons only (label = accessible name). Active icons use their filled twin (<icon>-fill).
 ```
 
 ### Screen
