@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { Text } from './Text.jsx'
 import { IconButton } from './IconButton.jsx'
 import { Amount } from './Amount.jsx'
-import { Chip } from './Chip.jsx'
 import { Skeleton } from './Skeleton.jsx'
 import './Balance.css'
 
@@ -12,16 +11,20 @@ import './Balance.css'
  * Sizing contract (Figma):
  *   column · W=hug H=hug · gap 6 · align center
  *   ├ row: label + IconButton(eye)
- *   ├ Text/display — amount
- *   └ row: Amount(delta) + Chip(period)
+ *   ├ Text/display — amount; the cents in fg-dim, so the eye reads
+ *   │   the dollars first
+ *   └ row: Amount(delta %) + Text/bodySm dim (gain · period)
  *
  * props: value, currency, masked (bool, controlled or uncontrolled —
  *        like Toggle), loading (bool), delta (percent, number|undefined),
- *        period (string), align (center|start)
+ *        gain (money over the period, number|undefined), period (string),
+ *        align (center|start)
  *
  * align="start" — the balance as the screen header, left, with the
  * avatar on the right (Home). center — a standalone centered block.
  */
+const fmt = (n) => n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+
 export function Balance({
   label = 'Total balance',
   value,
@@ -32,12 +35,15 @@ export function Balance({
   onToggleMask,
   loading = false,
   delta,
+  gain,
   period,
   className = '',
 }) {
   const isControlled = maskedProp !== undefined
   const [inner, setInner] = useState(defaultMasked)
   const masked = isControlled ? maskedProp : inner
+
+  const [whole, cents] = fmt(value ?? 0).split('.')
 
   function toggle() {
     if (!isControlled) setInner((v) => !v)
@@ -61,14 +67,19 @@ export function Balance({
         <Skeleton shape="rect" w={220} h={40} />
       ) : (
         <Text variant="display" numeric>
-          {masked ? `${currency}••,•••.••` : `${currency}${value.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`}
+          {masked ? `${currency}••,•••` : `${currency}${whole}`}
+          <span className="Balance__cents">{masked ? '.••' : `.${cents}`}</span>
         </Text>
       )}
 
       {!loading && delta !== undefined && (
         <div className="Balance__delta">
           <Amount value={delta} currency="" suffix="%" sign={delta >= 0 ? 'plus' : 'minus'} showArrow size="sm" masked={masked} />
-          {period && <Chip variant="neutral" size="sm">{period}</Chip>}
+          {(gain !== undefined || period) && (
+            <Text variant="bodySm" tone="dim" numeric>
+              {[gain !== undefined && !masked && `${gain >= 0 ? '+' : '−'}${currency}${fmt(Math.abs(gain))}`, period].filter(Boolean).join(' · ')}
+            </Text>
+          )}
         </div>
       )}
     </div>

@@ -1,18 +1,23 @@
 import { useEffect, useState } from 'react'
 import {
-  Screen, TabBar, Avatar, IconButton, Balance, Layer, CardVisual,
-  Surface, Stack, Text, Chip, Button, Section, TransactionRow, Amount,
-  Skeleton, EmptyState, Illustration, Banner, Sparkline, Toast,
+  Screen, TabBar, Avatar, Balance, CardVisual, AssetIcon, ListRow,
+  Surface, Stack, Text, Button, Section, TransactionRow, IconButton,
+  Skeleton, EmptyState, Illustration, Banner, Toast,
 } from '../ui/index.js'
-import { TABS, USER, RATES, HOLDINGS, TOTAL, WEEK_DELTA, WEEK_GAIN, TREND, TRANSACTIONS, CARD_LAST4, txRowProps } from './data.js'
+import { TABS, USER, RATES, HOLDINGS, TOTAL, WEEK_DELTA, WEEK_GAIN, TRANSACTIONS, CARD_LAST4, txRowProps } from './data.js'
 import { num } from './format.js'
 
 /**
- * Home — balance, the card with the "Pay with" composer, quick actions,
- * portfolio and recent activity.
+ * Home — balance, the card with the "Pay with" row, quick actions and
+ * recent activity.
  *
- * Built only from system components: the card + glass fan is `Layer`
- * (anchor="stack"), the composer is `Surface glass`. No screen-level CSS.
+ * One order of importance, top to bottom: what I have → what I pay with
+ * → what I can do → what happened. The card is the one large patch of
+ * brand color; everything around it is neutral. The week's change lives
+ * in the balance line — a separate portfolio chart repeated the same
+ * +3.84% three times on one screen, so it moved out of Home.
+ *
+ * Built only from system components. No screen-level CSS.
  */
 
 const QUICK_ACTIONS = [
@@ -27,30 +32,19 @@ const NOT_IN_DEMO = { swap: 'Swap', stake: 'Staking' }
 
 const ETH = HOLDINGS.find((h) => h.symbol === 'eth')
 
-/** Glass "Pay with" panel — the front layer of the card fan. */
-function PayComposer({ onPay }) {
+/** "Pay with" — the asset a tap will spend, and the way into Pay. Sits
+    right under the card and outside it: the card is plastic, this row is
+    the app. The button is named and carries the terminal icon, so it
+    can't be read as part of a picture. */
+function PayWith({ onPay }) {
   return (
-    <Surface glass fill radius="lg" pad={16} gap={0}>
-      <Stack fill justify="between" gap={12}>
-        <Stack dir="row" justify="between" align="center">
-          <Text variant="caption" tone="dim">Pay with</Text>
-          {/* The asset is picked on the Pay screen, so both entries open it */}
-          <IconButton variant="ghost" size={32} icon="more" aria-label="Choose asset" onClick={onPay} />
-        </Stack>
-
-        <Stack dir="row" justify="between" align="end">
-          <Stack dir="row" gap={8} align="baseline">
-            <Text variant="h2" numeric>{num(ETH.amount)}</Text>
-            <Chip variant="neutral" size="sm">{ETH.ticker}</Chip>
-          </Stack>
-          <Text variant="caption" tone="dim" numeric>≈ ${num(ETH.amount * RATES.eth, 0)}</Text>
-        </Stack>
-
-        <Stack dir="row" justify="between" align="center">
-          <Text variant="caption" tone="dim">Used when you tap</Text>
-          <Button variant="primary" size="sm" iconTrailing="arrow-right" onClick={onPay}>Pay</Button>
-        </Stack>
-      </Stack>
+    <Surface level={1} radius="lg" pad={0} gap={0}>
+      <ListRow
+        leading={<AssetIcon symbol="eth" size={40} />}
+        title="Pay with ETH"
+        subtitle={`${num(ETH.amount)} ETH · ≈ $${num(ETH.amount * RATES.eth, 0)}`}
+        trailing={<Button variant="primary" size="sm" iconLeading="pay" onClick={onPay}>Pay</Button>}
+      />
     </Surface>
   )
 }
@@ -62,7 +56,7 @@ function QuickActions({ loading = false, onAction }) {
         {QUICK_ACTIONS.map((a) => (
           <Stack key={a.id} fill align="center" gap={8}>
             <Skeleton shape="circle" w={48} h={48} />
-            <Skeleton shape="line" w={48} h={11} />
+            <Skeleton shape="line" w={48} h={12} />
           </Stack>
         ))}
       </Stack>
@@ -74,27 +68,10 @@ function QuickActions({ loading = false, onAction }) {
       {QUICK_ACTIONS.map((a) => (
         <Stack key={a.id} fill align="center" gap={8}>
           <IconButton variant="solid" size={48} icon={a.icon} aria-label={a.label} onClick={() => onAction?.(a.id)} />
-          <Text variant="caption" tone="dim">{a.label}</Text>
+          <Text variant="bodySm" tone="dim">{a.label}</Text>
         </Stack>
       ))}
     </Stack>
-  )
-}
-
-function PortfolioSkeleton() {
-  return (
-    <Section title="Portfolio">
-      <Surface level={1} radius="lg" pad={16} gap={12}>
-        <Stack dir="row" justify="between" align="center">
-          <Stack gap={6}>
-            <Skeleton shape="line" w={64} h={11} />
-            <Skeleton shape="line" w={110} h={22} />
-          </Stack>
-          <Skeleton shape="line" w={56} h={24} radius="var(--r-full)" />
-        </Stack>
-        <Skeleton shape="rect" h={64} />
-      </Surface>
-    </Section>
   )
 }
 
@@ -141,7 +118,7 @@ export function HomeScreen({ state: stateProp, theme = 'dark', scaled = false, o
       tabBar={tabBar}
       contentPadding={16}
     >
-      <Stack gap={20}>
+      <Stack gap={24}>
         {state === 'error' && (
           <Banner tone="danger" body="Couldn't update your balance" action actionLabel="Retry" />
         )}
@@ -158,16 +135,18 @@ export function HomeScreen({ state: stateProp, theme = 'dark', scaled = false, o
                 masked={masked}
                 onToggleMask={setMasked}
                 delta={state === 'empty' ? undefined : WEEK_DELTA}
+                gain={state === 'empty' ? undefined : WEEK_GAIN}
                 period={state === 'empty' ? undefined : '7 days'}
               />}
-          <Avatar type="initials" initials={USER.initials} size={48} ring />
+          <Avatar type="initials" initials={USER.initials} size={40} />
         </Stack>
 
-        {/* --- Card + glass fan --- */}
+        {/* --- Card + what a tap pays with --- */}
         {state === 'loading' ? (
-          <Layer anchor="stack" offset="64 24" over={<Skeleton shape="rect" radius="var(--r-lg)" />}>
-            <Skeleton shape="rect" h={200} radius="var(--r-xl)" />
-          </Layer>
+          <Stack gap={8}>
+            <Skeleton shape="rect" h={224} radius="var(--r-xl)" />
+            <Skeleton shape="rect" h={68} radius="var(--r-lg)" />
+          </Stack>
         ) : state === 'empty' ? (
           <Surface level={1} radius="xl" pad={0} gap={0}>
             <EmptyState
@@ -179,31 +158,13 @@ export function HomeScreen({ state: stateProp, theme = 'dark', scaled = false, o
             />
           </Surface>
         ) : (
-          <Layer anchor="stack" offset="64 24" over={<PayComposer onPay={() => onNavigate?.('pay')} />}>
-            {/* The holder sits entirely under the glass; CSS blur is weaker than
-                Figma's at the same radius, so the name would ghost through */}
-            <CardVisual skin="auto" kind="debit" holder="" last4={CARD_LAST4} />
-          </Layer>
+          <Stack gap={8}>
+            <CardVisual skin="ball" kind="debit" holder="" last4={CARD_LAST4} />
+            <PayWith onPay={() => onNavigate?.('pay')} />
+          </Stack>
         )}
 
         <QuickActions loading={state === 'loading'} onAction={handleAction} />
-
-        {/* --- Portfolio --- */}
-        {state === 'loading' && <PortfolioSkeleton />}
-        {state === 'default' && (
-          <Section title="Portfolio" action actionLabel="Details">
-            <Surface level={1} radius="lg" pad={16} gap={12}>
-              <Stack dir="row" justify="between" align="center">
-                <Stack gap={2}>
-                  <Text variant="caption" tone="dim">Last 7 days</Text>
-                  <Amount value={WEEK_GAIN} sign="plus" showArrow size="lg" />
-                </Stack>
-                <Chip variant="success" size="sm">+{num(WEEK_DELTA)}%</Chip>
-              </Stack>
-              <Sparkline data={TREND} tone="up" showFill />
-            </Surface>
-          </Section>
-        )}
 
         {/* --- Activity --- */}
         <Section title="Activity" action actionLabel="See all" onAction={() => onNavigate?.('activity')}>

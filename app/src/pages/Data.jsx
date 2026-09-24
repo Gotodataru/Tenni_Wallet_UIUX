@@ -2,7 +2,7 @@ import { useState } from 'react'
 import {
   Avatar, AssetIcon, Amount, Balance, Skeleton,
   Sparkline, Donut, ProgressDots, QRBlock, ListRow, TransactionRow, CardVisual,
-  Stack, Text, Button, Icon, Toggle, Checkbox, Chip, Surface, IconButton, Layer,
+  Stack, Text, Button, Icon, Toggle, Checkbox, Surface, IconButton,
 } from '../ui/index.js'
 import { Section, Spec, Cell } from './parts.jsx'
 
@@ -334,19 +334,19 @@ function CardVisualSection() {
   return (
     <Section
       title="CardVisual"
-      hint="column · W=fill H=fixed(200) · pad 20 · space-between. The hero visual of the product."
+      hint="column · W=fill H=fixed(224) · pad 20 · space-between. 224 at 358 wide is the ISO card ratio 1.586. The hero visual of the product."
     >
       <Spec title="What the component does NOT include" column>
         <Text variant="bodySm" tone="dim">
-          On Home the "card" is two stacked things: the card itself and the glass "Pay with" panel
-          in front of it. Only the card is a component. The panel is a payment composer assembled on
-          the screen from Surface glass + Text + Chip + Button, and the stacking is `Layer`. In Figma,
-          two instances with the top one set to Absolute position.
+          The "Pay with ETH" row under the card on Home is not part of the card. It is a payment
+          composer assembled on the screen from ListRow + AssetIcon + Button: the card is plastic,
+          the row is the app. Keeping them apart also keeps the Pay button out of the picture, so it
+          can't be read as decoration.
         </Text>
       </Spec>
 
-      <Spec title="skin" contract="auto follows the theme · dark/light are fixed plastic · glass" column>
-        <CardVisual skin="auto" />
+      <Spec title="skin" contract="ball is the brand card · auto follows the theme · dark/light are fixed plastic" column>
+        <CardVisual skin="ball" />
         <Stack dir="row" gap={16} fillCross>
           <Stack fill><CardVisual skin="dark" kind="debit" /></Stack>
           <Stack fill><CardVisual skin="light" kind="credit" last4="8814" /></Stack>
@@ -354,7 +354,7 @@ function CardVisualSection() {
       </Spec>
 
       <Spec title="masked" column>
-        <CardVisual skin="auto" masked={masked} />
+        <CardVisual skin="ball" masked={masked} />
         <Button variant="secondary" size="sm" iconLeading={masked ? 'eye' : 'eye-off'} onClick={() => setMasked((v) => !v)}>
           {masked ? 'Show number' : 'Hide number'}
         </Button>
@@ -362,43 +362,27 @@ function CardVisualSection() {
 
       <Spec title="States" column>
         <Stack dir="row" gap={16} fillCross>
-          <Stack fill><CardVisual skin="dark" state="frozen" /></Stack>
-          <Stack fill><CardVisual skin="dark" state="expired" /></Stack>
+          <Stack fill><CardVisual skin="ball" state="frozen" /></Stack>
+          <Stack fill><CardVisual skin="ball" state="expired" /></Stack>
         </Stack>
       </Spec>
 
-      <Spec title="Card + glass composer" contract="Layer anchor=stack: card in the flow, glass in front (Absolute position)" column>
+      <Spec title="Card + Pay with" contract="column · gap 8: the card, then a ListRow on Surface l1" column>
         <div style={{ width: 358, maxWidth: '100%' }}>
-          <Layer
-            anchor="stack"
-            offset="64 24"
-            over={(
-              <Surface glass fill radius="lg" pad={16} gap={0}>
-                <Stack fill justify="between" gap={12}>
-                  <Stack dir="row" justify="between" align="center">
-                    <Text variant="caption" tone="dim">Pay with</Text>
-                    <IconButton variant="ghost" size={32} icon="more" aria-label="Options" />
-                  </Stack>
-                  <Stack dir="row" justify="between" align="end">
-                    <Stack dir="row" gap={8} align="baseline">
-                      <Text variant="h2" numeric>2.04</Text>
-                      <Chip variant="neutral" size="sm">ETH</Chip>
-                    </Stack>
-                    <Text variant="caption" tone="dim" numeric>≈ $8,128</Text>
-                  </Stack>
-                  <Stack dir="row" justify="between" align="center">
-                    <Text variant="caption" tone="dim">Used when you tap</Text>
-                    <Button variant="primary" size="sm" iconTrailing="arrow-right">Pay</Button>
-                  </Stack>
-                </Stack>
-              </Surface>
-            )}
-          >
-            <CardVisual skin="auto" kind="debit" />
-          </Layer>
+          <Stack gap={8}>
+            <CardVisual skin="ball" kind="debit" holder="" />
+            <Surface level={1} radius="lg" pad={0} gap={0}>
+              <ListRow
+                leading={<AssetIcon symbol="eth" size={40} />}
+                title="Pay with ETH"
+                subtitle="2.04 ETH · ≈ $8,128"
+                trailing={<Button variant="primary" size="sm" iconLeading="pay">Pay</Button>}
+              />
+            </Surface>
+          </Stack>
         </div>
         <Text variant="caption" tone="faint">
-          The glass panel is assembled entirely from system components, no new CSS
+          Assembled entirely from system components, no new CSS
         </Text>
       </Spec>
     </Section>

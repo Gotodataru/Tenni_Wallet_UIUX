@@ -23,7 +23,7 @@ function WelcomeStep({ onNext }) {
   return (
     <Stack fill justify="between" gap={32}>
       <Stack fill justify="center" gap={32}>
-        <CardVisual skin="auto" kind="debit" holder={USER.holder} last4={CARD_LAST4} />
+        <CardVisual skin="ball" kind="debit" holder={USER.holder} last4={CARD_LAST4} />
         <Stack gap={12}>
           <Stack gap={0}>
             <Text variant="display">Your card.</Text>

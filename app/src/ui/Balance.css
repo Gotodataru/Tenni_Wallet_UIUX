@@ -27,3 +27,8 @@
   align-items: center;
   gap: var(--space-8);
 }
+
+/* The cents step back: same size, dimmer — the dollars lead */
+.Balance__cents {
+  color: var(--fg-dim);
+}

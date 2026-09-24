@@ -3,9 +3,12 @@
    Raw values. Never used by components directly — only through
    the semantic layer (semantic.css). In Figma: Variables "palette".
 
-   Concept — the tennis-ball palette:
-   · ball   — the lime brand accent and "up";
-   · court  — grass and moss greens, the dark surfaces;
+   Concept — the tennis ball on a neutral court:
+   · ball   — the lime brand accent and "up". It lives in few places:
+              the card, the primary action, growth. Everything else
+              is neutral, so the ball is the one thing that glows;
+   · court  — neutral graphite for the dark surfaces (no green tint:
+              a tinted base swallowed the accent);
    · clay   — Roland Garros terracotta: "down" and errors.
    ============================================================ */
 
@@ -27,14 +30,14 @@
   --c-clay:        #FF7B5C;   /* 7.4:1 on --c-base */
   --c-clay-deep:   #B8432B;   /* AA on --c-paper */
 
-  /* --- Court shadow (dark surfaces) --- */
-  --c-shadow:      #1B2A1A;
-  --c-shadow-2:    #243523;
-  --c-base:        #0A1208;
-  --c-base-2:      #0E1A0C;
+  /* --- Court shadow (dark surfaces) — neutral graphite --- */
+  --c-shadow:      #1C1C1F;
+  --c-shadow-2:    #26262A;
+  --c-base:        #0B0B0D;
+  --c-base-2:      #131316;
 
-  /* --- Linen (light text on dark) --- */
-  --c-linen:       #F4FFE6;
+  /* --- Linen (light text on dark) — a neutral warm white --- */
+  --c-linen:       #F5F5F0;
 
   /* --- Light-theme neutrals --- */
   --c-ink:         #1A1A1F;
@@ -70,8 +73,11 @@
   --c-chip-gold-deep:  #8A6F3A;
   --c-chip-highlight:  rgba(255, 255, 255, .35);
   --c-chip-groove:     rgba(0, 0, 0, .28);
+  /* Silver chip for the ball card: gold on lime reads as a brown smudge */
+  --c-chip-silver:      #F2F2EC;
+  --c-chip-silver-deep: #A8A8A0;
 
-  --c-card-dark-bg:    linear-gradient(135deg, #1B2A1A 0%, #2F5A3A 58%, #0A1208 100%);
+  --c-card-dark-bg:    linear-gradient(135deg, #26262A 0%, #1C1C1F 55%, #0B0B0D 100%);
   --c-card-light-bg:   linear-gradient(135deg, #F4F4F1 0%, #DCDCD6 60%, #C9C9C2 100%);
 
   --c-card-shadow:       0 18px 40px -10px rgba(0, 0, 0, .5), inset 0 1px 0 rgba(255, 255, 255, .08);
@@ -81,6 +87,14 @@
   --c-card-glow-light: radial-gradient(closest-side, rgba(255, 255, 255, .85), transparent);
   --c-card-glow-glass: radial-gradient(closest-side, rgba(255, 255, 255, .18), transparent);
 
-  --c-card-veil: rgba(10, 18, 8, .62);
+  /* Ball — the brand card: the felt of a tennis ball, lit from the top
+     left, with the ball's seam as its one printed mark. */
+  --c-card-ball-bg:     linear-gradient(135deg, #DBFF7A 0%, #C8FF4D 42%, #B2EE38 100%);
+  --c-card-ball-sheen:  radial-gradient(closest-side, rgba(255, 255, 255, .55), transparent);
+  --c-card-ball-shadow: 0 18px 40px -14px rgba(90, 130, 0, .45), inset 0 1px 0 rgba(255, 255, 255, .6);
+  --c-card-seam:        rgba(255, 255, 255, .92);
+  --c-card-seam-groove: rgba(62, 92, 0, .28);
+
+  --c-card-veil: rgba(11, 11, 13, .62);
   --c-qr-veil:   rgba(26, 26, 31, .82);   /* over an expired QR: dark in both themes */
 }

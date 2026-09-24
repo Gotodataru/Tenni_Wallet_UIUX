@@ -6,23 +6,24 @@ import './CardVisual.css'
  * L3 · CardVisual — the payment card visual
  *
  * Sizing contract (Figma):
- *   column · W=fill · H=fixed(200) · pad 20 · space-between
- *   ├ row: chip + contactless … kind
- *   ├ PAN (mono, groups of 4)
- *   └ row: holder … expiry
+ *   column · W=fill · H=fixed(224) · pad 20 · space-between
+ *   ├ row: brand … kind
+ *   ├ row: chip + contactless
+ *   └ row: [holder / PAN (last 4)] … expiry
+ *   224 at the 358 a phone screen gives it = the ISO card ratio 1.586,
+ *   so it reads as a card and not as one more panel.
  *
  * ── What this component does NOT include ──────────────────────────
- * On Home the "card" is TWO stacked things: the card and the glass
- * "Pay with 2.04 ETH" panel in front of it. Only the card is a
- * component. The panel is a payment composer assembled on the screen
- * from Surface glass + Text + Chip + Button; merging the two would
- * hide two meanings under one name. Stacking them is the screen's job
- * too (`Layer`): in Figma, two instances with the top one set to
- * Absolute position.
+ * The "Pay with 2.04 ETH" row under the card on Home. It is a payment
+ * composer assembled on the screen from ListRow + AssetIcon + Button;
+ * merging it into the card would hide two meanings under one name.
  *
  * ── skin ──────────────────────────────────────────────────────────
- * • auto (default) — follows the app theme via --card-bg. This is
- *   what the screens use.
+ * • ball — the brand card, what the screens use: tennis-ball felt with
+ *   the ball's seam as its one printed mark. The same in both themes,
+ *   like real plastic. It is the one large patch of brand color in the
+ *   app, so the UI around it stays neutral.
+ * • auto — follows the app theme via --card-bg.
  * • dark / light — fixed plastic, INDEPENDENT of the UI theme (a dark
  *   card stays dark in a light app). For showing cards to choose from.
  * • glass — a glass variant over other content.
@@ -38,13 +39,31 @@ import './CardVisual.css'
 
 const KIND_LABEL = { debit: 'DEBIT', credit: 'CREDIT', prepaid: 'PREPAID' }
 
+/* The seam of a tennis ball: two arcs, as if the ball were unrolled
+   across the card. They keep clear of the printed text — the bottom
+   arch rises between the number and the expiry. Drawn twice — a soft groove under a light line —
+   so it reads as stitched rubber, not as a stroke. */
+const SEAM = [
+  'M212 -24 C224 104 322 160 382 38',
+  'M146 252 C164 162 256 162 274 252',
+]
+
+function Seam() {
+  return (
+    <svg className="CardVisual__seam" width="100%" height="100%" viewBox="0 0 358 224" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      {SEAM.map((d) => <path key={`g${d}`} d={d} className="CardVisual__groove" />)}
+      {SEAM.map((d) => <path key={`s${d}`} d={d} className="CardVisual__stitch" />)}
+    </svg>
+  )
+}
+
 const STATE_NOTE = {
   frozen: 'Frozen',
   expired: 'Expired',
 }
 
 export function CardVisual({
-  skin = 'auto',
+  skin = 'ball',
   kind = 'debit',
   last4 = '4291',
   holder = 'NINA ROSS',
@@ -61,24 +80,30 @@ export function CardVisual({
     className,
   ].filter(Boolean).join(' ')
 
-  const pan = masked ? `•••• •••• •••• ${last4}` : `4242 4242 4242 ${last4}`
+  // Only the last four, the way modern cards print it: a full masked
+  // number is sixteen characters of noise.
+  const pan = masked ? `•••• ${last4}` : `4242 4242 4242 ${last4}`
 
   return (
     <div className={cls} {...rest}>
       <div className="CardVisual__glow" aria-hidden="true" />
+      {skin === 'ball' && <Seam />}
 
       <div className="CardVisual__top">
-        <div className="CardVisual__chipRow">
-          <span className="CardVisual__chip" aria-hidden="true" />
-          <Icon name="contactless" size={20} tone="inherit" />
-        </div>
+        <span className="CardVisual__brand">tenni</span>
         <span className="CardVisual__kind">{KIND_LABEL[kind] || KIND_LABEL.debit}</span>
       </div>
 
-      <span className="CardVisual__pan">{pan}</span>
+      <div className="CardVisual__chipRow">
+        <span className="CardVisual__chip" aria-hidden="true" />
+        <Icon name="contactless" size={20} tone="inherit" />
+      </div>
 
       <div className="CardVisual__foot">
-        <span className="CardVisual__holder">{holder}</span>
+        <div className="CardVisual__id">
+          {holder && <span className="CardVisual__holder">{holder}</span>}
+          <span className="CardVisual__pan">{pan}</span>
+        </div>
         <span className="CardVisual__expiry">{expiry}</span>
       </div>
 

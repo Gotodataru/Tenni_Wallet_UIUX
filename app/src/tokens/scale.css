@@ -71,7 +71,7 @@
   --text-body-size:    15px;  --text-body-lh:    20px;  --text-body-w:    400;  --text-body-ls:    0px;
   --text-bodysm-size:  13px;  --text-bodysm-lh:  18px;  --text-bodysm-w:  400;  --text-bodysm-ls:  0px;
   --text-label-size:   13px;  --text-label-lh:   16px;  --text-label-w:   600;  --text-label-ls:   0.1px;
-  --text-caption-size: 11px;  --text-caption-lh: 14px;  --text-caption-w: 500;  --text-caption-ls: 0.2px;
+  --text-caption-size: 12px;  --text-caption-lh: 16px;  --text-caption-w: 500;  --text-caption-ls: 0px;
   --text-mono-size:    13px;  --text-mono-lh:    18px;  --text-mono-w:    500;  --text-mono-ls:    0px;
 
   /* --- Motion --- */

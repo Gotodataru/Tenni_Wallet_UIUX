@@ -15,7 +15,10 @@
 .Text--body    { font-size: var(--text-body-size);    line-height: var(--text-body-lh);    font-weight: var(--text-body-w);    letter-spacing: var(--text-body-ls); }
 .Text--bodySm  { font-size: var(--text-bodysm-size);  line-height: var(--text-bodysm-lh);  font-weight: var(--text-bodysm-w);  letter-spacing: var(--text-bodysm-ls); }
 .Text--label   { font-size: var(--text-label-size);   line-height: var(--text-label-lh);   font-weight: var(--text-label-w);   letter-spacing: var(--text-label-ls); }
-.Text--caption { font-size: var(--text-caption-size); line-height: var(--text-caption-lh); font-weight: var(--text-caption-w); letter-spacing: var(--text-caption-ls); text-transform: uppercase; }
+/* caption is sentence case. It used to be uppercase, and a dozen caps
+   labels per screen flattened the hierarchy: when every label shouts,
+   none of them leads. Caps survive in one place — the card's printed type. */
+.Text--caption { font-size: var(--text-caption-size); line-height: var(--text-caption-lh); font-weight: var(--text-caption-w); letter-spacing: var(--text-caption-ls); }
 .Text--mono    { font-family: var(--font-mono); font-size: var(--text-mono-size); line-height: var(--text-mono-lh); font-weight: var(--text-mono-w); }
 
 /* --- Tones --- */

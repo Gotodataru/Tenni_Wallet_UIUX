@@ -16,27 +16,28 @@
 
   /* --- Backgrounds --- */
   --bg-canvas:     var(--c-base);
-  --bg-surface-1:  rgba(244, 255, 230, .04);
-  --bg-surface-2:  rgba(244, 255, 230, .06);
-  --bg-surface-3:  rgba(244, 255, 230, .10);
+  --bg-surface-1:  rgba(245, 245, 240, .05);
+  --bg-surface-2:  rgba(245, 245, 240, .08);
+  --bg-surface-3:  rgba(245, 245, 240, .12);
   --bg-inverse:    var(--c-linen);
-  --bg-overlay:    rgba(5, 8, 4, .72);
+  --bg-overlay:    rgba(5, 5, 6, .72);
+  /* One soft neutral light from the top — no colored haze: the ball is
+     the only color on the screen. */
   --bg-ambient:
-    radial-gradient(1200px 700px at 18% -10%, rgba(123, 211, 137, .20), transparent 60%),
-    radial-gradient(900px 600px at 110% 30%, rgba(200, 255, 77, .10), transparent 65%),
+    radial-gradient(1200px 700px at 18% -10%, rgba(245, 245, 240, .06), transparent 60%),
     var(--c-base);
 
   /* --- Text & icons --- */
   --fg-default:  var(--c-linen);
-  --fg-dim:      rgba(244, 255, 230, .68);   /* 8.8:1 */
-  --fg-faint:    rgba(244, 255, 230, .42);   /* ⚠ 3.99:1 — decoration and large text only */
+  --fg-dim:      rgba(245, 245, 240, .68);   /* 8.8:1 */
+  --fg-faint:    rgba(245, 245, 240, .42);   /* ⚠ 3.99:1 — decoration and large text only */
   --fg-inverse:  var(--c-base);
   --fg-accent:   var(--c-ball);
   --fg-on-accent: var(--c-base);
 
   /* --- Borders --- */
-  --border-subtle: rgba(244, 255, 230, .10);
-  --border-strong: rgba(244, 255, 230, .22);
+  --border-subtle: rgba(245, 245, 240, .10);
+  --border-strong: rgba(245, 245, 240, .22);
   --border-focus:  var(--c-ball);
 
   /* --- Accent --- */
@@ -70,10 +71,10 @@
   --btn-primary-press: var(--c-ball-deep);
 
   /* --- Secondary button --- */
-  --btn-secondary-bg:    rgba(244, 255, 230, .10);
+  --btn-secondary-bg:    rgba(245, 245, 240, .10);
   --btn-secondary-fg:    var(--c-linen);
-  --btn-secondary-hover: rgba(244, 255, 230, .16);
-  --btn-secondary-press: rgba(244, 255, 230, .06);
+  --btn-secondary-hover: rgba(245, 245, 240, .16);
+  --btn-secondary-press: rgba(245, 245, 240, .06);
 
   /* --- Shadows --- */
   --shadow-0: none;
@@ -81,17 +82,17 @@
   --shadow-2: 0 4px 12px rgba(0, 0, 0, .35);
   --shadow-3: 0 12px 32px rgba(0, 0, 0, .45);
   --shadow-4: 0 24px 64px rgba(0, 0, 0, .55);
-  --shadow-accent: 0 8px 28px rgba(200, 255, 77, .22);
+  --shadow-accent: 0 8px 24px rgba(200, 255, 77, .12);
 
   /* --- Phone frame & card --- */
-  --phone-bezel:  linear-gradient(160deg, #0E1A0C 0%, #16241A 100%);
-  --phone-screen: linear-gradient(180deg, #0E1A0C 0%, #1B2A1A 100%);
-  --card-bg:      linear-gradient(135deg, #1B2A1A 0%, #2F5A3A 60%, #0A1208 100%);
+  --phone-bezel:  linear-gradient(160deg, #1C1C1F 0%, #0B0B0D 100%);
+  --phone-screen: linear-gradient(180deg, #131316 0%, #0B0B0D 100%);
+  --card-bg:      linear-gradient(135deg, #26262A 0%, #1C1C1F 55%, #0B0B0D 100%);
   --card-glow:    rgba(200, 255, 77, .22);
 
   /* --- Glass --- */
-  --glass-bg:     rgba(244, 255, 230, .07);
-  --glass-border: rgba(244, 255, 230, .14);
+  --glass-bg:     rgba(245, 245, 240, .07);
+  --glass-border: rgba(245, 245, 240, .14);
   --glass-blur:   20px;
 
   /* --- Controls: Toggle / Checkbox / Radio / Slider --- */

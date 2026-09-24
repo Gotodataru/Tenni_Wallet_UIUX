@@ -69,7 +69,8 @@
   transition: background-color var(--dur-fast) var(--ease-out);
 }
 .Kitchen__link:hover { background: var(--bg-surface-2); color: var(--fg-default); }
-.Kitchen__link.is-active { background: var(--accent-subtle); color: var(--fg-accent); font-weight: 600; }
+.Kitchen__link.is-active { background: var(--bg-surface-2); color: var(--fg-default); font-weight: 600; }
+.Kitchen__link.is-active .Icon { color: var(--fg-accent); }
 
 .Kitchen__navGroup {
   display: flex;

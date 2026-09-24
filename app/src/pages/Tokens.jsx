@@ -3,9 +3,8 @@ import { Section, Spec, Cell } from './parts.jsx'
 
 const SURFACES = [
   ['--c-ball', 'Ball', 'brand accent · up'],
-  ['--c-court', 'Court', 'secondary green'],
-  ['--c-moss', 'Moss', 'the card'],
-  ['--c-base', 'Court shadow', 'dark canvas'],
+  ['--c-base', 'Court shadow', 'dark canvas · neutral graphite'],
+  ['--c-linen', 'Linen', 'text on dark'],
   ['--c-clay', 'Clay', 'down · errors'],
 ]
 
