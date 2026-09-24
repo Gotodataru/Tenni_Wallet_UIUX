@@ -339,7 +339,7 @@ accent element per drawing, token colors only.
 
 ### PayMoment
 
-W=fixed(320) H=fixed(240) · CardVisual sm (280×176) centered · waves (3 rings) and badge (48) Absolute position
+W=fixed(320) H=fixed(240) · CardVisual sm (280×176) centered · waves (3 rings) and badge (64) Absolute position
 props: state (processing|success|declined), last4
 The card at the moment of payment: waves + hover while processing, one ball-like bounce and a check on success, a flinch, desaturation and a cross on decline. Static under prefers-reduced-motion. In Figma: three State variants joined with Smart Animate.
 

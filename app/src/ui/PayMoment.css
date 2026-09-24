@@ -91,19 +91,20 @@
 
 .PayMoment__badge {
   position: absolute;   /* is-abs: straddles the card's right edge, mid-height — clear of the printed text */
-  top: var(--space-64);
-  right: -24px;
-  width: var(--control-lg);
-  height: var(--control-lg);
+  top: 56px;             /* (176 − 64) / 2: centered on the card's height */
+  right: -32px;
+  width: 64px;           /* big enough to read the outcome at a glance on a phone */
+  height: 64px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: var(--r-full);
-  box-shadow: 0 0 0 4px var(--bg-canvas), var(--shadow-2);
+  box-shadow: 0 0 0 5px var(--bg-canvas), var(--shadow-3);
   animation: PayMoment-pop var(--dur-slow) var(--ease-spring) 250ms both;
 }
 
-.PayMoment--success  .PayMoment__badge { background: var(--c-ink);  color: var(--c-ball); }
+/* Success is the ball itself; the canvas ring separates it from the lime card */
+.PayMoment--success  .PayMoment__badge { background: var(--c-ball); color: var(--c-ink); }
 .PayMoment--declined .PayMoment__badge { background: var(--danger); color: var(--c-white); }
 
 @keyframes PayMoment-pop {

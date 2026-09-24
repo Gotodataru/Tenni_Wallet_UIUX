@@ -32,7 +32,8 @@ const ETH = HOLDINGS.find((h) => h.symbol === 'eth')
 /** "Pay with" — the asset a tap will spend, and the way into Pay. Sits
     right under the card and outside it: the card is plastic, this row is
     the app. The button is named and carries the terminal icon, so it
-    can't be read as part of a picture. */
+    can't be read as part of a picture, and it is lg (48): the main action
+    of the screen gets a full-size touch target, not a 32px chip. */
 function PayWith({ onPay }) {
   return (
     <Surface level={1} radius="lg" pad={0} gap={0}>
@@ -40,7 +41,7 @@ function PayWith({ onPay }) {
         leading={<AssetIcon symbol="eth" size={40} />}
         title="Pay with ETH"
         subtitle={`${num(ETH.amount)} ETH · ≈ $${num(ETH.amount * RATES.eth, 0)}`}
-        trailing={<Button variant="primary" size="sm" iconLeading="pay" onClick={onPay}>Pay</Button>}
+        trailing={<Button variant="primary" size="lg" iconLeading="pay" onClick={onPay}>Pay</Button>}
       />
     </Surface>
   )

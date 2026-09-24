@@ -376,7 +376,7 @@ function CardVisualSection() {
                 leading={<AssetIcon symbol="eth" size={40} />}
                 title="Pay with ETH"
                 subtitle="2.04 ETH · ≈ $8,128"
-                trailing={<Button variant="primary" size="sm" iconLeading="pay">Pay</Button>}
+                trailing={<Button variant="primary" size="lg" iconLeading="pay">Pay</Button>}
               />
             </Surface>
           </Stack>

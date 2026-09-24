@@ -18,7 +18,7 @@ import './PayMoment.css'
  * Sizing contract (Figma):
  *   W=fixed(320) H=fixed(240) · the card (CardVisual sm, 280×176) centered
  *   ├ waves  — 3 rings, Absolute position, centered behind the card
- *   └ badge  — 48 circle, Absolute position across the card's right edge
+ *   └ badge  — 64 circle, Absolute position across the card's right edge
  * In Figma: three variants (State) connected with Smart Animate.
  *
  * props: state (processing|success|declined), last4
@@ -35,7 +35,7 @@ export function PayMoment({ state = 'processing', last4 = '4291', className = ''
         <CardVisual skin="ball" size="sm" holder="" last4={last4} />
         {state !== 'processing' && (
           <span className="PayMoment__badge" aria-hidden="true">
-            <Icon name={state === 'success' ? 'check' : 'close'} size={24} tone="inherit" />
+            <Icon name={state === 'success' ? 'check' : 'close'} size={32} tone="inherit" />
           </span>
         )}
       </div>
