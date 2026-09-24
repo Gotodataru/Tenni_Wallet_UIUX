@@ -1,3 +1,6 @@
+import ninaRoss from '../assets/people/nina-ross.webp'
+import leoPark from '../assets/people/leo-park.webp'
+import samOrtiz from '../assets/people/sam-ortiz.webp'
 /**
  * Demo data shared by every screen, so numbers reconcile across the
  * prototype: the three holdings add up to the total on Home, the weekly
@@ -13,7 +16,12 @@ export const TABS = [
   { id: 'more',     icon: 'more',  label: 'More' },
 ]
 
-export const USER = { name: 'Nina Ross', email: 'nina.ross@example.com', initials: 'NR', holder: 'NINA ROSS' }
+/* Portraits: Unsplash, under the Unsplash License — see /CREDITS.md.
+   The names are fictional; the people pictured aren't connected to the project. */
+
+export const PHOTOS = { 'Nina Ross': ninaRoss, 'Leo Park': leoPark, 'Sam Ortiz': samOrtiz }
+
+export const USER = { name: 'Nina Ross', email: 'nina.ross@example.com', initials: 'NR', holder: 'NINA ROSS', photo: ninaRoss }
 
 export const RATES = { eth: 3984.2, btc: 61200, usdt: 1 }
 
@@ -34,13 +42,13 @@ export const TREND = [11889, 11952, 11918, 12031, 11994, 12102, 12168, 12121, 12
 export const TRANSACTIONS = [
   { id: 1, day: 'Today',     time: '11:47', type: 'received', title: 'From exchange', value: 120 },
   { id: 2, day: 'Today',     time: '10:30', type: 'sent',     title: 'Leo Park',      value: 0.005, unit: 'BTC', precision: 3 },
-  { id: 3, day: 'Today',     time: '09:12', type: 'paid',     title: 'Starbucks',     value: 4.8, card: true },
-  { id: 4, day: 'Yesterday', time: '20:03', type: 'paid',     title: 'Uber',          value: 12.4, card: true, state: 'pending' },
+  { id: 3, day: 'Today',     time: '09:12', type: 'paid',     title: 'Starbucks',     value: 4.8, card: true, category: 'coffee' },
+  { id: 4, day: 'Yesterday', time: '20:03', type: 'paid',     title: 'Uber',          value: 12.4, card: true, state: 'pending', category: 'car' },
   { id: 5, day: 'Yesterday', time: '18:45', type: 'swapped',  title: 'ETH → USDT',    value: 250 },
   { id: 6, day: 'Sep 5',     time: '14:22', type: 'sent',     title: 'Sam Ortiz',     value: 0.02, unit: 'ETH', precision: 3, state: 'failed' },
-  { id: 7, day: 'Sep 5',     time: '09:00', type: 'received', title: 'Salary',        value: 1800 },
+  { id: 7, day: 'Sep 5',     time: '09:00', type: 'received', title: 'Salary',        value: 1800, category: 'briefcase' },
   { id: 8, day: 'Sep 3',     time: '12:00', type: 'staked',   title: 'ETH staking',   value: 0.5, unit: 'ETH', precision: 3 },
-  { id: 9, day: 'Sep 3',     time: '08:15', type: 'paid',     title: 'Netflix',       value: 9.99, card: true },
+  { id: 9, day: 'Sep 3',     time: '08:15', type: 'paid',     title: 'Netflix',       value: 9.99, card: true, category: 'tv' },
 ]
 
 export const CARD_LAST4 = '4291'
@@ -57,5 +65,7 @@ export function txRowProps(t, { withDay = false } = {}) {
     unit: t.unit,
     precision: t.precision ?? 2,
     state: t.state,
+    category: t.category,
+    photo: PHOTOS[t.title],
   }
 }

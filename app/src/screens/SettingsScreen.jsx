@@ -26,7 +26,7 @@ function ProfileStep() {
   return (
     <Stack gap={20} fill>
       <Stack align="center" gap={12}>
-        <Avatar type="initials" initials={USER.initials} size={56} ring />
+        <Avatar type="image" src={USER.photo} size={56} ring />
         <Stack gap={2} align="center">
           <Text variant="h3">{USER.name}</Text>
           <Text variant="bodySm" tone="dim">{USER.email}</Text>
@@ -82,7 +82,7 @@ function SettingsStep({
     <Stack gap={20} fill>
       <Surface level={1} radius="lg" pad={0} gap={0}>
         <ListRow
-          leading={<Avatar type="initials" initials={USER.initials} size={40} />}
+          leading={<Avatar type="image" src={USER.photo} size={40} />}
           title={USER.name}
           subtitle={USER.email}
           chevron

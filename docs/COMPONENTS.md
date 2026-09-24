@@ -404,4 +404,4 @@ props: title, action, actionLabel, onAction, padding (0|16)
 | L5 Navigation | 7 — StatusBar, AppBar, TabBar, NavItem, HomeIndicator, Section, Screen |
 | **Total** | **43** |
 
-Plus 67 icons in 6 packs (64 + 3 filled tab twins) and 10 type styles.
+Plus 71 icons in 6 packs (68 line, including 4 spending categories, + 3 filled tab twins) and 10 type styles.

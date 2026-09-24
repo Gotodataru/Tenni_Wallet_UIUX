@@ -4,7 +4,7 @@ import {
   ListRow, Avatar, Chip, Banner, Keypad, LockOverlay, EmptyState,
   Amount, Icon, ProgressDots,
 } from '../ui/index.js'
-import { HOLDINGS, RATES } from './data.js'
+import { HOLDINGS, RATES, PHOTOS } from './data.js'
 import { group, shortHash, num, parseAmount, typeKey, backspace, detectAddress } from './format.js'
 
 /**
@@ -54,7 +54,7 @@ function Recipient({ address, onEdit }) {
   return (
     <Surface level={1} radius="lg" pad={12} gap={12} dir="row">
       {name
-        ? <Avatar type="initials" initials={initialsOf(name)} size={40} />
+        ? (PHOTOS[name] ? <Avatar type="image" src={PHOTOS[name]} size={40} /> : <Avatar type="initials" initials={initialsOf(name)} size={40} />)
         : <Avatar type="icon" icon="user" size={40} />}
       <Stack gap={2} fill>
         <Text variant="caption" tone="dim">{name || 'Recipient'}</Text>
@@ -102,7 +102,7 @@ function AddressStep({ address, onChange, onNext }) {
           {RECENTS.map((r, i) => (
             <ListRow
               key={r.id}
-              leading={<Avatar type="initials" initials={initialsOf(r.name)} size={40} />}
+              leading={PHOTOS[r.name] ? <Avatar type="image" src={PHOTOS[r.name]} size={40} /> : <Avatar type="initials" initials={initialsOf(r.name)} size={40} />}
               title={r.name}
               subtitle={group(r.address)}
               chevron

@@ -41,6 +41,11 @@ export const ICONS = {
   buy:       { pack: 'wallet', el: [['circle', { cx: 12, cy: 12, r: 8.5 }], ['path', { d: 'M12 8v8M8 12h8' }]] },
   stake:     { pack: 'wallet', d: 'M12 3.2 3.5 7.6 12 12l8.5-4.4L12 3.2ZM3.5 12 12 16.4 20.5 12M3.5 16.4 12 20.8l8.5-4.4' },
   pay:       { pack: 'wallet', el: [['rect', { x: 2.5, y: 6, width: 14, height: 12, rx: 2.5 }], ['path', { d: 'M2.5 10h14M19 9.2a4 4 0 0 1 0 5.6M21.3 7.2a7 7 0 0 1 0 9.6' }]] },
+  // Spending categories for merchants in Activity — generic objects, never brand logos
+  coffee:    { pack: 'wallet', el: [['path', { d: 'M5 9h11v4.5a5.5 5.5 0 0 1-5.5 5.5A5.5 5.5 0 0 1 5 13.5V9Z' }], ['path', { d: 'M16 10.5h1.2a2.3 2.3 0 0 1 0 4.6H16M8.5 3.5V6M12.5 3.5V6' }]] },
+  car:       { pack: 'wallet', el: [['path', { d: 'M4.5 13 6.4 8a2 2 0 0 1 1.9-1.3h7.4A2 2 0 0 1 17.6 8l1.9 5' }], ['rect', { x: 3.5, y: 13, width: 17, height: 4.5, rx: 1.5 }], ['path', { d: 'M7 17.5V20M17 17.5V20' }]] },
+  tv:        { pack: 'wallet', el: [['rect', { x: 3, y: 6.5, width: 18, height: 12, rx: 2.5 }], ['path', { d: 'M9 3.5l3 3 3-3M10.5 10v5l4-2.5-4-2.5Z' }]] },
+  briefcase: { pack: 'wallet', el: [['rect', { x: 3.5, y: 7.5, width: 17, height: 12, rx: 2.5 }], ['path', { d: 'M9 7.5V6a1.5 1.5 0 0 1 1.5-1.5h3A1.5 1.5 0 0 1 15 6v1.5M3.5 12.5h17' }]] },
   qr:        { pack: 'wallet', el: [['rect', { x: 3.5, y: 3.5, width: 7, height: 7, rx: 1.5 }], ['rect', { x: 13.5, y: 3.5, width: 7, height: 7, rx: 1.5 }], ['rect', { x: 3.5, y: 13.5, width: 7, height: 7, rx: 1.5 }], ['path', { d: 'M13.5 13.5h3v3h-3zM20.5 20.5h-3v-3' }]] },
   copy:      { pack: 'wallet', el: [['rect', { x: 8.5, y: 8.5, width: 12, height: 12, rx: 2.5 }], ['path', { d: 'M5.5 15.5h-.5a1.5 1.5 0 0 1-1.5-1.5V5a1.5 1.5 0 0 1 1.5-1.5h9A1.5 1.5 0 0 1 15.5 5v.5' }]] },
   share:     { pack: 'wallet', d: 'M12 15.5V3.5m0 0L8.2 7.3M12 3.5l3.8 3.8M4.5 13.5V19a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2v-5.5' },

@@ -146,7 +146,7 @@ export function HomeScreen({ state: stateProp, theme = 'dark', scaled = false, o
                 gain={state === 'empty' ? undefined : WEEK_GAIN}
                 period={state === 'empty' ? undefined : '7 days'}
               />}
-          <Avatar type="initials" initials={USER.initials} size={40} />
+          <Avatar type="image" src={USER.photo} size={40} />
         </Stack>
 
         {/* --- Card + what a tap pays with --- */}

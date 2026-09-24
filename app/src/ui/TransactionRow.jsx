@@ -1,6 +1,7 @@
 import { Icon } from '../icons/Icon.jsx'
 import { ListRow } from './ListRow.jsx'
 import { Amount } from './Amount.jsx'
+import { Avatar } from './Avatar.jsx'
 import './TransactionRow.css'
 
 /**
@@ -15,6 +16,12 @@ import './TransactionRow.css'
  * type sets the icon, tone and sign. Outgoing money is neutral —
  * spending is everyday, not an alarm — incoming money is "up", and
  * clay is reserved for failures. Each can be overridden by a prop.
+ *
+ * photo    — a person: their portrait replaces the type icon (the
+ *            amount's sign still says the direction).
+ * category — a merchant: a generic category icon (coffee, car, tv,
+ *            briefcase) instead of the type icon. Never a brand logo.
+ * Pending and failed beat both: the status icon must stay visible.
  */
 const TYPE_META = {
   sent:     { icon: 'send',    tone: 'muted',   sign: 'minus' },
@@ -40,6 +47,8 @@ export function TransactionRow({
   sign,
   tone,
   state,
+  category,
+  photo,
   divider = false,
   size = 'md',
   onClick,
@@ -51,7 +60,8 @@ export function TransactionRow({
 
   // pending/failed override the icon and tone — the transaction is on
   // hold (pending) or didn't happen (failed), the color mustn't lie
-  const leadingIcon = isPending ? 'spinner' : isFailed ? 'x-circle' : typeMeta.icon
+  const leadingIcon = isPending ? 'spinner' : isFailed ? 'x-circle' : (category || typeMeta.icon)
+  const showPhoto = photo && !isPending && !isFailed
   const leadingTone = isFailed ? 'danger' : isPending ? 'muted' : typeMeta.tone
   // Spending is everyday, not an alarm: outgoing amounts stay neutral,
   // only incoming money gets the "up" color. Clay is reserved for failures.
@@ -73,11 +83,13 @@ export function TransactionRow({
       title={title}
       subtitle={subtitle}
       meta={STATE_META[state]?.meta}
-      leading={
-        <span className={`TransactionRow__icon TransactionRow__icon--${leadingTone}`}>
-          <Icon name={leadingIcon} size={18} tone="inherit" className={isPending ? 'Icon--spin' : undefined} />
-        </span>
-      }
+      leading={showPhoto
+        ? <Avatar type="image" src={photo} size={40} />
+        : (
+          <span className={`TransactionRow__icon TransactionRow__icon--${leadingTone}`}>
+            <Icon name={leadingIcon} size={18} tone="inherit" className={isPending ? 'Icon--spin' : undefined} />
+          </span>
+        )}
       trailing={
         <Amount
           value={value}

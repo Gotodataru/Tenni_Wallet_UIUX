@@ -189,6 +189,16 @@
   box-shadow: var(--shadow-0);
 }
 
+/* A disabled PRIMARY doesn't fade its color: 40% lime over graphite
+   turned olive. It goes neutral instead — clearly "not yet", not a
+   dirty version of the accent. */
+.Button--primary:disabled:not(.is-loading),
+.Button--primary.is-disabled {
+  opacity: 1;
+  background: var(--bg-surface-2);
+  color: var(--fg-faint);
+}
+
 .Button.is-loading {
   cursor: progress;
   pointer-events: none;
