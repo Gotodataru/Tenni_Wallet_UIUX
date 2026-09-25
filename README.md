@@ -7,9 +7,10 @@ and a coded design system.
 The case study, the prototype, every screen in every state and the design system in one place.
 Landing page: [/landing](https://gotodataru.github.io/Tenni_Wallet_UIUX/landing/).
 
-**Figma:** [design system and 20 screens](https://www.figma.com/design/0ZzLBKXtXVnVgLirNT7KtM/Tenni-Wallet-Design-System)
-· [prototype](https://www.figma.com/proto/0ZzLBKXtXVnVgLirNT7KtM/Tenni-Wallet-Design-System?node-id=20-3577&starting-point-node-id=20%3A3577).
+**Figma:** [design system and 21 screens, Dark and Light](https://www.figma.com/design/9VfEHWlaHH0LBl94VlaIQ1/Tenni-Wallet-V2)
+· [prototype](https://www.figma.com/proto/9VfEHWlaHH0LBl94VlaIQ1/Tenni-Wallet-V2?node-id=2003-6941&starting-point-node-id=2003%3A6941).
 Variables, components on Auto Layout, screens assembled from component instances.
+The file as it was before the design review: [v1](https://www.figma.com/design/0ZzLBKXtXVnVgLirNT7KtM/Tenni-Wallet-Design-System).
 
 **Usability test:** [protocol with thresholds set in advance](research/README.md).
 The participant link is [#test](https://gotodataru.github.io/Tenni_Wallet_UIUX/#test):

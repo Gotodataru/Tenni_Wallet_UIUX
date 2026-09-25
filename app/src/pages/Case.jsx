@@ -10,13 +10,16 @@ import homeBefore from '../assets/case/home-before.webp'
 import homeAfter from '../assets/case/home-after.webp'
 
 const REPO = 'https://github.com/Gotodataru/Tenni_Wallet_UIUX'
-const FIGMA = 'https://www.figma.com/design/0ZzLBKXtXVnVgLirNT7KtM/Tenni-Wallet-Design-System'
-const FIGMA_PROTO = 'https://www.figma.com/proto/0ZzLBKXtXVnVgLirNT7KtM/Tenni-Wallet-Design-System?node-id=20-3577&starting-point-node-id=20%3A3577'
+const FIGMA = 'https://www.figma.com/design/9VfEHWlaHH0LBl94VlaIQ1/Tenni-Wallet-V2'
+const FIGMA_PROTO = 'https://www.figma.com/proto/9VfEHWlaHH0LBl94VlaIQ1/Tenni-Wallet-V2?node-id=2003-6941&starting-point-node-id=2003%3A6941'
+// v1 — the file as it was before the design review, kept for the before/after
+const FIGMA_V1 = 'https://www.figma.com/design/0ZzLBKXtXVnVgLirNT7KtM/Tenni-Wallet-Design-System'
+const FIGMA_V1_PROTO = 'https://www.figma.com/proto/0ZzLBKXtXVnVgLirNT7KtM/Tenni-Wallet-Design-System?node-id=20-3577&starting-point-node-id=20%3A3577'
 const RESEARCH = `${REPO}/blob/master/research/README.md`
 
 const TLDR = [
   ['Problem', 'Crypto is easy to buy and hard to spend: paying at a till means mental math, and a wrong address loses the money for good.'],
-  ['What I did', 'Pay and Send flows designed through their failures, a design system in code, and a Figma counterpart of the first version: 33 components on variables, 20 screens and a prototype with 4 flows.'],
+  ['What I did', 'Pay and Send flows designed through their failures, a design system in code, and its Figma counterpart: 36 components on variables, 21 screens in Dark and Light and a prototype with 5 flows.'],
   ['What is proven', 'Not yet with people. A 5-person test with thresholds set in advance is written and runs next.'],
 ]
 
@@ -135,8 +138,10 @@ export function Case({ theme }) {
 
         <Stack dir="row" gap={8} wrap>
           <a className="CaseLink" href="#tokens">Design system</a>
-          <a className="CaseLink" href={FIGMA} target="_blank" rel="noreferrer">Figma · v1, before the review</a>
-          <a className="CaseLink" href={FIGMA_PROTO} target="_blank" rel="noreferrer">Figma prototype · v1</a>
+          <a className="CaseLink" href={FIGMA} target="_blank" rel="noreferrer">Figma · v2</a>
+          <a className="CaseLink" href={FIGMA_PROTO} target="_blank" rel="noreferrer">Figma prototype · v2</a>
+          <a className="CaseLink" href={FIGMA_V1} target="_blank" rel="noreferrer">Figma · v1, before the review</a>
+          <a className="CaseLink" href={FIGMA_V1_PROTO} target="_blank" rel="noreferrer">Figma prototype · v1, before the review</a>
           <a className="CaseLink" href={RESEARCH} target="_blank" rel="noreferrer">Test protocol</a>
           <a className="CaseLink" href="landing/">Landing page</a>
           <a className="CaseLink" href={REPO} target="_blank" rel="noreferrer">Source on GitHub</a>
