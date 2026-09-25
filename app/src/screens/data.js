@@ -52,6 +52,18 @@ export const TRANSACTIONS = [
 ]
 
 export const CARD_LAST4 = '4291'
+export const CARD_EXPIRY = '12/29'
+
+/**
+ * The account the prototype is signed in to: the demo user, until the
+ * visitor signs up with their own email and puts their name through the
+ * identity check. The photo belongs to the demo user only; anyone else
+ * gets initials.
+ */
+export function makeUser({ name, email }) {
+  const initials = name.split(' ').map((w) => w[0]).slice(0, 2).join('').toUpperCase()
+  return { name, email, initials, holder: name.toUpperCase(), photo: name === USER.name ? USER.photo : undefined }
+}
 
 /* Sign-up and unlock: the demo "inbox" shows this code, and the demo
    account opens with this passcode until the visitor creates their own. */

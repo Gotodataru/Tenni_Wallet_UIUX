@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
-import { Screen, Stack, Text, Avatar, LockOverlay } from '../ui/index.js'
+import { Screen, Stack, Text, Button, LockOverlay } from '../ui/index.js'
 import { USER, DEMO_PASSCODE, passcodeHint } from './data.js'
 import { PasscodeEntry } from './AuthSteps.jsx'
+import { UserAvatar } from './UserAvatar.jsx'
 
 /**
  * Unlock — the app comes back from the background: Face ID first, the
@@ -28,9 +29,9 @@ function FaceScan({ attempt, failFirst, onResult }) {
 
   useEffect(() => {
     const ok = !failFirst || attempt > 0
-    const t1 = setTimeout(() => setBio('scanning'), 400)
-    const t2 = setTimeout(() => setBio(ok ? 'success' : 'failed'), 1500)
-    const t3 = setTimeout(() => onResult(ok), ok ? 2100 : 1500)
+    const t1 = setTimeout(() => setBio('scanning'), 500)
+    const t2 = setTimeout(() => setBio(ok ? 'success' : 'failed'), 2000)
+    const t3 = setTimeout(() => onResult(ok), ok ? 2600 : 2000)
     return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3) }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [attempt])
@@ -38,19 +39,20 @@ function FaceScan({ attempt, failFirst, onResult }) {
   return <LockOverlay method="faceid" state={bio} />
 }
 
-function Who() {
+function Who({ user }) {
   return (
     <Stack align="center" gap={12}>
-      <Avatar type="image" src={USER.photo} size={56} />
-      <Text variant="title" align="center">Welcome back, {USER.name.split(' ')[0]}</Text>
+      <UserAvatar user={user} size={56} />
+      <Text variant="title" align="center">Welcome back, {user.name.split(' ')[0]}</Text>
     </Stack>
   )
 }
 
 /**
  * faceId — how the live scan goes: works | fails (the first scan, then works).
+ * user   — who is signed in.
  */
-export function UnlockScreen({ step: stepProp, preset, faceId = 'works', passcode = DEMO_PASSCODE, theme = 'dark', scaled = false, onUnlock, onForgot }) {
+export function UnlockScreen({ step: stepProp, preset, faceId = 'works', user = USER, passcode = DEMO_PASSCODE, theme = 'dark', scaled = false, onUnlock, onForgot }) {
   const [innerStep, setInnerStep] = useState('faceid')
   const [attempt, setAttempt] = useState(0)
   const step = stepProp || innerStep
@@ -65,7 +67,7 @@ export function UnlockScreen({ step: stepProp, preset, faceId = 'works', passcod
       contentPadding={16}
     >
       <Stack gap={24} fill pad={step === 'passcode' ? 0 : 24}>
-        {step !== 'passcode' && <Who />}
+        {step !== 'passcode' && <Who user={user} />}
 
         {step === 'faceid' && (
           <Stack fill>
@@ -73,6 +75,12 @@ export function UnlockScreen({ step: stepProp, preset, faceId = 'works', passcod
               ? <FaceScan key={attempt} attempt={attempt} failFirst={faceId === 'fails'} onResult={(ok) => (ok ? onUnlock?.() : setInnerStep('failed'))} />
               : <LockOverlay method="faceid" state="scanning" />}
           </Stack>
+        )}
+
+        {/* The way around Face ID is on screen while it scans, not only
+            after it fails: a mask or gloves shouldn't mean waiting. */}
+        {step === 'faceid' && (
+          <Button variant="ghost" size="md" fullWidth onClick={() => setInnerStep('passcode')}>Use passcode</Button>
         )}
 
         {step === 'failed' && (
@@ -93,7 +101,7 @@ export function UnlockScreen({ step: stepProp, preset, faceId = 'works', passcod
             expected={passcode}
             live={live}
             preset={preset}
-            subtitle={`Signed in as ${USER.email}`}
+            subtitle={`Signed in as ${user.email}`}
             hint={passcodeHint(passcode)}
             showBiometric
             onBiometric={scanAgain}

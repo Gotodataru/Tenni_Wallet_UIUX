@@ -3,7 +3,7 @@ import {
   Screen, AppBar, Stack, Text, Button, Surface, ListRow, Toggle, IconButton,
   CardVisual, Banner, Toast, Slider, BottomSheet, LockOverlay, Amount, Icon,
 } from '../ui/index.js'
-import { USER, CARD_LAST4 } from './data.js'
+import { USER, CARD_LAST4, CARD_EXPIRY } from './data.js'
 import { group, num, clock } from './format.js'
 
 /**
@@ -29,8 +29,8 @@ const CHECKS = [
 ]
 
 const NEW_LAST4 = '7730'
+const NEW_EXPIRY = '09/31'   // a new card is a new card: new number, new expiry
 const fullNumber = (last4) => `424242424242${last4}`   // the same test-card prefix CardVisual prints
-const EXPIRY = '12/29'
 const CVC = '381'
 
 const LIMIT = { min: 100, max: 10000, step: 100, initial: 2000, faceIdAbove: 5000 }
@@ -48,12 +48,12 @@ function useFlash() {
   return [message, setMessage]
 }
 
-function MainStep({ frozen, onFreeze, limit, last4, flash, onDetails, onLimits, onLost }) {
+function MainStep({ frozen, onFreeze, limit, last4, expiry, flash, onDetails, onLimits, onLost }) {
   return (
     <Stack gap={20} fill>
       {flash && <Toast tone={flash.tone} message={flash.text} />}
 
-      <CardVisual skin="ball" kind="debit" holder="" last4={last4} state={frozen ? 'frozen' : 'active'} />
+      <CardVisual skin="ball" kind="debit" holder="" last4={last4} expiry={expiry} state={frozen ? 'frozen' : 'active'} />
 
       {frozen && (
         <Banner tone="info" body="Payments and cash withdrawals are blocked. Money in the wallet is safe and you can still send and receive crypto." />
@@ -98,7 +98,7 @@ function MainStep({ frozen, onFreeze, limit, last4, flash, onDetails, onLimits, 
 }
 
 /** Face ID first, then the details for 30 s. phase — auth | shown */
-function DetailsStep({ live, last4, onHide }) {
+function DetailsStep({ live, last4, expiry, holder, onHide }) {
   const [phase, setPhase] = useState(live ? 'auth' : 'shown')
   const [bio, setBio] = useState('idle')
   const [left, setLeft] = useState(REVEAL_SECONDS)
@@ -131,7 +131,7 @@ function DetailsStep({ live, last4, onHide }) {
   return (
     <Stack gap={20} fill>
       {copied && <Toast tone="success" message="Card number copied" />}
-      <CardVisual skin="ball" kind="debit" holder={USER.holder} last4={last4} expiry={EXPIRY} masked={false} />
+      <CardVisual skin="ball" kind="debit" holder={holder} last4={last4} expiry={expiry} masked={false} />
 
       <Surface level={1} radius="lg" pad={0} gap={0}>
         <ListRow
@@ -145,9 +145,9 @@ function DetailsStep({ live, last4, onHide }) {
           )}
           divider
         />
-        <ListRow size="sm" title="Expiry" trailing={<Text variant="mono">{EXPIRY}</Text>} divider />
+        <ListRow size="sm" title="Expiry" trailing={<Text variant="mono">{expiry}</Text>} divider />
         <ListRow size="sm" title="CVC" trailing={<Text variant="mono">{CVC}</Text>} divider />
-        <ListRow size="sm" title="Name on card" trailing={<Text variant="bodySm" tone="dim">{USER.holder}</Text>} />
+        <ListRow size="sm" title="Name on card" trailing={<Text variant="bodySm" tone="dim">{holder}</Text>} />
       </Surface>
 
       <Banner tone="warning" title={`Hidden again in ${clock(left)}`} body="Never share the CVC. Tenni will never ask for it, not even in a call from support." />
@@ -239,7 +239,7 @@ function ReplacedStep({ oldLast4, onDone }) {
   return (
     <Stack gap={24} fill>
       <Stack gap={24} fill justify="center">
-        <CardVisual skin="ball" kind="debit" holder="" last4={NEW_LAST4} />
+        <CardVisual skin="ball" kind="debit" holder="" last4={NEW_LAST4} expiry={NEW_EXPIRY} />
         <Stack gap={8} align="center">
           <Text variant="h2" align="center">A new card is on its way</Text>
           <Text variant="body" tone="dim" align="center">
@@ -258,9 +258,10 @@ function ReplacedStep({ oldLast4, onDone }) {
  * preset      — freezes a step in a state (catalog, see CHECKS).
  * frozen / onFreezeChange — the card state lives in the prototype, so
  *               Home and Pay see the same frozen card.
- * onReplaced(last4) — a new card was issued; onExit — back to Home.
+ * last4 / expiry / user — the card and whose name is on it.
+ * onReplaced(last4, expiry) — a new card was issued; onExit — back to Home.
  */
-export function CardScreen({ step: stepProp, preset, theme = 'dark', scaled = false, frozen: frozenProp, onFreezeChange, last4 = CARD_LAST4, onReplaced, onExit }) {
+export function CardScreen({ step: stepProp, preset, theme = 'dark', scaled = false, frozen: frozenProp, onFreezeChange, last4 = CARD_LAST4, expiry = CARD_EXPIRY, user = USER, onReplaced, onExit }) {
   const [innerStep, setInnerStep] = useState('main')
   const [ownFrozen, setOwnFrozen] = useState(preset === 'frozen')
   const [limit, setLimit] = useState(LIMIT.initial)
@@ -310,11 +311,11 @@ export function CardScreen({ step: stepProp, preset, theme = 'dark', scaled = fa
     >
       {(step === 'main' || step === 'lost') && (
         <MainStep
-          frozen={frozen} onFreeze={freeze} limit={limit} last4={last4} flash={flash}
+          frozen={frozen} onFreeze={freeze} limit={limit} last4={last4} expiry={expiry} flash={flash}
           onDetails={() => go('details')} onLimits={() => go('limits')} onLost={() => setSheet(true)}
         />
       )}
-      {step === 'details' && <DetailsStep live={live} last4={last4} onHide={() => go('main')} />}
+      {step === 'details' && <DetailsStep live={live} last4={last4} expiry={expiry} holder={user.holder} onHide={() => go('main')} />}
       {step === 'limits' && (
         <LimitsStep
           key={preset}
@@ -324,7 +325,7 @@ export function CardScreen({ step: stepProp, preset, theme = 'dark', scaled = fa
         />
       )}
       {step === 'replaced' && (
-        <ReplacedStep oldLast4={last4} onDone={() => { setFrozen(false); onReplaced?.(NEW_LAST4); onExit?.() }} />
+        <ReplacedStep oldLast4={last4} onDone={() => { setFrozen(false); onReplaced?.(NEW_LAST4, NEW_EXPIRY); onExit?.() }} />
       )}
     </Screen>
   )

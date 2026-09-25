@@ -407,7 +407,7 @@ function ApprovedStep({ details, onFinish }) {
           </Text>
         </Stack>
       </Stack>
-      <Button variant="primary" size="xl" fullWidth iconTrailing="arrow-right" onClick={onFinish}>Open wallet</Button>
+      <Button variant="primary" size="xl" fullWidth iconTrailing="arrow-right" onClick={() => onFinish?.(details)}>Open wallet</Button>
     </Stack>
   )
 }
@@ -437,7 +437,8 @@ function RetryStep({ onRetake }) {
  *            passes) | glare (the first ID photo has glare) | retry (the
  *            check can't read the ID; the second round is approved, like a
  *            declined payment in Pay).
- * onFinish — the card is issued (prototype → Home); onExit — "Later".
+ * onFinish(details) — the card is issued in this name (prototype → Home);
+ * onExit — "Later".
  */
 export function VerifyScreen({ step: stepProp, preset, outcome = 'approved', theme = 'dark', scaled = false, onFinish, onExit }) {
   const [innerStep, setInnerStep] = useState('intro')

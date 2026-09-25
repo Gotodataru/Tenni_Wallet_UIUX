@@ -255,8 +255,9 @@ function BackupStep({ phase: phaseProp, onFinish }) {
  * onFinish   — the wallet is set up: the prototype goes on to Verify.
  * onSignIn   — "I already have an account" / "Sign in instead".
  * onPasscode — the passcode the user created, so Unlock can check it.
+ * onEmail    — the email, once its code is confirmed (the new account).
  */
-export function OnboardingScreen({ step: stepProp, preset, theme = 'dark', scaled = false, onFinish, onSignIn, onPasscode }) {
+export function OnboardingScreen({ step: stepProp, preset, theme = 'dark', scaled = false, onFinish, onSignIn, onPasscode, onEmail }) {
   const [innerStep, setInnerStep] = useState('welcome')
   const [email, setEmail] = useState(stepProp ? 'nina.ross@example.com' : '')
   const [faceId, setFaceId] = useState(true)
@@ -292,7 +293,7 @@ export function OnboardingScreen({ step: stepProp, preset, theme = 'dark', scale
         )}
 
         {step === 'code' && (
-          <CodeStep key={preset} email={email} live={live} preset={preset} onNext={() => go('passcode')} onChangeEmail={() => go('email')} />
+          <CodeStep key={preset} email={email} live={live} preset={preset} onNext={() => { onEmail?.(email.trim()); go('passcode') }} onChangeEmail={() => go('email')} />
         )}
 
         {(step === 'passcode' || step === 'confirm') && (

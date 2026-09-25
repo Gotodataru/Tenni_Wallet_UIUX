@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import {
-  Screen, AppBar, TabBar, Avatar, Icon, Stack, Text, Surface,
+  Screen, AppBar, TabBar, Icon, Stack, Text, Surface,
   ListRow, Toggle, Chip, Button, EmptyState, Illustration,
 } from '../ui/index.js'
 import { TABS, USER } from './data.js'
+import { UserAvatar } from './UserAvatar.jsx'
 
 /**
  * Settings + Profile — lists on ListRow size="sm" with toggles.
@@ -22,14 +23,14 @@ const STEPS = ['settings', 'profile']
 const CURRENCIES = ['USD', 'EUR', 'GBP', 'AED']
 const LANGUAGES = ['English', 'Español', 'Deutsch']
 
-function ProfileStep() {
+function ProfileStep({ user }) {
   return (
     <Stack gap={20} fill>
       <Stack align="center" gap={12}>
-        <Avatar type="image" src={USER.photo} size={56} ring />
+        <UserAvatar user={user} size={56} ring />
         <Stack gap={2} align="center">
-          <Text variant="h3">{USER.name}</Text>
-          <Text variant="bodySm" tone="dim">{USER.email}</Text>
+          <Text variant="h3">{user.name}</Text>
+          <Text variant="bodySm" tone="dim">{user.email}</Text>
         </Stack>
         <Button variant="ghost" size="sm" iconLeading="edit">Change photo</Button>
       </Stack>
@@ -37,8 +38,8 @@ function ProfileStep() {
       <Stack gap={8}>
         <Text variant="label" tone="dim">Personal details</Text>
         <Surface level={1} radius="lg" pad={0} gap={0}>
-          <ListRow size="sm" title="Name" trailing={<Text variant="bodySm" tone="dim">{USER.name}</Text>} chevron divider />
-          <ListRow size="sm" title="Email" trailing={<Text variant="bodySm" tone="dim">{USER.email}</Text>} chevron divider />
+          <ListRow size="sm" title="Name" trailing={<Text variant="bodySm" tone="dim">{user.name}</Text>} chevron divider />
+          <ListRow size="sm" title="Email" trailing={<Text variant="bodySm" tone="dim">{user.email}</Text>} chevron divider />
           <ListRow size="sm" title="Phone" trailing={<Text variant="bodySm" tone="dim">Not set</Text>} chevron />
         </Surface>
       </Stack>
@@ -74,6 +75,7 @@ function LoggedOutStep({ onRestore }) {
 }
 
 function SettingsStep({
+  user,
   faceId, onFaceId, notify, onNotify, darkTheme, onDarkTheme,
   currency, onCycleCurrency, language, onCycleLanguage,
   onOpenProfile, onLogout, onLock,
@@ -82,9 +84,9 @@ function SettingsStep({
     <Stack gap={20} fill>
       <Surface level={1} radius="lg" pad={0} gap={0}>
         <ListRow
-          leading={<Avatar type="image" src={USER.photo} size={40} />}
-          title={USER.name}
-          subtitle={USER.email}
+          leading={<UserAvatar user={user} size={40} />}
+          title={user.name}
+          subtitle={user.email}
           chevron
           onClick={onOpenProfile}
         />
@@ -171,8 +173,9 @@ function SettingsStep({
  *                 theme instead of this screen's own.
  * onLogout      — when given, Log out leaves the screen (prototype → onboarding).
  * onLock        — "Lock the app now" (prototype → Unlock).
+ * user          — who is signed in.
  */
-export function SettingsScreen({ step: stepProp, theme = 'dark', scaled = false, onNavigate, onThemeChange, onLogout, onLock }) {
+export function SettingsScreen({ step: stepProp, theme = 'dark', scaled = false, user = USER, onNavigate, onThemeChange, onLogout, onLock }) {
   const [innerStep, setInnerStep] = useState('settings')
   const [faceId, setFaceId] = useState(true)
   const [notify, setNotify] = useState(true)
@@ -204,11 +207,12 @@ export function SettingsScreen({ step: stepProp, theme = 'dark', scaled = false,
       contentPadding={16}
     >
       {step === 'profile' ? (
-        <ProfileStep />
+        <ProfileStep user={user} />
       ) : loggedOut ? (
         <LoggedOutStep onRestore={() => setLoggedOut(false)} />
       ) : (
         <SettingsStep
+          user={user}
           faceId={faceId} onFaceId={setFaceId}
           notify={notify} onNotify={setNotify}
           darkTheme={darkTheme} onDarkTheme={setDarkTheme}

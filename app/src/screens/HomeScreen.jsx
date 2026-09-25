@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
 import {
-  Screen, TabBar, Avatar, Balance, CardVisual, AssetIcon, ListRow,
+  Screen, TabBar, Balance, CardVisual, AssetIcon, ListRow,
   Surface, Stack, Button, Section, TransactionRow, IconButton, Chip,
   Skeleton, EmptyState, Illustration, Banner, BottomSheet,
 } from '../ui/index.js'
 import { Icon } from '../icons/Icon.jsx'
-import { TABS, USER, RATES, HOLDINGS, TOTAL, WEEK_DELTA, WEEK_GAIN, TRANSACTIONS, CARD_LAST4, txRowProps } from './data.js'
+import { TABS, USER, RATES, HOLDINGS, TOTAL, WEEK_DELTA, WEEK_GAIN, TRANSACTIONS, CARD_LAST4, CARD_EXPIRY, txRowProps } from './data.js'
+import { UserAvatar } from './UserAvatar.jsx'
 import { num } from './format.js'
 
 /**
@@ -102,9 +103,10 @@ function MoreSheet({ onClose }) {
  *
  * onNavigate(id) — wires the screen into the clickable prototype:
  * 'send' | 'receive' | 'pay' | 'activity' | 'more' | 'card' | 'verify'.
- * frozen / last4 — the card as Card left it (frozen, or replaced).
+ * frozen / last4 / expiry — the card as Card left it (frozen, or replaced).
+ * user — who is signed in (the avatar).
  */
-export function HomeScreen({ state: stateProp, theme = 'dark', scaled = false, frozen = false, last4 = CARD_LAST4, onNavigate }) {
+export function HomeScreen({ state: stateProp, theme = 'dark', scaled = false, frozen = false, last4 = CARD_LAST4, expiry = CARD_EXPIRY, user = USER, onNavigate }) {
   const [masked, setMasked] = useState(false)
   const [bootState, setBootState] = useState('loading')
   const [moreOpen, setMoreOpen] = useState(false)
@@ -148,7 +150,7 @@ export function HomeScreen({ state: stateProp, theme = 'dark', scaled = false, f
                 gain={state === 'empty' ? undefined : WEEK_GAIN}
                 period={state === 'empty' ? undefined : '7 days'}
               />}
-          <Avatar type="image" src={USER.photo} size={40} />
+          <UserAvatar user={user} size={40} />
         </Stack>
 
         {/* --- Card + what a tap pays with --- */}
@@ -172,7 +174,7 @@ export function HomeScreen({ state: stateProp, theme = 'dark', scaled = false, f
           <Stack gap={8}>
             {/* The card is the way into its own settings: tap the plastic. */}
             <CardVisual
-              skin="ball" kind="debit" holder="" last4={last4} state={frozen ? 'frozen' : 'active'}
+              skin="ball" kind="debit" holder="" last4={last4} expiry={expiry} state={frozen ? 'frozen' : 'active'}
               role="button" tabIndex={0} aria-label="Card settings"
               onClick={() => onNavigate?.('card')}
               onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && onNavigate?.('card')}

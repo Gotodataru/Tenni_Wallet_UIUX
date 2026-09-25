@@ -10,6 +10,7 @@ import { EmailStep, CodeStep, PasscodeEntry, PasscodeCreate } from './AuthSteps.
  * "Forgot passcode?" doesn't send the user anywhere new: the email was
  * just confirmed, so they set a new passcode right here.
  *
+ * onFinish(email) — signed in, with the email that was confirmed.
  * reset — came from "Forgot passcode?" on Unlock: the email is known,
  *         and after the code the user goes straight to a new passcode.
  */
@@ -18,9 +19,9 @@ const STEPS = ['email', 'code', 'passcode', 'reset']
 
 const DOT = { email: 0, code: 1, passcode: 2, reset: 2 }
 
-export function SignInScreen({ step: stepProp, reset = false, passcode = DEMO_PASSCODE, theme = 'dark', scaled = false, onFinish, onExit, onPasscode }) {
+export function SignInScreen({ step: stepProp, reset = false, user = USER, passcode = DEMO_PASSCODE, theme = 'dark', scaled = false, onFinish, onExit, onPasscode }) {
   const [innerStep, setInnerStep] = useState(reset ? 'code' : 'email')
-  const [email, setEmail] = useState(reset || stepProp ? USER.email : '')
+  const [email, setEmail] = useState(reset || stepProp ? user.email : '')
   const step = stepProp || innerStep
   const live = !stepProp
 
@@ -61,13 +62,13 @@ export function SignInScreen({ step: stepProp, reset = false, passcode = DEMO_PA
             expected={passcode}
             live={live}
             hint={passcodeHint(passcode)}
-            onSuccess={onFinish}
+            onSuccess={() => onFinish?.(email)}
             onForgot={() => go('reset')}
           />
         )}
 
         {step === 'reset' && (
-          <PasscodeCreate onDone={(code) => { onPasscode?.(code); onFinish?.() }} />
+          <PasscodeCreate onDone={(code) => { onPasscode?.(code); onFinish?.(email) }} />
         )}
       </Stack>
     </Screen>
