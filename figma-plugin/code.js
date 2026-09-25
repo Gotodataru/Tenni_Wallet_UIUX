@@ -12,11 +12,11 @@ const TOKENS = {
     "c-moss": "#2F5A3A",
     "c-clay": "#FF7B5C",
     "c-clay-deep": "#B8432B",
-    "c-shadow": "#1B2A1A",
-    "c-shadow-2": "#243523",
-    "c-base": "#0A1208",
-    "c-base-2": "#0E1A0C",
-    "c-linen": "#F4FFE6",
+    "c-shadow": "#1C1C1F",
+    "c-shadow-2": "#26262A",
+    "c-base": "#0B0B0D",
+    "c-base-2": "#131316",
+    "c-linen": "#F5F5F0",
     "c-ink": "#1A1A1F",
     "c-ink-2": "#3A3A40",
     "c-slate": "#4A4A52",
@@ -39,14 +39,21 @@ const TOKENS = {
     "c-chip-gold-deep": "#8A6F3A",
     "c-chip-highlight": "rgba(255, 255, 255, .35)",
     "c-chip-groove": "rgba(0, 0, 0, .28)",
-    "c-card-dark-bg": "linear-gradient(135deg, #1B2A1A 0%, #2F5A3A 58%, #0A1208 100%)",
+    "c-chip-silver": "#F2F2EC",
+    "c-chip-silver-deep": "#A8A8A0",
+    "c-card-dark-bg": "linear-gradient(135deg, #26262A 0%, #1C1C1F 55%, #0B0B0D 100%)",
     "c-card-light-bg": "linear-gradient(135deg, #F4F4F1 0%, #DCDCD6 60%, #C9C9C2 100%)",
     "c-card-shadow": "0 18px 40px -10px rgba(0, 0, 0, .5), inset 0 1px 0 rgba(255, 255, 255, .08)",
     "c-card-shadow-light": "0 18px 40px -14px rgba(26, 26, 31, .32), inset 0 1px 0 rgba(255, 255, 255, .9)",
     "c-card-glow-dark": "radial-gradient(closest-side, rgba(200, 255, 77, .22), transparent)",
     "c-card-glow-light": "radial-gradient(closest-side, rgba(255, 255, 255, .85), transparent)",
     "c-card-glow-glass": "radial-gradient(closest-side, rgba(255, 255, 255, .18), transparent)",
-    "c-card-veil": "rgba(10, 18, 8, .62)",
+    "c-card-ball-bg": "linear-gradient(135deg, #DBFF7A 0%, #C8FF4D 42%, #B2EE38 100%)",
+    "c-card-ball-sheen": "radial-gradient(closest-side, rgba(255, 255, 255, .55), transparent)",
+    "c-card-ball-shadow": "0 18px 40px -14px rgba(90, 130, 0, .45), inset 0 1px 0 rgba(255, 255, 255, .6)",
+    "c-card-seam": "rgba(255, 255, 255, .92)",
+    "c-card-seam-groove": "rgba(62, 92, 0, .28)",
+    "c-card-veil": "rgba(11, 11, 13, .62)",
     "c-qr-veil": "rgba(26, 26, 31, .82)"
   },
   "scale": {
@@ -124,10 +131,10 @@ const TOKENS = {
     "text-label-lh": "16px",
     "text-label-w": "600",
     "text-label-ls": "0.1px",
-    "text-caption-size": "11px",
-    "text-caption-lh": "14px",
+    "text-caption-size": "12px",
+    "text-caption-lh": "16px",
     "text-caption-w": "500",
-    "text-caption-ls": "0.2px",
+    "text-caption-ls": "0px",
     "text-mono-size": "13px",
     "text-mono-lh": "18px",
     "text-mono-w": "500",
@@ -139,24 +146,25 @@ const TOKENS = {
     "ease-out": "cubic-bezier(.2, .8, .2, 1)",
     "ease-in-out": "cubic-bezier(.4, 0, .2, 1)",
     "ease-spring": "cubic-bezier(.34, 1.56, .64, 1)",
-    "icon-stroke": "1.75"
+    "icon-stroke": "2"
   },
   "dark": {
     "bg-canvas": "var(--c-base)",
-    "bg-surface-1": "rgba(244, 255, 230, .04)",
-    "bg-surface-2": "rgba(244, 255, 230, .06)",
-    "bg-surface-3": "rgba(244, 255, 230, .10)",
+    "bg-surface-1": "rgba(245, 245, 240, .05)",
+    "bg-surface-2": "rgba(245, 245, 240, .08)",
+    "bg-surface-3": "rgba(245, 245, 240, .12)",
+    "bg-elevated": "var(--c-shadow)",
     "bg-inverse": "var(--c-linen)",
-    "bg-overlay": "rgba(5, 8, 4, .72)",
-    "bg-ambient": "radial-gradient(1200px 700px at 18% -10%, rgba(123, 211, 137, .20), transparent 60%), radial-gradient(900px 600px at 110% 30%, rgba(200, 255, 77, .10), transparent 65%), var(--c-base)",
+    "bg-overlay": "rgba(5, 5, 6, .72)",
+    "bg-ambient": "radial-gradient(1200px 700px at 18% -10%, rgba(245, 245, 240, .06), transparent 60%), var(--c-base)",
     "fg-default": "var(--c-linen)",
-    "fg-dim": "rgba(244, 255, 230, .68)",
-    "fg-faint": "rgba(244, 255, 230, .42)",
+    "fg-dim": "rgba(245, 245, 240, .68)",
+    "fg-faint": "rgba(245, 245, 240, .42)",
     "fg-inverse": "var(--c-base)",
     "fg-accent": "var(--c-ball)",
     "fg-on-accent": "var(--c-base)",
-    "border-subtle": "rgba(244, 255, 230, .10)",
-    "border-strong": "rgba(244, 255, 230, .22)",
+    "border-subtle": "rgba(245, 245, 240, .10)",
+    "border-strong": "rgba(245, 245, 240, .22)",
     "border-focus": "var(--c-ball)",
     "accent": "var(--c-ball)",
     "accent-hover": "var(--c-ball-glow)",
@@ -177,22 +185,23 @@ const TOKENS = {
     "btn-primary-fg": "var(--c-base)",
     "btn-primary-hover": "var(--c-ball-glow)",
     "btn-primary-press": "var(--c-ball-deep)",
-    "btn-secondary-bg": "rgba(244, 255, 230, .10)",
+    "btn-secondary-bg": "rgba(245, 245, 240, .10)",
     "btn-secondary-fg": "var(--c-linen)",
-    "btn-secondary-hover": "rgba(244, 255, 230, .16)",
-    "btn-secondary-press": "rgba(244, 255, 230, .06)",
+    "btn-secondary-hover": "rgba(245, 245, 240, .16)",
+    "btn-secondary-press": "rgba(245, 245, 240, .06)",
     "shadow-0": "none",
     "shadow-1": "0 1px 2px rgba(0, 0, 0, .30)",
     "shadow-2": "0 4px 12px rgba(0, 0, 0, .35)",
     "shadow-3": "0 12px 32px rgba(0, 0, 0, .45)",
     "shadow-4": "0 24px 64px rgba(0, 0, 0, .55)",
-    "shadow-accent": "0 8px 28px rgba(200, 255, 77, .22)",
-    "phone-bezel": "linear-gradient(160deg, #0E1A0C 0%, #16241A 100%)",
-    "phone-screen": "linear-gradient(180deg, #0E1A0C 0%, #1B2A1A 100%)",
-    "card-bg": "linear-gradient(135deg, #1B2A1A 0%, #2F5A3A 60%, #0A1208 100%)",
+    "shadow-accent": "0 8px 24px rgba(200, 255, 77, .12)",
+    "phone-bezel": "linear-gradient(160deg, #1C1C1F 0%, #0B0B0D 100%)",
+    "phone-screen": "linear-gradient(180deg, #131316 0%, #0B0B0D 100%)",
+    "card-bg": "linear-gradient(135deg, #26262A 0%, #1C1C1F 55%, #0B0B0D 100%)",
     "card-glow": "rgba(200, 255, 77, .22)",
-    "glass-bg": "rgba(244, 255, 230, .07)",
-    "glass-border": "rgba(244, 255, 230, .14)",
+    "card-stage-light": "radial-gradient(closest-side, rgba(200, 255, 77, .22), transparent)",
+    "glass-bg": "rgba(245, 245, 240, .07)",
+    "glass-border": "rgba(245, 245, 240, .14)",
     "glass-blur": "20px",
     "control-thumb": "var(--c-white)",
     "control-track-off": "var(--bg-surface-3)",
@@ -203,6 +212,7 @@ const TOKENS = {
     "bg-surface-1": "rgba(255, 255, 255, .72)",
     "bg-surface-2": "#FFFFFF",
     "bg-surface-3": "var(--c-paper)",
+    "bg-elevated": "#FFFFFF",
     "bg-inverse": "var(--c-ink)",
     "bg-overlay": "rgba(26, 26, 31, .48)",
     "bg-ambient": "radial-gradient(1200px 700px at 18% -10%, rgba(255, 255, 255, .95), transparent 60%), radial-gradient(900px 600px at 110% 30%, rgba(180, 180, 175, .35), transparent 65%), linear-gradient(160deg, #F4F4F1 0%, #DCDCD6 100%)",
@@ -248,6 +258,7 @@ const TOKENS = {
     "phone-screen": "linear-gradient(180deg, #F8F8F4 0%, #ECECE7 50%, #DCDCD6 100%)",
     "card-bg": "linear-gradient(135deg, #1A1A1F 0%, #3A3A40 60%, #15151A 100%)",
     "card-glow": "rgba(200, 200, 200, .25)",
+    "card-stage-light": "radial-gradient(closest-side, rgba(200, 255, 77, .45), transparent)",
     "glass-bg": "rgba(255, 255, 255, .62)",
     "glass-border": "rgba(255, 255, 255, .85)",
     "glass-blur": "20px",
@@ -262,282 +273,302 @@ const ICONS = [
  {
   "name": "home",
   "pack": "navigation",
-  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M3.5 10.6 12 3.8l8.5 6.8V19a2 2 0 0 1-2 2h-3.2v-6.2H8.7V21H5.5a2 2 0 0 1-2-2v-8.4Z\"/></svg>"
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M3.5 10.6 12 3.8l8.5 6.8V19a2 2 0 0 1-2 2h-3.2v-6.2H8.7V21H5.5a2 2 0 0 1-2-2v-8.4Z\"/></svg>"
  },
  {
   "name": "card",
   "pack": "navigation",
-  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><rect fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" x=\"3\" y=\"5.5\" width=\"18\" height=\"13\" rx=\"2.5\"/><path fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M3 10h18M6.5 14.5h3.5\"/></svg>"
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><rect fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" x=\"3\" y=\"5.5\" width=\"18\" height=\"13\" rx=\"2.5\"/><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M3 10h18M6.5 14.5h3.5\"/></svg>"
  },
  {
   "name": "swap",
   "pack": "navigation",
-  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6 8.5h13l-3.6-3.6M18 15.5H5l3.6 3.6\"/></svg>"
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6 8.5h13l-3.6-3.6M18 15.5H5l3.6 3.6\"/></svg>"
  },
  {
   "name": "scan",
   "pack": "navigation",
-  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M4 9V6.5A2.5 2.5 0 0 1 6.5 4H9M15 4h2.5A2.5 2.5 0 0 1 20 6.5V9M20 15v2.5a2.5 2.5 0 0 1-2.5 2.5H15M9 20H6.5A2.5 2.5 0 0 1 4 17.5V15M3.5 12h17\"/></svg>"
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M4 9V6.5A2.5 2.5 0 0 1 6.5 4H9M15 4h2.5A2.5 2.5 0 0 1 20 6.5V9M20 15v2.5a2.5 2.5 0 0 1-2.5 2.5H15M9 20H6.5A2.5 2.5 0 0 1 4 17.5V15M3.5 12h17\"/></svg>"
  },
  {
   "name": "more",
   "pack": "navigation",
-  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><circle fill=\"#000000\" stroke=\"none\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" cx=\"5\" cy=\"12\" r=\"1.6\"/><circle fill=\"#000000\" stroke=\"none\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" cx=\"12\" cy=\"12\" r=\"1.6\"/><circle fill=\"#000000\" stroke=\"none\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" cx=\"19\" cy=\"12\" r=\"1.6\"/></svg>"
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><circle fill=\"#000000\" stroke=\"none\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" cx=\"5\" cy=\"12\" r=\"1.6\"/><circle fill=\"#000000\" stroke=\"none\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" cx=\"12\" cy=\"12\" r=\"1.6\"/><circle fill=\"#000000\" stroke=\"none\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" cx=\"19\" cy=\"12\" r=\"1.6\"/></svg>"
  },
  {
   "name": "menu",
   "pack": "navigation",
-  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M4 7h16M4 12h16M4 17h16\"/></svg>"
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M4 7h16M4 12h16M4 17h16\"/></svg>"
  },
  {
   "name": "close",
   "pack": "navigation",
-  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6.5 6.5l11 11M17.5 6.5l-11 11\"/></svg>"
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6.5 6.5l11 11M17.5 6.5l-11 11\"/></svg>"
  },
  {
   "name": "chevron-left",
   "pack": "navigation",
-  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M14.5 5.5 8 12l6.5 6.5\"/></svg>"
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M14.5 5.5 8 12l6.5 6.5\"/></svg>"
  },
  {
   "name": "chevron-right",
   "pack": "navigation",
-  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M9.5 5.5 16 12l-6.5 6.5\"/></svg>"
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M9.5 5.5 16 12l-6.5 6.5\"/></svg>"
  },
  {
   "name": "chevron-up",
   "pack": "navigation",
-  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M5.5 14.5 12 8l6.5 6.5\"/></svg>"
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M5.5 14.5 12 8l6.5 6.5\"/></svg>"
  },
  {
   "name": "chevron-down",
   "pack": "navigation",
-  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M5.5 9.5 12 16l6.5-6.5\"/></svg>"
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M5.5 9.5 12 16l6.5-6.5\"/></svg>"
  },
  {
   "name": "arrow-left",
   "pack": "navigation",
-  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M20 12H4m6-6-6 6 6 6\"/></svg>"
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M20 12H4m6-6-6 6 6 6\"/></svg>"
  },
  {
   "name": "arrow-right",
   "pack": "navigation",
-  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M4 12h16m-6-6 6 6-6 6\"/></svg>"
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M4 12h16m-6-6 6 6-6 6\"/></svg>"
  },
  {
   "name": "arrow-up",
   "pack": "navigation",
-  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M12 20V4m-6 6 6-6 6 6\"/></svg>"
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M12 20V4m-6 6 6-6 6 6\"/></svg>"
  },
  {
   "name": "arrow-down",
   "pack": "navigation",
-  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M12 4v16m6-6-6 6-6-6\"/></svg>"
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M12 4v16m6-6-6 6-6-6\"/></svg>"
  },
  {
   "name": "send",
   "pack": "wallet",
-  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M7 17 17 7M8.5 7H17v8.5\"/></svg>"
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M7 17 17 7M8.5 7H17v8.5\"/></svg>"
  },
  {
   "name": "receive",
   "pack": "wallet",
-  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M17 7 7 17M15.5 17H7V8.5\"/></svg>"
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M17 7 7 17M15.5 17H7V8.5\"/></svg>"
  },
  {
   "name": "buy",
   "pack": "wallet",
-  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><circle fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" cx=\"12\" cy=\"12\" r=\"8.5\"/><path fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M12 8v8M8 12h8\"/></svg>"
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><circle fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" cx=\"12\" cy=\"12\" r=\"8.5\"/><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M12 8v8M8 12h8\"/></svg>"
  },
  {
   "name": "stake",
   "pack": "wallet",
-  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M12 3.2 3.5 7.6 12 12l8.5-4.4L12 3.2ZM3.5 12 12 16.4 20.5 12M3.5 16.4 12 20.8l8.5-4.4\"/></svg>"
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M12 3.2 3.5 7.6 12 12l8.5-4.4L12 3.2ZM3.5 12 12 16.4 20.5 12M3.5 16.4 12 20.8l8.5-4.4\"/></svg>"
  },
  {
   "name": "pay",
   "pack": "wallet",
-  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><rect fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" x=\"2.5\" y=\"6\" width=\"14\" height=\"12\" rx=\"2.5\"/><path fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M2.5 10h14M19 9.2a4 4 0 0 1 0 5.6M21.3 7.2a7 7 0 0 1 0 9.6\"/></svg>"
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><rect fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" x=\"2.5\" y=\"6\" width=\"14\" height=\"12\" rx=\"2.5\"/><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M2.5 10h14M19 9.2a4 4 0 0 1 0 5.6M21.3 7.2a7 7 0 0 1 0 9.6\"/></svg>"
+ },
+ {
+  "name": "coffee",
+  "pack": "wallet",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M5 9h11v4.5a5.5 5.5 0 0 1-5.5 5.5A5.5 5.5 0 0 1 5 13.5V9Z\"/><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M16 10.5h1.2a2.3 2.3 0 0 1 0 4.6H16M8.5 3.5V6M12.5 3.5V6\"/></svg>"
+ },
+ {
+  "name": "car",
+  "pack": "wallet",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M4.5 13 6.4 8a2 2 0 0 1 1.9-1.3h7.4A2 2 0 0 1 17.6 8l1.9 5\"/><rect fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" x=\"3.5\" y=\"13\" width=\"17\" height=\"4.5\" rx=\"1.5\"/><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M7 17.5V20M17 17.5V20\"/></svg>"
+ },
+ {
+  "name": "tv",
+  "pack": "wallet",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><rect fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" x=\"3\" y=\"6.5\" width=\"18\" height=\"12\" rx=\"2.5\"/><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M9 3.5l3 3 3-3M10.5 10v5l4-2.5-4-2.5Z\"/></svg>"
+ },
+ {
+  "name": "briefcase",
+  "pack": "wallet",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><rect fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" x=\"3.5\" y=\"7.5\" width=\"17\" height=\"12\" rx=\"2.5\"/><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M9 7.5V6a1.5 1.5 0 0 1 1.5-1.5h3A1.5 1.5 0 0 1 15 6v1.5M3.5 12.5h17\"/></svg>"
  },
  {
   "name": "qr",
   "pack": "wallet",
-  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><rect fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" x=\"3.5\" y=\"3.5\" width=\"7\" height=\"7\" rx=\"1.5\"/><rect fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" x=\"13.5\" y=\"3.5\" width=\"7\" height=\"7\" rx=\"1.5\"/><rect fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" x=\"3.5\" y=\"13.5\" width=\"7\" height=\"7\" rx=\"1.5\"/><path fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M13.5 13.5h3v3h-3zM20.5 20.5h-3v-3\"/></svg>"
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><rect fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" x=\"3.5\" y=\"3.5\" width=\"7\" height=\"7\" rx=\"1.5\"/><rect fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" x=\"13.5\" y=\"3.5\" width=\"7\" height=\"7\" rx=\"1.5\"/><rect fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" x=\"3.5\" y=\"13.5\" width=\"7\" height=\"7\" rx=\"1.5\"/><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M13.5 13.5h3v3h-3zM20.5 20.5h-3v-3\"/></svg>"
  },
  {
   "name": "copy",
   "pack": "wallet",
-  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><rect fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" x=\"8.5\" y=\"8.5\" width=\"12\" height=\"12\" rx=\"2.5\"/><path fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M5.5 15.5h-.5a1.5 1.5 0 0 1-1.5-1.5V5a1.5 1.5 0 0 1 1.5-1.5h9A1.5 1.5 0 0 1 15.5 5v.5\"/></svg>"
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><rect fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" x=\"8.5\" y=\"8.5\" width=\"12\" height=\"12\" rx=\"2.5\"/><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M5.5 15.5h-.5a1.5 1.5 0 0 1-1.5-1.5V5a1.5 1.5 0 0 1 1.5-1.5h9A1.5 1.5 0 0 1 15.5 5v.5\"/></svg>"
  },
  {
   "name": "share",
   "pack": "wallet",
-  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M12 15.5V3.5m0 0L8.2 7.3M12 3.5l3.8 3.8M4.5 13.5V19a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2v-5.5\"/></svg>"
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M12 15.5V3.5m0 0L8.2 7.3M12 3.5l3.8 3.8M4.5 13.5V19a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2v-5.5\"/></svg>"
  },
  {
   "name": "eye",
   "pack": "wallet",
-  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z\"/><circle fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" cx=\"12\" cy=\"12\" r=\"3\"/></svg>"
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z\"/><circle fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" cx=\"12\" cy=\"12\" r=\"3\"/></svg>"
  },
  {
   "name": "eye-off",
   "pack": "wallet",
-  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M4 4l16 16M9.9 9.9A3 3 0 0 0 14.1 14.1M6.3 6.6C4 8.2 2.5 12 2.5 12s3.5 6.5 9.5 6.5c1.7 0 3.2-.5 4.5-1.2M18.4 15.1c1.9-1.6 3.1-3.1 3.1-3.1S18 5.5 12 5.5c-.8 0-1.6.1-2.3.3\"/></svg>"
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M4 4l16 16M9.9 9.9A3 3 0 0 0 14.1 14.1M6.3 6.6C4 8.2 2.5 12 2.5 12s3.5 6.5 9.5 6.5c1.7 0 3.2-.5 4.5-1.2M18.4 15.1c1.9-1.6 3.1-3.1 3.1-3.1S18 5.5 12 5.5c-.8 0-1.6.1-2.3.3\"/></svg>"
  },
  {
   "name": "plus",
   "pack": "wallet",
-  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M12 4.5v15M4.5 12h15\"/></svg>"
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M12 4.5v15M4.5 12h15\"/></svg>"
  },
  {
   "name": "minus",
   "pack": "wallet",
-  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M4.5 12h15\"/></svg>"
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M4.5 12h15\"/></svg>"
  },
  {
   "name": "filter",
   "pack": "wallet",
-  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M4 6.5h16M7 12h10M10 17.5h4\"/></svg>"
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M4 6.5h16M7 12h10M10 17.5h4\"/></svg>"
  },
  {
   "name": "search",
   "pack": "wallet",
-  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><circle fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" cx=\"11\" cy=\"11\" r=\"6.5\"/><path fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M15.8 15.8 20.5 20.5\"/></svg>"
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><circle fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" cx=\"11\" cy=\"11\" r=\"6.5\"/><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M15.8 15.8 20.5 20.5\"/></svg>"
  },
  {
   "name": "refresh",
   "pack": "wallet",
-  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M20.5 12a8.5 8.5 0 1 1-2.5-6M20.5 3.5v5h-5\"/></svg>"
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M20.5 12a8.5 8.5 0 1 1-2.5-6M20.5 3.5v5h-5\"/></svg>"
  },
  {
   "name": "check",
   "pack": "status",
-  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M5 12.5 9.5 17 19 7\"/></svg>"
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M5 12.5 9.5 17 19 7\"/></svg>"
  },
  {
   "name": "check-circle",
   "pack": "status",
-  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><circle fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" cx=\"12\" cy=\"12\" r=\"8.5\"/><path fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M8 12.2 10.8 15 16 9.5\"/></svg>"
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><circle fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" cx=\"12\" cy=\"12\" r=\"8.5\"/><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M8 12.2 10.8 15 16 9.5\"/></svg>"
  },
  {
   "name": "alert-triangle",
   "pack": "status",
-  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M12 3.8 2.9 19.5a1 1 0 0 0 .9 1.5h16.4a1 1 0 0 0 .9-1.5L12 3.8Z\"/><path fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M12 9.5v4.2\"/><circle fill=\"#000000\" stroke=\"none\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" cx=\"12\" cy=\"17.2\" r=\"0.9\"/></svg>"
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M12 3.8 2.9 19.5a1 1 0 0 0 .9 1.5h16.4a1 1 0 0 0 .9-1.5L12 3.8Z\"/><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M12 9.5v4.2\"/><circle fill=\"#000000\" stroke=\"none\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" cx=\"12\" cy=\"17.2\" r=\"0.9\"/></svg>"
  },
  {
   "name": "alert-circle",
   "pack": "status",
-  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><circle fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" cx=\"12\" cy=\"12\" r=\"8.5\"/><path fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M12 7.5v5\"/><circle fill=\"#000000\" stroke=\"none\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" cx=\"12\" cy=\"16.3\" r=\"0.9\"/></svg>"
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><circle fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" cx=\"12\" cy=\"12\" r=\"8.5\"/><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M12 7.5v5\"/><circle fill=\"#000000\" stroke=\"none\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" cx=\"12\" cy=\"16.3\" r=\"0.9\"/></svg>"
  },
  {
   "name": "info",
   "pack": "status",
-  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><circle fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" cx=\"12\" cy=\"12\" r=\"8.5\"/><path fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M12 11v5.5\"/><circle fill=\"#000000\" stroke=\"none\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" cx=\"12\" cy=\"7.7\" r=\"0.9\"/></svg>"
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><circle fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" cx=\"12\" cy=\"12\" r=\"8.5\"/><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M12 11v5.5\"/><circle fill=\"#000000\" stroke=\"none\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" cx=\"12\" cy=\"7.7\" r=\"0.9\"/></svg>"
  },
  {
   "name": "clock",
   "pack": "status",
-  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><circle fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" cx=\"12\" cy=\"12\" r=\"8.5\"/><path fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M12 7v5.2l3.2 2\"/></svg>"
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><circle fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" cx=\"12\" cy=\"12\" r=\"8.5\"/><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M12 7v5.2l3.2 2\"/></svg>"
  },
  {
   "name": "spinner",
   "pack": "status",
-  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M12 3.5a8.5 8.5 0 1 0 8.5 8.5\"/></svg>"
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M12 3.5a8.5 8.5 0 1 0 8.5 8.5\"/></svg>"
  },
  {
   "name": "x-circle",
   "pack": "status",
-  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><circle fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" cx=\"12\" cy=\"12\" r=\"8.5\"/><path fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M9.2 9.2l5.6 5.6M14.8 9.2l-5.6 5.6\"/></svg>"
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><circle fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" cx=\"12\" cy=\"12\" r=\"8.5\"/><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M9.2 9.2l5.6 5.6M14.8 9.2l-5.6 5.6\"/></svg>"
  },
  {
   "name": "shield",
   "pack": "status",
-  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M12 3.2 5 6.2v5.6c0 4 2.8 7.6 7 9.1 4.2-1.5 7-5.1 7-9.1V6.2l-7-3Z\"/></svg>"
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M12 3.2 5 6.2v5.6c0 4 2.8 7.6 7 9.1 4.2-1.5 7-5.1 7-9.1V6.2l-7-3Z\"/></svg>"
  },
  {
   "name": "lock",
   "pack": "status",
-  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><rect fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" x=\"4.5\" y=\"10.5\" width=\"15\" height=\"10\" rx=\"2.5\"/><path fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M8 10.5V7.8a4 4 0 0 1 8 0v2.7\"/></svg>"
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><rect fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" x=\"4.5\" y=\"10.5\" width=\"15\" height=\"10\" rx=\"2.5\"/><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M8 10.5V7.8a4 4 0 0 1 8 0v2.7\"/></svg>"
  },
  {
   "name": "unlock",
   "pack": "status",
-  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><rect fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" x=\"4.5\" y=\"10.5\" width=\"15\" height=\"10\" rx=\"2.5\"/><path fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M8 10.5V7.8a4 4 0 0 1 7.4-2.1\"/></svg>"
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><rect fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" x=\"4.5\" y=\"10.5\" width=\"15\" height=\"10\" rx=\"2.5\"/><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M8 10.5V7.8a4 4 0 0 1 7.4-2.1\"/></svg>"
  },
  {
   "name": "face-id",
   "pack": "security",
-  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M4 8.5V6.5A2.5 2.5 0 0 1 6.5 4h2M15.5 4h2A2.5 2.5 0 0 1 20 6.5v2M20 15.5v2a2.5 2.5 0 0 1-2.5 2.5h-2M8.5 20h-2A2.5 2.5 0 0 1 4 17.5v-2M9 10v1.5M15 10v1.5M12 10v3.5h-1M9.5 16a3.5 3.5 0 0 0 5 0\"/></svg>"
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M4 8.5V6.5A2.5 2.5 0 0 1 6.5 4h2M15.5 4h2A2.5 2.5 0 0 1 20 6.5v2M20 15.5v2a2.5 2.5 0 0 1-2.5 2.5h-2M8.5 20h-2A2.5 2.5 0 0 1 4 17.5v-2M9 10v1.5M15 10v1.5M12 10v3.5h-1M9.5 16a3.5 3.5 0 0 0 5 0\"/></svg>"
  },
  {
   "name": "touch-id",
   "pack": "security",
-  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M12 4.5a7.5 7.5 0 0 0-7.5 7.5v2M19.5 12a7.5 7.5 0 0 0-3.6-6.4M8.5 19.4A7.5 7.5 0 0 1 8 12a4 4 0 0 1 8 0v2.5M19.4 16.5a7.6 7.6 0 0 1-.9 2.4M12 12v3a4 4 0 0 0 1.2 2.9M15.6 20.3a7.6 7.6 0 0 0 1.5-1.6\"/></svg>"
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M12 4.5a7.5 7.5 0 0 0-7.5 7.5v2M19.5 12a7.5 7.5 0 0 0-3.6-6.4M8.5 19.4A7.5 7.5 0 0 1 8 12a4 4 0 0 1 8 0v2.5M19.4 16.5a7.6 7.6 0 0 1-.9 2.4M12 12v3a4 4 0 0 0 1.2 2.9M15.6 20.3a7.6 7.6 0 0 0 1.5-1.6\"/></svg>"
  },
  {
   "name": "pin",
   "pack": "security",
-  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><rect fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" x=\"3.5\" y=\"4.5\" width=\"17\" height=\"15\" rx=\"2.5\"/><circle fill=\"#000000\" stroke=\"none\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" cx=\"8.5\" cy=\"10\" r=\"1.2\"/><circle fill=\"#000000\" stroke=\"none\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" cx=\"12\" cy=\"10\" r=\"1.2\"/><circle fill=\"#000000\" stroke=\"none\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" cx=\"15.5\" cy=\"10\" r=\"1.2\"/><path fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M8.5 14.5h7\"/></svg>"
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><rect fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" x=\"3.5\" y=\"4.5\" width=\"17\" height=\"15\" rx=\"2.5\"/><circle fill=\"#000000\" stroke=\"none\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" cx=\"8.5\" cy=\"10\" r=\"1.2\"/><circle fill=\"#000000\" stroke=\"none\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" cx=\"12\" cy=\"10\" r=\"1.2\"/><circle fill=\"#000000\" stroke=\"none\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" cx=\"15.5\" cy=\"10\" r=\"1.2\"/><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M8.5 14.5h7\"/></svg>"
  },
  {
   "name": "key",
   "pack": "security",
-  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><circle fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" cx=\"8\" cy=\"8\" r=\"4\"/><path fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M10.9 10.9 20 20M17 17l-2 2M14 14l-2 2\"/></svg>"
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><circle fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" cx=\"8\" cy=\"8\" r=\"4\"/><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M10.9 10.9 20 20M17 17l-2 2M14 14l-2 2\"/></svg>"
  },
  {
   "name": "seed",
   "pack": "security",
-  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M12 21c0-5 3-9 8-10-1 5-3.5 8-8 10ZM12 21c0-5-3-9-8-10 1 5 3.5 8 8 10ZM12 21v-6.5\"/></svg>"
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M12 21c0-5 3-9 8-10-1 5-3.5 8-8 10ZM12 21c0-5-3-9-8-10 1 5 3.5 8 8 10ZM12 21v-6.5\"/></svg>"
  },
  {
   "name": "settings",
   "pack": "settings",
-  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><circle fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" cx=\"12\" cy=\"12\" r=\"3.2\"/><path fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M12 2.5v2.8M12 18.7v2.8M21.5 12h-2.8M5.3 12H2.5M18.7 5.3l-2 2M7.3 16.7l-2 2M18.7 18.7l-2-2M7.3 7.3l-2-2\"/></svg>"
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><circle fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" cx=\"12\" cy=\"12\" r=\"3.2\"/><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M12 2.5v2.8M12 18.7v2.8M21.5 12h-2.8M5.3 12H2.5M18.7 5.3l-2 2M7.3 16.7l-2 2M18.7 18.7l-2-2M7.3 7.3l-2-2\"/></svg>"
  },
  {
   "name": "bell",
   "pack": "settings",
-  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M18 9.5a6 6 0 1 0-12 0c0 6-2.5 7.5-2.5 7.5h17S18 15.5 18 9.5ZM10.2 20.5a2.2 2.2 0 0 0 3.6 0\"/></svg>"
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M18 9.5a6 6 0 1 0-12 0c0 6-2.5 7.5-2.5 7.5h17S18 15.5 18 9.5ZM10.2 20.5a2.2 2.2 0 0 0 3.6 0\"/></svg>"
  },
  {
   "name": "globe",
   "pack": "settings",
-  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><circle fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" cx=\"12\" cy=\"12\" r=\"8.5\"/><path fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M3.5 12h17M12 3.5c2.2 2.3 3.4 5.3 3.4 8.5S14.2 18.2 12 20.5c-2.2-2.3-3.4-5.3-3.4-8.5S9.8 5.8 12 3.5Z\"/></svg>"
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><circle fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" cx=\"12\" cy=\"12\" r=\"8.5\"/><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M3.5 12h17M12 3.5c2.2 2.3 3.4 5.3 3.4 8.5S14.2 18.2 12 20.5c-2.2-2.3-3.4-5.3-3.4-8.5S9.8 5.8 12 3.5Z\"/></svg>"
  },
  {
   "name": "moon",
   "pack": "settings",
-  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M20.5 13.2A8.5 8.5 0 1 1 10.8 3.5a6.5 6.5 0 0 0 9.7 9.7Z\"/></svg>"
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M20.5 13.2A8.5 8.5 0 1 1 10.8 3.5a6.5 6.5 0 0 0 9.7 9.7Z\"/></svg>"
  },
  {
   "name": "sun",
   "pack": "settings",
-  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><circle fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" cx=\"12\" cy=\"12\" r=\"4\"/><path fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M12 2.5v2.2M12 19.3v2.2M21.5 12h-2.2M4.7 12H2.5M18.7 5.3l-1.5 1.5M6.8 17.2l-1.5 1.5M18.7 18.7l-1.5-1.5M6.8 6.8 5.3 5.3\"/></svg>"
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><circle fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" cx=\"12\" cy=\"12\" r=\"4\"/><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M12 2.5v2.2M12 19.3v2.2M21.5 12h-2.2M4.7 12H2.5M18.7 5.3l-1.5 1.5M6.8 17.2l-1.5 1.5M18.7 18.7l-1.5-1.5M6.8 6.8 5.3 5.3\"/></svg>"
  },
  {
   "name": "user",
   "pack": "settings",
-  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><circle fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" cx=\"12\" cy=\"8.5\" r=\"4\"/><path fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M4.5 20.5a7.5 7.5 0 0 1 15 0\"/></svg>"
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><circle fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" cx=\"12\" cy=\"8.5\" r=\"4\"/><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M4.5 20.5a7.5 7.5 0 0 1 15 0\"/></svg>"
  },
  {
   "name": "help",
   "pack": "settings",
-  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><circle fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" cx=\"12\" cy=\"12\" r=\"8.5\"/><path fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M9.5 9.6a2.6 2.6 0 1 1 3.4 2.5c-.6.2-.9.8-.9 1.4v.6\"/><circle fill=\"#000000\" stroke=\"none\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" cx=\"12\" cy=\"16.8\" r=\"0.9\"/></svg>"
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><circle fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" cx=\"12\" cy=\"12\" r=\"8.5\"/><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M9.5 9.6a2.6 2.6 0 1 1 3.4 2.5c-.6.2-.9.8-.9 1.4v.6\"/><circle fill=\"#000000\" stroke=\"none\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" cx=\"12\" cy=\"16.8\" r=\"0.9\"/></svg>"
  },
  {
   "name": "logout",
   "pack": "settings",
-  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M15.5 16.5 20 12l-4.5-4.5M20 12H9M13 3.5H6.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2H13\"/></svg>"
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M15.5 16.5 20 12l-4.5-4.5M20 12H9M13 3.5H6.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2H13\"/></svg>"
  },
  {
   "name": "trash",
   "pack": "settings",
-  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M4 6.5h16M9.5 6.5V5a1.5 1.5 0 0 1 1.5-1.5h2A1.5 1.5 0 0 1 14.5 5v1.5M6.5 6.5l.9 13.1a1.5 1.5 0 0 0 1.5 1.4h6.2a1.5 1.5 0 0 0 1.5-1.4l.9-13.1M10 10.5v6M14 10.5v6\"/></svg>"
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M4 6.5h16M9.5 6.5V5a1.5 1.5 0 0 1 1.5-1.5h2A1.5 1.5 0 0 1 14.5 5v1.5M6.5 6.5l.9 13.1a1.5 1.5 0 0 0 1.5 1.4h6.2a1.5 1.5 0 0 0 1.5-1.4l.9-13.1M10 10.5v6M14 10.5v6\"/></svg>"
  },
  {
   "name": "edit",
   "pack": "settings",
-  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M4 20h4L19.3 8.7a2.1 2.1 0 0 0-3-3L5 17v3ZM15.5 6.5l3 3\"/></svg>"
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M4 20h4L19.3 8.7a2.1 2.1 0 0 0-3-3L5 17v3ZM15.5 6.5l3 3\"/></svg>"
  },
  {
   "name": "btc",
@@ -567,17 +598,32 @@ const ICONS = [
  {
   "name": "chip",
   "pack": "assets",
-  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><rect fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" x=\"4\" y=\"6.5\" width=\"16\" height=\"11\" rx=\"2.5\"/><path fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M9 6.5v11M15 6.5v11M4 10.5h5M15 10.5h5M4 13.5h5M15 13.5h5\"/></svg>"
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><rect fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" x=\"4\" y=\"6.5\" width=\"16\" height=\"11\" rx=\"2.5\"/><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M9 6.5v11M15 6.5v11M4 10.5h5M15 10.5h5M4 13.5h5M15 13.5h5\"/></svg>"
  },
  {
   "name": "contactless",
   "pack": "assets",
-  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M8.5 8.2a5.5 5.5 0 0 1 0 7.6M12 5.6a9 9 0 0 1 0 12.8M15.5 3a12.5 12.5 0 0 1 0 18\"/></svg>"
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M8.5 8.2a5.5 5.5 0 0 1 0 7.6M12 5.6a9 9 0 0 1 0 12.8M15.5 3a12.5 12.5 0 0 1 0 18\"/></svg>"
  },
  {
   "name": "nfc",
   "pack": "assets",
-  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><rect fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" x=\"3.5\" y=\"3.5\" width=\"17\" height=\"17\" rx=\"4\"/><path fill=\"none\" stroke=\"#000000\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M9 15V9.5c0-1.7 1.3-3 3-3s3 1.3 3 3M12 9.5V15\"/></svg>"
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><rect fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" x=\"3.5\" y=\"3.5\" width=\"17\" height=\"17\" rx=\"4\"/><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M9 15V9.5c0-1.7 1.3-3 3-3s3 1.3 3 3M12 9.5V15\"/></svg>"
+ },
+ {
+  "name": "home-fill",
+  "pack": "navigation",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"#000000\" stroke=\"none\" d=\"M3.5 10.6 12 3.8l8.5 6.8V19a2 2 0 0 1-2 2h-3.2v-6.2H8.7V21H5.5a2 2 0 0 1-2-2v-8.4Z\"/></svg>"
+ },
+ {
+  "name": "pay-fill",
+  "pack": "navigation",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"#000000\" stroke=\"none\" fill-rule=\"evenodd\" d=\"M5 6h9a2.5 2.5 0 0 1 2.5 2.5v7A2.5 2.5 0 0 1 14 18H5a2.5 2.5 0 0 1-2.5-2.5v-7A2.5 2.5 0 0 1 5 6Zm-2.5 3.2h14v1.6h-14Z\"/><path fill=\"none\" stroke=\"#000000\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M19 9.2a4 4 0 0 1 0 5.6M21.3 7.2a7 7 0 0 1 0 9.6\"/></svg>"
+ },
+ {
+  "name": "clock-fill",
+  "pack": "navigation",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path fill=\"#000000\" stroke=\"none\" fill-rule=\"evenodd\" d=\"M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Zm-1 4h2v4.75l2.7 1.7-1.06 1.7L11 12.85Z\"/></svg>"
  }
 ];
 
@@ -1021,7 +1067,7 @@ async function buildIcons(theme) {
       comp.clipsContent = false
       comp.layoutSizingHorizontal = 'FIXED'
       comp.layoutSizingVertical = 'FIXED'
-      comp.description = `${pack} · 24×24, live area 20×20, stroke 1.75 outlined into one filled vector. Source: app/src/icons/paths.js`
+      comp.description = `${pack} · 24×24, live area 20×20, stroke ${TOKENS.scale['icon-stroke']} outlined into one filled vector. Source: app/src/icons/paths.js`
       for (const child of [...comp.children]) child.remove()
 
       // One filled vector per icon: strokes are outlined and everything is

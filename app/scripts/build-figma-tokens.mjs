@@ -50,16 +50,20 @@ const data = {
 // --- Icons: the same geometry Icon.jsx renders, as standalone SVG ---
 const { ICONS, PACKS } = await import(new URL('../src/icons/paths.js', import.meta.url))
 const attr = (o) => Object.entries(o).map(([k, v]) => `${k.replace(/[A-Z]/g, (c) => '-' + c.toLowerCase())}="${v}"`).join(' ')
+// Stroke width comes from --icon-stroke, the same token Icon.jsx renders with
+const STROKE_W = Number(data.scale['icon-stroke'])
+if (!STROKE_W) throw new Error('--icon-stroke not found in scale.css')
 const icons = Object.entries(ICONS).map(([name, icon]) => {
   const shared = icon.fill
     ? { fill: '#000000', stroke: 'none' }
-    : { fill: 'none', stroke: '#000000', strokeWidth: 1.75, strokeLinecap: 'round', strokeLinejoin: 'round' }
+    : { fill: 'none', stroke: '#000000', strokeWidth: STROKE_W, strokeLinecap: 'round', strokeLinejoin: 'round' }
   const els = icon.el || [['path', { d: icon.d }]]
   const body = els
     .map(([tag, a]) => {
       const merged = { ...shared, ...a }
       if (merged.fill === 'currentColor') merged.fill = '#000000'
       if (merged.stroke === 'currentColor') merged.stroke = '#000000'
+      if (merged.strokeWidth === 'var(--icon-stroke)') merged.strokeWidth = STROKE_W
       return `<${tag} ${attr(merged)}/>`
     })
     .join('')

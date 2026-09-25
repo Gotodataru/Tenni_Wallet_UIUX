@@ -438,7 +438,7 @@ async function buildIcons(theme) {
       comp.clipsContent = false
       comp.layoutSizingHorizontal = 'FIXED'
       comp.layoutSizingVertical = 'FIXED'
-      comp.description = `${pack} · 24×24, live area 20×20, stroke 1.75 outlined into one filled vector. Source: app/src/icons/paths.js`
+      comp.description = `${pack} · 24×24, live area 20×20, stroke ${TOKENS.scale['icon-stroke']} outlined into one filled vector. Source: app/src/icons/paths.js`
       for (const child of [...comp.children]) child.remove()
 
       // One filled vector per icon: strokes are outlined and everything is
