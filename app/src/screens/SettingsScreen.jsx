@@ -76,7 +76,7 @@ function LoggedOutStep({ onRestore }) {
 function SettingsStep({
   faceId, onFaceId, notify, onNotify, darkTheme, onDarkTheme,
   currency, onCycleCurrency, language, onCycleLanguage,
-  onOpenProfile, onLogout,
+  onOpenProfile, onLogout, onLock,
 }) {
   return (
     <Stack gap={20} fill>
@@ -105,6 +105,14 @@ function SettingsStep({
             leading={<Icon name="bell" size={20} tone="dim" />}
             title="Push notifications"
             trailing={<Toggle checked={notify} onChange={onNotify} aria-label="Push notifications" />}
+            divider
+          />
+          <ListRow
+            size="sm"
+            leading={<Icon name="lock" size={20} tone="dim" />}
+            title="Lock the app now"
+            chevron
+            onClick={onLock}
           />
         </Surface>
       </Stack>
@@ -162,8 +170,9 @@ function SettingsStep({
  * onThemeChange — when given, the Dark theme toggle controls the parent's
  *                 theme instead of this screen's own.
  * onLogout      — when given, Log out leaves the screen (prototype → onboarding).
+ * onLock        — "Lock the app now" (prototype → Unlock).
  */
-export function SettingsScreen({ step: stepProp, theme = 'dark', scaled = false, onNavigate, onThemeChange, onLogout }) {
+export function SettingsScreen({ step: stepProp, theme = 'dark', scaled = false, onNavigate, onThemeChange, onLogout, onLock }) {
   const [innerStep, setInnerStep] = useState('settings')
   const [faceId, setFaceId] = useState(true)
   const [notify, setNotify] = useState(true)
@@ -207,6 +216,7 @@ export function SettingsScreen({ step: stepProp, theme = 'dark', scaled = false,
           language={LANGUAGES[languageIndex]} onCycleLanguage={() => setLanguageIndex((i) => (i + 1) % LANGUAGES.length)}
           onOpenProfile={() => go('profile')}
           onLogout={() => (onLogout ? onLogout() : setLoggedOut(true))}
+          onLock={onLock}
         />
       )}
     </Screen>

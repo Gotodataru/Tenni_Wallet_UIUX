@@ -53,6 +53,15 @@ export const TRANSACTIONS = [
 
 export const CARD_LAST4 = '4291'
 
+/* Sign-up and unlock: the demo "inbox" shows this code, and the demo
+   account opens with this passcode until the visitor creates their own. */
+export const DEMO_CODE = '246810'
+export const DEMO_PASSCODE = '258046'
+
+/** The prototype says which passcode opens it — unless the visitor made their own. */
+export const passcodeHint = (passcode) =>
+  passcode === DEMO_PASSCODE ? `Demo passcode: ${DEMO_PASSCODE}` : 'The one you created at sign-up'
+
 /** Props for TransactionRow from one feed item. */
 export function txRowProps(t, { withDay = false } = {}) {
   const when = withDay ? `${t.day} · ${t.time}` : t.time
