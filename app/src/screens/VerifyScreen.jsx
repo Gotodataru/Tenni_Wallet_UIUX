@@ -196,22 +196,22 @@ function DetailsStep({ details, onChange, preset, onNext }) {
 
 /**
  * A viewfinder stand-in: the demo never opens the camera. "Taking" the
- * photo runs the same quality check a real one would — the first shot
- * comes back with glare, to show how a bad photo is handled (a retake
- * after a failed check goes through the first time).
+ * photo runs the same quality check a real one would. With `glareFirst`
+ * (the catalog's "Glare" outcome) the first shot comes back with glare,
+ * to show how a bad photo is handled; the prototype's shot is clear.
  *
  * phase — frame | checking | glare | clear
  */
-function DocumentStep({ preset, retake = false, onNext }) {
+function DocumentStep({ preset, glareFirst = false, onNext }) {
   const [doc, setDoc] = useState(0)
   const [phase, setPhase] = useState(preset === 'glare' ? 'glare' : 'frame')
   const [shots, setShots] = useState(0)
 
   useEffect(() => {
     if (phase !== 'checking') return
-    const t = setTimeout(() => setPhase(retake || shots > 1 ? 'clear' : 'glare'), 1200)
+    const t = setTimeout(() => setPhase(glareFirst && shots === 1 ? 'glare' : 'clear'), 1200)
     return () => clearTimeout(t)
-  }, [phase, shots, retake])
+  }, [phase, shots, glareFirst])
 
   const shoot = () => { setShots((s) => s + 1); setPhase('checking') }
 
@@ -433,8 +433,10 @@ function RetryStep({ onRetake }) {
 /**
  * step     — set from outside (the catalog) or driven internally.
  * preset   — freezes a step in an error state (catalog, see CHECKS).
- * outcome  — how the live check ends: approved | retry. A retry ends in
- *            approval on the second round, like a declined payment in Pay.
+ * outcome  — how the live flow goes: approved (the prototype: every step
+ *            passes) | glare (the first ID photo has glare) | retry (the
+ *            check can't read the ID; the second round is approved, like a
+ *            declined payment in Pay).
  * onFinish — the card is issued (prototype → Home); onExit — "Later".
  */
 export function VerifyScreen({ step: stepProp, preset, outcome = 'approved', theme = 'dark', scaled = false, onFinish, onExit }) {
@@ -476,13 +478,13 @@ export function VerifyScreen({ step: stepProp, preset, outcome = 'approved', the
         {step === 'intro' && <IntroStep onNext={() => go('country')} onLater={onExit} />}
         {step === 'country' && <CountryStep country={country} onPick={setCountry} onNext={() => go('details')} />}
         {step === 'details' && <DetailsStep key={preset} details={details} onChange={setDetails} preset={preset} onNext={() => go('document')} />}
-        {step === 'document' && <DocumentStep key={`${preset}-${round}`} preset={preset} retake={round > 0} onNext={() => go(round > 0 ? 'review' : 'selfie')} />}
+        {step === 'document' && <DocumentStep key={`${preset}-${round}`} preset={preset} glareFirst={outcome === 'glare' && round === 0} onNext={() => go(round > 0 ? 'review' : 'selfie')} />}
         {step === 'selfie' && <SelfieStep onNext={() => go('review')} />}
         {step === 'review' && (
           <ReviewStep key={preset} country={country} details={details} preset={preset} onEdit={() => go('details')} onSubmit={() => go('checking')} />
         )}
         {step === 'checking' && (
-          <CheckingStep live={live} outcome={round === 0 ? outcome : 'approved'} onResult={(r) => go(r)} />
+          <CheckingStep live={live} outcome={round === 0 && outcome === 'retry' ? 'retry' : 'approved'} onResult={(r) => go(r)} />
         )}
         {step === 'approved' && <ApprovedStep details={details} onFinish={onFinish} />}
         {step === 'retry' && <RetryStep onRetake={() => { setRound((r) => r + 1); go('document') }} />}

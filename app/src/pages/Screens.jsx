@@ -39,14 +39,19 @@ function Checks({ checks, render }) {
   )
 }
 
-/** A live flow with its outcome picked on a Segmented, like Pay. */
-function Live({ title, items, value, onChange, children }) {
+/** A live flow with its outcome picked on a Segmented, like Pay, and a replay. */
+function Live({ title, items, value, onChange, onReplay, children }) {
   return (
     <Spec title={title} column>
       {items && (
-        <div style={{ maxWidth: 320 }}>
+        <div style={{ maxWidth: 360 }}>
           <Segmented items={items.map((i) => i.label)} active={items.findIndex((i) => i.id === value)} onChange={(i) => onChange(items[i].id)} />
         </div>
+      )}
+      {onReplay && (
+        <Stack dir="row" gap={12}>
+          <Button variant="secondary" size="sm" iconLeading="refresh" onClick={onReplay}>Replay</Button>
+        </Stack>
       )}
       <div className="Device">{children}</div>
     </Spec>
@@ -95,11 +100,14 @@ function SignInSection({ theme }) {
 }
 
 function UnlockSection({ theme }) {
+  const outcomes = [{ id: 'works', label: 'Face ID works' }, { id: 'fails', label: 'Not recognized' }]
+  const [faceId, setFaceId] = useState('fails')
   const [run, setRun] = useState(0)
+  const replay = () => setRun((r) => r + 1)
   return (
-    <Section title="Unlock" hint="The app comes back from the background: Face ID first, the passcode when Face ID can’t. The live flow fails the first scan on purpose. Five wrong passcodes pause the pad for 30 s.">
-      <Live title="Live flow: the first scan fails">
-        <UnlockScreen key={run} theme={theme} onUnlock={() => setRun((r) => r + 1)} onForgot={() => setRun((r) => r + 1)} />
+    <Section title="Unlock" hint="The app comes back from the background: Face ID first, the passcode when Face ID can’t. In the prototype Face ID just works; the failure is here. Five wrong passcodes pause the pad for 30 s.">
+      <Live title="Live flow: try both outcomes" items={outcomes} value={faceId} onChange={(o) => { setFaceId(o); replay() }} onReplay={replay}>
+        <UnlockScreen key={`${faceId}-${run}`} faceId={faceId} theme={theme} onForgot={replay} />
       </Live>
       <Grid title="All steps">
         {UNLOCK_STEPS.map((s) => (
@@ -112,12 +120,12 @@ function UnlockSection({ theme }) {
 }
 
 function VerifySection({ theme }) {
-  const outcomes = [{ id: 'approved', label: 'Approved' }, { id: 'retry', label: 'Blurry ID' }]
+  const outcomes = [{ id: 'approved', label: 'Approved' }, { id: 'glare', label: 'Glare on the ID' }, { id: 'retry', label: 'Blurry ID' }]
   const [outcome, setOutcome] = useState('approved')
   const [run, setRun] = useState(0)
   return (
-    <Section title="Verify identity" hint="The check a card issuer must run, then the card. Why first, refuse early (country, age), and a retry asks again only for the one photo that failed.">
-      <Live title="Live flow: try both outcomes" items={outcomes} value={outcome} onChange={(o) => { setOutcome(o); setRun((r) => r + 1) }}>
+    <Section title="Verify identity" hint="The check a card issuer must run, then the card. Why first, refuse early (country, age), and a retry asks again only for the one photo that failed. In the prototype every step passes; the failures are picked here.">
+      <Live title="Live flow: try every outcome" items={outcomes} value={outcome} onChange={(o) => { setOutcome(o); setRun((r) => r + 1) }}>
         <VerifyScreen key={`${outcome}-${run}`} outcome={outcome} theme={theme} onFinish={() => setRun((r) => r + 1)} onExit={() => setRun((r) => r + 1)} />
       </Live>
       <Grid title="All steps">
