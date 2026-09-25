@@ -24,7 +24,7 @@ const RESEARCH = `${REPO}/blob/master/research/README.md`
 
 const TLDR = [
   ['Problem', 'Crypto is easy to buy and hard to spend: paying at a till means mental math, and a wrong address loses the money for good.'],
-  ['What I did', 'Eleven screens from sign-up and the identity check to Pay, Send and a lost card, each designed through its failures; a design system in code; and its Figma counterpart: 36 components on variables, 21 screens in Dark and Light and a prototype with 5 flows.'],
+  ['What I did', 'Eleven screens from sign-up and the identity check to Pay, Send and a lost card, each designed through its failures; a design system in code; and its Figma counterpart: 39 components on variables, 40 screens in Dark and Light and a prototype with 7 flows.'],
   ['What is proven', 'Not yet with people. A 5-person test with thresholds set in advance is written and runs next.'],
 ]
 

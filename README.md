@@ -7,9 +7,11 @@ and a coded design system.
 The case study, the prototype, every screen in every state and the design system in one place.
 Landing page: [/landing](https://gotodataru.github.io/Tenni_Wallet_UIUX/landing/).
 
-**Figma:** [design system and 21 screens, Dark and Light](https://www.figma.com/design/9VfEHWlaHH0LBl94VlaIQ1/Tenni-Wallet-V2)
+**Figma:** [design system and 40 screens, each in Dark and Light](https://www.figma.com/design/9VfEHWlaHH0LBl94VlaIQ1/Tenni-Wallet-V2)
 · [prototype](https://www.figma.com/proto/9VfEHWlaHH0LBl94VlaIQ1/Tenni-Wallet-V2?node-id=2003-6941&starting-point-node-id=2003%3A6941).
-Variables, components on Auto Layout, screens assembled from component instances.
+39 components on variables and Auto Layout, screens assembled from component instances,
+7 prototype flows: sign-up → identity check → card, Home, Pay, a declined payment, Send,
+card controls, lock and unlock.
 The file as it was before the design review: [v1](https://www.figma.com/design/0ZzLBKXtXVnVgLirNT7KtM/Tenni-Wallet-Design-System).
 
 **Usability test:** [protocol with thresholds set in advance](research/README.md).
@@ -34,11 +36,20 @@ Key decisions:
 - **Every money-losing mistake has a guard.** The address field catches typos
   and wrong-network addresses; review shows the full address grouped by four
   characters; Max leaves room for the network fee.
-- **Color means something, and never alone.** The tennis-ball palette: the lime
-  ball (accent, up), grass and moss greens (surfaces), clay (down, errors).
-  Spending stays neutral; every change carries an ▲/▼ arrow.
+- **A check runs when you commit, and names the fix.** Nothing turns red while
+  you type; a field is checked on Continue or on the sixth digit, and every error
+  says what to do. The hard stops (no card in that country, under 18) end the
+  flow on the step where they are typed, and a failed ID check asks again only
+  for the one photo that failed.
+- **Actions sized to their risk.** Freezing the card is one toggle; the full
+  number sits behind Face ID for 30 s; raising the limit past $5,000 asks for
+  Face ID; a lost card can be blocked or just frozen.
+- **Color means something, and never alone.** A tennis ball on a neutral court:
+  graphite and paper are the surfaces, the lime ball is the card, the primary
+  action and "up", clay is "down" and errors. Spending stays neutral; every
+  change carries an ▲/▼ arrow. In the light theme ink takes the accent role.
 - **States, not just happy paths.** Loading, empty, error, declined, pending,
-  failed, not enough funds.
+  failed, not enough funds, a frozen card, a paused passcode pad.
 
 ## What's inside
 
