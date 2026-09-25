@@ -5,6 +5,10 @@ import { PayScreen } from '../screens/PayScreen.jsx'
 import { SendScreen } from '../screens/SendScreen.jsx'
 import { ReceiveScreen } from '../screens/ReceiveScreen.jsx'
 import { VerifyScreen } from '../screens/VerifyScreen.jsx'
+import { OnboardingScreen } from '../screens/OnboardingScreen.jsx'
+import { UnlockScreen } from '../screens/UnlockScreen.jsx'
+import { SignInScreen } from '../screens/SignInScreen.jsx'
+import { CardScreen } from '../screens/CardScreen.jsx'
 import { ICON_NAMES } from '../icons/paths.js'
 import { Section, Spec, Cell } from './parts.jsx'
 import homeBefore from '../assets/case/home-before.webp'
@@ -20,7 +24,7 @@ const RESEARCH = `${REPO}/blob/master/research/README.md`
 
 const TLDR = [
   ['Problem', 'Crypto is easy to buy and hard to spend: paying at a till means mental math, and a wrong address loses the money for good.'],
-  ['What I did', 'Pay and Send flows designed through their failures, a design system in code, and its Figma counterpart: 36 components on variables, 21 screens in Dark and Light and a prototype with 5 flows.'],
+  ['What I did', 'Eleven screens from sign-up and the identity check to Pay, Send and a lost card, each designed through its failures; a design system in code; and its Figma counterpart: 36 components on variables, 21 screens in Dark and Light and a prototype with 5 flows.'],
   ['What is proven', 'Not yet with people. A 5-person test with thresholds set in advance is written and runs next.'],
 ]
 
@@ -37,8 +41,56 @@ const TRY = [
   'Send → Max: it leaves room for the network fee',
   'More → Dark theme switches the whole prototype',
   'Tap the card → freeze it, then try to Pay',
-  'More → Lock the app now: the first Face ID scan fails on purpose',
+  'Tap the card → Report lost or stolen: blocking a card offers Freeze instead',
   'More → Log out → Get started: try 123456 as a passcode, or a birth date after 2008',
+]
+
+/**
+ * The flows around the everyday ones, each shown at its checks: every
+ * frame is a real state of the prototype, frozen with a preset, so a
+ * reader sees the failures without clicking through fifteen steps.
+ */
+const FLOWS = [
+  {
+    title: 'Sign-up',
+    path: 'welcome → email → code → passcode → Face ID → backup',
+    frames: (theme) => [
+      { label: 'Email already taken', screen: <OnboardingScreen step="email" preset="taken" theme={theme} scaled /> },
+      { label: 'Wrong code', screen: <OnboardingScreen step="code" preset="wrong" theme={theme} scaled /> },
+      { label: 'Passcode too easy', screen: <OnboardingScreen step="passcode" preset="weak" theme={theme} scaled /> },
+      { label: 'Passkey, no phrase', screen: <OnboardingScreen step="backup" theme={theme} scaled /> },
+    ],
+  },
+  {
+    title: 'Identity check and the card',
+    path: 'country → details → ID photo → selfie → review → card',
+    frames: (theme) => [
+      { label: 'No card there yet', screen: <VerifyScreen step="country" preset="unavailable" theme={theme} scaled /> },
+      { label: 'Under 18, not Latin', screen: <VerifyScreen step="details" preset="errors" theme={theme} scaled /> },
+      { label: 'Glare on the ID', screen: <VerifyScreen step="document" preset="glare" theme={theme} scaled /> },
+      { label: 'Card ready', screen: <VerifyScreen step="approved" theme={theme} scaled /> },
+    ],
+  },
+  {
+    title: 'Unlock',
+    path: 'Face ID → passcode → forgot → new passcode',
+    frames: (theme) => [
+      { label: 'Not recognized', screen: <UnlockScreen step="failed" theme={theme} scaled /> },
+      { label: 'Wrong passcode', screen: <UnlockScreen step="passcode" preset="wrong" theme={theme} scaled /> },
+      { label: 'Paused after 5', screen: <UnlockScreen step="passcode" preset="locked" theme={theme} scaled /> },
+      { label: 'Forgot: a new one', screen: <SignInScreen step="reset" theme={theme} scaled /> },
+    ],
+  },
+  {
+    title: 'Card controls',
+    path: 'freeze · details · limit · lost or stolen',
+    frames: (theme) => [
+      { label: 'Frozen', screen: <CardScreen step="main" preset="frozen" theme={theme} scaled /> },
+      { label: 'Pay stops it', screen: <PayScreen step="request" frozen theme={theme} scaled /> },
+      { label: 'Raise = Face ID', screen: <CardScreen step="limits" preset="high" theme={theme} scaled /> },
+      { label: 'Or freeze instead', screen: <CardScreen step="lost" theme={theme} scaled /> },
+    ],
+  },
 ]
 
 /**
@@ -191,6 +243,26 @@ export function Case({ theme }) {
             <Bullets items={TRY} icon="arrow-right" />
           </Stack>
         </Spec>
+      </Section>
+
+      <Section title="User flows" hint="Around the everyday flows: getting in, getting the card, getting back in, keeping the card safe. Each is shown at its checks, no clicking needed.">
+        {FLOWS.map((f) => (
+          <Spec key={f.title} title={f.title} contract={f.path} column>
+            <div className="FlowStrip">
+              {f.frames(theme).map(({ label, screen }, i) => (
+                <div key={label} className="FlowStrip__step">
+                  {i > 0 && <Icon name="arrow-right" size={20} tone="faint" />}
+                  <Cell label={label} center>
+                    <div className="Device--sm">{screen}</div>
+                  </Cell>
+                </div>
+              ))}
+            </div>
+          </Spec>
+        ))}
+        <Stack dir="row" gap={8} wrap>
+          <a className="CaseLink" href="#screens">Every step and every check</a>
+        </Stack>
       </Section>
 
       <Section title="Key decisions">

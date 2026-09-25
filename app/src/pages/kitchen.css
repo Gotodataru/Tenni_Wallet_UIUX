@@ -494,3 +494,22 @@ a.Kitchen__brand { color: inherit; text-decoration: none; }
   .CaseHero__second { display: none; }
 }
 
+
+/* --- Case: a flow as a strip of frames with arrows between. It scrolls
+       inside its card on a narrow screen, so the page never does. --- */
+.FlowStrip {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-12);
+  overflow-x: auto;
+  min-width: 0;
+  padding-bottom: var(--space-8);
+}
+.FlowStrip__step {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-12);
+  flex: 0 0 auto;
+}
