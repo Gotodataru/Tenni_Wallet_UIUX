@@ -101,9 +101,10 @@ function MoreSheet({ onClose }) {
  * cold start: 900 ms of skeletons under every block, then content.
  *
  * onNavigate(id) — wires the screen into the clickable prototype:
- * 'send' | 'receive' | 'pay' | 'activity' | 'more'.
+ * 'send' | 'receive' | 'pay' | 'activity' | 'more' | 'card' | 'verify'.
+ * frozen / last4 — the card as Card left it (frozen, or replaced).
  */
-export function HomeScreen({ state: stateProp, theme = 'dark', scaled = false, onNavigate }) {
+export function HomeScreen({ state: stateProp, theme = 'dark', scaled = false, frozen = false, last4 = CARD_LAST4, onNavigate }) {
   const [masked, setMasked] = useState(false)
   const [bootState, setBootState] = useState('loading')
   const [moreOpen, setMoreOpen] = useState(false)
@@ -160,15 +161,22 @@ export function HomeScreen({ state: stateProp, theme = 'dark', scaled = false, o
           <Surface level={1} radius="xl" pad={0} gap={0}>
             <EmptyState
               illustration={<Illustration name="no-cards" size={104} />}
-              title="No cards yet"
-              body="Link a Visa or Mastercard to pay with crypto anywhere cards are accepted"
+              title="No card yet"
+              body="Verify your identity to get a Tenni debit card. It takes about 3 minutes"
               action
-              actionLabel="Link a card"
+              actionLabel="Get your card"
+              onAction={() => onNavigate?.('verify')}
             />
           </Surface>
         ) : (
           <Stack gap={8}>
-            <CardVisual skin="ball" kind="debit" holder="" last4={CARD_LAST4} />
+            {/* The card is the way into its own settings: tap the plastic. */}
+            <CardVisual
+              skin="ball" kind="debit" holder="" last4={last4} state={frozen ? 'frozen' : 'active'}
+              role="button" tabIndex={0} aria-label="Card settings"
+              onClick={() => onNavigate?.('card')}
+              onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && onNavigate?.('card')}
+            />
             <PayWith onPay={() => onNavigate?.('pay')} />
           </Stack>
         )}

@@ -44,10 +44,21 @@ function Merchant() {
   )
 }
 
-function RequestStep({ assetId, onPick, onNext }) {
+function RequestStep({ assetId, frozen, onUnfreeze, onPick, onNext }) {
   return (
     <Stack gap={20} fill>
       <Merchant />
+
+      {frozen && (
+        <Banner
+          tone="danger"
+          title="Your card is frozen"
+          body="The terminal will decline it. Unfreeze the card to pay"
+          action
+          actionLabel="Unfreeze"
+          onAction={onUnfreeze}
+        />
+      )}
 
       <Stack gap={6} align="center">
         <Text variant="caption" tone="dim">Terminal requests</Text>
@@ -77,7 +88,7 @@ function RequestStep({ assetId, onPick, onNext }) {
       </Stack>
 
       <Stack fill justify="end">
-        <Button variant="primary" size="xl" fullWidth iconTrailing="arrow-right" onClick={onNext}>
+        <Button variant="primary" size="xl" fullWidth iconTrailing="arrow-right" state={frozen ? 'disabled' : undefined} onClick={onNext}>
           Continue
         </Button>
       </Stack>
@@ -129,14 +140,14 @@ function ConfirmStep({ asset, live, onPay, onBack }) {
   )
 }
 
-function ResultStep({ step, asset, onRetry, onChangeAsset, onDone }) {
+function ResultStep({ step, asset, last4, onRetry, onChangeAsset, onDone }) {
   const p = cryptoPrecision(asset)
 
   if (step === 'processing') {
     return (
       <Stack fill justify="center">
         <EmptyState
-          illustration={<PayMoment state="processing" last4={CARD_LAST4} />}
+          illustration={<PayMoment state="processing" last4={last4} />}
           title="Processing payment"
           body={`${MERCHANT.name} · $${num(TOTAL)}. Keep this screen open. It usually takes a couple of seconds.`}
         />
@@ -149,7 +160,7 @@ function ResultStep({ step, asset, onRetry, onChangeAsset, onDone }) {
       <Stack fill gap={20}>
         <Stack fill justify="center">
           <EmptyState
-            illustration={<PayMoment state="success" last4={CARD_LAST4} />}
+            illustration={<PayMoment state="success" last4={last4} />}
             title="Paid"
             body={`${MERCHANT.name} · $${num(TOTAL)} charged from your ${asset.ticker} balance`}
           />
@@ -170,7 +181,7 @@ function ResultStep({ step, asset, onRetry, onChangeAsset, onDone }) {
             merchant's bank said no. The same card as success, with a
             cross instead of a check, so the two outcomes read as a pair. */}
         <EmptyState
-          illustration={<PayMoment state="declined" last4={CARD_LAST4} />}
+          illustration={<PayMoment state="declined" last4={last4} />}
           title="Payment declined"
           body="The merchant's bank didn't approve the payment. Nothing was charged."
         />
@@ -189,8 +200,10 @@ function ResultStep({ step, asset, onRetry, onChangeAsset, onDone }) {
  *           or driven internally, so the screen works as a live prototype.
  * outcome — what the live prototype ends with: success | declined.
  * onExit  — close the flow (the clickable prototype returns to Home).
+ * frozen / last4 / onUnfreeze — the card as Card left it: a frozen card can't
+ *           pay, and the way out is right on the request, not in Settings.
  */
-export function PayScreen({ step: stepProp, outcome = 'success', theme = 'dark', scaled = false, onExit }) {
+export function PayScreen({ step: stepProp, outcome = 'success', theme = 'dark', scaled = false, frozen = false, last4 = CARD_LAST4, onUnfreeze, onExit }) {
   const [innerStep, setInnerStep] = useState('request')
   const [assetId, setAssetId] = useState('eth')
   const [attempt, setAttempt] = useState(0)   // a declined demo succeeds on the retry
@@ -246,7 +259,7 @@ export function PayScreen({ step: stepProp, outcome = 'success', theme = 'dark',
         )}
 
         {step === 'request' && (
-          <RequestStep assetId={assetId} onPick={setAssetId} onNext={() => go('confirm')} />
+          <RequestStep assetId={assetId} frozen={frozen} onUnfreeze={onUnfreeze} onPick={setAssetId} onNext={() => go('confirm')} />
         )}
 
         {step === 'confirm' && (
@@ -255,6 +268,7 @@ export function PayScreen({ step: stepProp, outcome = 'success', theme = 'dark',
 
         {(step === 'processing' || step === 'success' || step === 'declined') && (
           <ResultStep
+            last4={last4}
             step={step}
             asset={asset}
             onRetry={retry}
