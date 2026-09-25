@@ -17,6 +17,7 @@ export { Chip } from './Chip.jsx'
 export { Badge } from './Badge.jsx'
 export { Keypad } from './Keypad.jsx'
 export { Slider } from './Slider.jsx'
+export { PinDots } from './PinDots.jsx'
 
 /* L3 · Data display */
 export { Avatar } from './Avatar.jsx'

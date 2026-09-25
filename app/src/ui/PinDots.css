@@ -1,0 +1,50 @@
+/* ============================================================
+   L2 · PinDots
+   row · W=hug H=fixed(12) · gap 16
+   ============================================================ */
+
+.PinDots {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-16);
+  width: fit-content;
+  flex: 0 0 auto;
+  height: 12px;
+}
+
+.PinDots__dot {
+  width: 12px;
+  height: 12px;
+  flex: 0 0 auto;
+  border-radius: var(--r-full);
+  box-shadow: inset 0 0 0 1.5px var(--border-strong);
+  transition: background-color var(--dur-fast) var(--ease-out),
+              box-shadow var(--dur-fast) var(--ease-out);
+}
+
+.PinDots__dot.is-filled {
+  background: var(--fg-default);
+  box-shadow: inset 0 0 0 1.5px var(--fg-default);
+}
+
+.PinDots.is-error { animation: PinDots-shake 320ms ease-in-out; }
+.PinDots.is-error .PinDots__dot.is-filled {
+  background: var(--danger);
+  box-shadow: inset 0 0 0 1.5px var(--danger);
+}
+
+.PinDots.is-success .PinDots__dot.is-filled {
+  background: var(--success);
+  box-shadow: inset 0 0 0 1.5px var(--success);
+}
+
+@keyframes PinDots-shake {
+  0%, 100% { transform: translateX(0); }
+  25%      { transform: translateX(-6px); }
+  75%      { transform: translateX(6px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .PinDots.is-error { animation: none; }
+}

@@ -171,6 +171,15 @@ column · W=fill H=hug · gap 8
 props: mode (amount — decimal point | pin — biometric key), showBiometric
 ```
 
+### PinDots
+```
+row · W=hug H=fixed(12) · gap 16
+props: length (4|6), filled (0…length), state (default|error|success)
+```
+How many digits of a passcode are typed, never the digits. `error` shakes the
+row once (static under reduced motion); the screen clears the digits after it.
+Not `ProgressDots`: those mark one step of many, these fill every dot up to N.
+
 ### Slider
 ```
 column · W=fill H=hug · gap 8
@@ -404,10 +413,10 @@ props: title, action, actionLabel, onAction, padding (0|16)
 | Level | Components |
 |---|---|
 | L1 Primitives | 6 — Icon, Text, Stack, Divider, Layer, Surface |
-| L2 Controls | 11 — Button, IconButton, Input, Toggle, Checkbox, Radio, Segmented, Chip, Badge, Keypad, Slider |
+| L2 Controls | 12 — Button, IconButton, Input, Toggle, Checkbox, Radio, Segmented, Chip, Badge, Keypad, PinDots, Slider |
 | L3 Data display | 12 — Avatar, AssetIcon, Amount, Balance, Skeleton, Sparkline, Donut, ProgressDots, QRBlock, ListRow, TransactionRow, CardVisual |
 | L4 Feedback | 8 — Toast, Banner, Modal, BottomSheet, EmptyState, LockOverlay, PayMoment, CardStage (+ 6 illustrations) |
 | L5 Navigation | 7 — StatusBar, AppBar, TabBar, NavItem, HomeIndicator, Section, Screen |
-| **Total** | **44** |
+| **Total** | **45** |
 
 Plus 71 icons in 6 packs (68 line, including 4 spending categories, + 3 filled tab twins) and 10 type styles.

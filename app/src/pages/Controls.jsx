@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import {
   Button, IconButton, Input, Toggle,
-  Checkbox, Radio, Segmented, Chip, Badge, Keypad, Slider,
+  Checkbox, Radio, Segmented, Chip, Badge, Keypad, Slider, PinDots,
   Stack, Text,
 } from '../ui/index.js'
 import { typeKey, backspace } from '../screens/format.js'
@@ -115,6 +115,7 @@ export function Controls() {
       <ChipSection />
       <BadgeSection />
       <KeypadSection />
+      <PinDotsSection />
       <SliderSection />
     </>
   )
@@ -424,6 +425,28 @@ function KeypadSection() {
         <div style={{ maxWidth: 320 }}>
           <Keypad mode="pin" showBiometric onKey={() => {}} onBackspace={() => {}} onBiometric={() => {}} />
         </div>
+      </Spec>
+    </Section>
+  )
+}
+
+function PinDotsSection() {
+  const [code, setCode] = useState('')
+
+  return (
+    <Section title="PinDots" hint="row · W=hug H=fixed(12) · gap 16. How many digits of a passcode are in — never the digits. Not ProgressDots: every dot up to N is filled.">
+      <Spec title="Live example with the pin keypad" contract="the dots follow the keypad; 6 digits clear the row" column>
+        <Stack align="center"><PinDots filled={code.length} /></Stack>
+        <div style={{ maxWidth: 320, alignSelf: 'center', width: 320 }}>
+          <Keypad mode="pin" showBiometric={false} onKey={(k) => setCode((c) => (c.length >= 6 ? k : c + k))} onBackspace={() => setCode((c) => c.slice(0, -1))} />
+        </div>
+      </Spec>
+
+      <Spec title="States" contract="default · error (shakes once) · success · length 4">
+        <Cell label="default · 3 of 6" center><PinDots filled={3} /></Cell>
+        <Cell label="error" center><PinDots filled={6} state="error" /></Cell>
+        <Cell label="success" center><PinDots filled={6} state="success" /></Cell>
+        <Cell label="length 4" center><PinDots length={4} filled={2} /></Cell>
       </Spec>
     </Section>
   )
