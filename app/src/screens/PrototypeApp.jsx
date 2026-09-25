@@ -26,7 +26,8 @@ import { USER, CARD_LAST4, CARD_EXPIRY, DEMO_PASSCODE, makeUser } from './data.j
  *
  * What the flows share lives here: the theme, the account (the email from
  * sign-up, the name from the identity check), the passcode the visitor
- * created (Unlock checks it) and the card — frozen on Card means frozen
+ * created (Unlock checks it), the coin a tap spends (picked in Pay, shown
+ * on Home) and the card — frozen on Card means frozen
  * on Home and in Pay, and a replaced card has a new number and expiry
  * everywhere.
  */
@@ -39,6 +40,7 @@ export function PrototypeApp({ theme: themeProp = 'dark', start = 'home' }) {
   const [prevThemeProp, setPrevThemeProp] = useState(themeProp)
   const [passcode, setPasscode] = useState(DEMO_PASSCODE)
   const [frozen, setFrozen] = useState(false)
+  const [payWith, setPayWith] = useState('eth')
   const [card, setCard] = useState({ last4: CARD_LAST4, expiry: CARD_EXPIRY })
   const [account, setAccount] = useState({ name: USER.name, email: USER.email })
   const user = makeUser(account)
@@ -56,7 +58,7 @@ export function PrototypeApp({ theme: themeProp = 'dark', start = 'home' }) {
   const cardProps = { frozen, ...card }
 
   switch (route) {
-    case 'pay':        return <PayScreen theme={theme} frozen={frozen} last4={card.last4} onUnfreeze={() => setFrozen(false)} onExit={home} />
+    case 'pay':        return <PayScreen theme={theme} asset={payWith} onAssetChange={setPayWith} frozen={frozen} last4={card.last4} onUnfreeze={() => setFrozen(false)} onExit={home} />
     case 'send':       return <SendScreen theme={theme} onExit={home} />
     case 'receive':    return <ReceiveScreen theme={theme} onExit={home} />
     case 'activity':   return <ActivityScreen {...common} />
@@ -67,6 +69,6 @@ export function PrototypeApp({ theme: themeProp = 'dark', start = 'home' }) {
     case 'reset':      return <SignInScreen key="reset" reset theme={theme} user={user} passcode={passcode} onFinish={home} onExit={() => setRoute('unlock')} onPasscode={setPasscode} />
     case 'unlock':     return <UnlockScreen theme={theme} user={user} passcode={passcode} onUnlock={home} onForgot={() => setRoute('reset')} />
     case 'verify':     return <VerifyScreen theme={theme} onFinish={(d) => { setFrozen(false); setCard({ last4: CARD_LAST4, expiry: CARD_EXPIRY }); setAccount((a) => ({ ...a, name: `${d.first.trim()} ${d.last.trim()}` })); home() }} onExit={home} />
-    default:           return <HomeScreen {...common} {...cardProps} />
+    default:           return <HomeScreen {...common} {...cardProps} payWith={payWith} />
   }
 }

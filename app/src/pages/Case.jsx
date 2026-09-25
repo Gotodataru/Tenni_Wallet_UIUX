@@ -36,7 +36,7 @@ const FACTS = [
 ]
 
 const TRY = [
-  'Tap Pay on the card. The terminal sends the amount, you pick the asset',
+  'Tap Pay under the card: pick the coin, Face ID, then hold near the reader. The amount comes after the tap',
   'Send → type anything into the address field, then paste an Ethereum address',
   'Send → Max: it leaves room for the network fee',
   'More → Dark theme switches the whole prototype',
@@ -86,7 +86,7 @@ const FLOWS = [
     path: 'freeze · details · limit · lost or stolen',
     frames: (theme) => [
       { label: 'Frozen', screen: <CardScreen step="main" preset="frozen" theme={theme} scaled /> },
-      { label: 'Pay stops it', screen: <PayScreen step="request" frozen theme={theme} scaled /> },
+      { label: 'Pay stops it', screen: <PayScreen step="ready" frozen theme={theme} scaled /> },
       { label: 'Raise = Face ID', screen: <CardScreen step="limits" preset="high" theme={theme} scaled /> },
       { label: 'Or freeze instead', screen: <CardScreen step="lost" theme={theme} scaled /> },
     ],
@@ -100,9 +100,12 @@ const FLOWS = [
  */
 const DECISIONS = [
   {
-    title: 'The terminal sets the amount, not the user',
-    body: 'Paying at a card terminal starts with the merchant\'s request: amount in local currency, its dollar value, and one choice: which asset to pay with. The conversion fee is included in what gets charged, so the crypto amount matches the total on every step.',
-    previews: (theme) => [{ label: 'Pay · terminal request', screen: <PayScreen step="request" theme={theme} scaled /> }],
+    title: 'Pick the coin before the tap, see the bill after it',
+    body: 'A phone can\'t see the bill until it touches the reader, and the terminal authorizes in a second: there is no moment to choose a coin once the amount is on screen. An earlier version showed the bill first and then asked for a coin, which a card payment can\'t do. So the choice moved up front: the coin, plus a backup for when it runs short, set before Face ID and shown on Home, because the plastic card spends the same coin. The ready screen can\'t show a number, so it states the rule: that moment\'s rate, the 0.9% fee included. The full breakdown arrives with the result.',
+    previews: (theme) => [
+      { label: 'Pay · before the tap', screen: <PayScreen step="ready" theme={theme} scaled /> },
+      { label: 'Pay · after it', screen: <PayScreen step="success" theme={theme} scaled /> },
+    ],
   },
   {
     title: 'Every money-losing mistake has a guard',

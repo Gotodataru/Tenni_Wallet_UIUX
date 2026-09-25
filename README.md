@@ -26,9 +26,11 @@ or receive without the mistakes that lose money.
 
 Key decisions:
 
-- **The terminal sets the amount, not the user.** Pay starts with the merchant's
-  request (amount in local currency and its dollar value); the only choice is
-  which asset to pay with. The conversion fee is included in what gets charged.
+- **Pick the coin before the tap, see the bill after it.** A card payment
+  authorizes at the reader in a second, so the coin (and a backup for when it
+  runs short) is chosen before Face ID; the terminal sets the amount, and the
+  breakdown — rate, the 0.9% fee included, what was charged — comes with the
+  result.
 - **Every money-losing mistake has a guard.** The address field catches typos
   and wrong-network addresses; review shows the full address grouped by four
   characters; Max leaves room for the network fee.

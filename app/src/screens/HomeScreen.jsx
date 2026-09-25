@@ -28,20 +28,20 @@ const MORE_ACTIONS = [
   { id: 'stake', icon: 'stake', title: 'Stake', subtitle: 'Earn on ETH and SOL' },
 ]
 
-const ETH = HOLDINGS.find((h) => h.symbol === 'eth')
 
 /** "Pay with" — the asset a tap will spend, and the way into Pay. Sits
     right under the card and outside it: the card is plastic, this row is
     the app. The button is named and carries the terminal icon, so it
     can't be read as part of a picture, and it is lg (48): the main action
     of the screen gets a full-size touch target, not a 32px chip. */
-function PayWith({ onPay }) {
+function PayWith({ asset, onPay }) {
+  const h = HOLDINGS.find((x) => x.symbol === asset)
   return (
     <Surface level={1} radius="lg" pad={0} gap={0}>
       <ListRow
-        leading={<AssetIcon symbol="eth" size={40} />}
-        title="Pay with ETH"
-        subtitle={`${num(ETH.amount)} ETH · ≈ $${num(ETH.amount * RATES.eth, 0)}`}
+        leading={<AssetIcon symbol={h.symbol} size={40} />}
+        title={`Pay with ${h.ticker}`}
+        subtitle={`${num(h.amount, h.precision)} ${h.ticker} · ≈ $${num(h.amount * RATES[h.symbol], 0)}`}
         trailing={<Button variant="primary" size="lg" iconLeading="pay" onClick={onPay}>Pay</Button>}
       />
     </Surface>
@@ -105,8 +105,9 @@ function MoreSheet({ onClose }) {
  * 'send' | 'receive' | 'pay' | 'activity' | 'more' | 'card' | 'verify'.
  * frozen / last4 / expiry — the card as Card left it (frozen, or replaced).
  * user — who is signed in (the avatar).
+ * payWith — the coin every tap spends, card or phone (chosen in Pay).
  */
-export function HomeScreen({ state: stateProp, theme = 'dark', scaled = false, frozen = false, last4 = CARD_LAST4, expiry = CARD_EXPIRY, user = USER, onNavigate }) {
+export function HomeScreen({ state: stateProp, theme = 'dark', scaled = false, frozen = false, last4 = CARD_LAST4, expiry = CARD_EXPIRY, user = USER, payWith = 'eth', onNavigate }) {
   const [masked, setMasked] = useState(false)
   const [bootState, setBootState] = useState('loading')
   const [moreOpen, setMoreOpen] = useState(false)
@@ -179,7 +180,7 @@ export function HomeScreen({ state: stateProp, theme = 'dark', scaled = false, f
               onClick={() => onNavigate?.('card')}
               onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && onNavigate?.('card')}
             />
-            <PayWith onPay={() => onNavigate?.('pay')} />
+            <PayWith asset={payWith} onPay={() => onNavigate?.('pay')} />
           </Stack>
         )}
 

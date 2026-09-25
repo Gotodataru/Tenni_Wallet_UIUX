@@ -88,45 +88,63 @@ at any card terminal", and run task 0 again with five new people.
 
 ## Task 1 · Pay at a till
 
-**Question:** can a person pay from a chosen asset and say what will be taken,
-without doing the math?
+> **Revised on 25 September 2026, before the first session.** Pay was rebuilt
+> to the order a real card payment runs in: the coin is picked before the tap,
+> the amount comes from the terminal after it. The old task asked about an
+> amount shown before paying, which no longer exists. No session had been run;
+> the git history shows both versions.
+
+**Question:** can a person pay from a chosen coin, and do they understand that
+the amount comes from the terminal after the tap, fee included?
 
 Open the prototype on Home. Read the scenario **word for word**:
 
-> You're at a Starbucks. The terminal is showing your bill. Pay for it with your
-> Tether, not with Ethereum.
+> You're at a Starbucks, about to pay for a coffee. Pay with your Tether, not
+> with Ethereum.
 >
-> *Ты в Starbucks, терминал показывает счёт. Оплати его с Tether, а не с Ethereum.*
+> *Ты в Starbucks, сейчас будешь платить за кофе. Оплати с Tether, а не с Ethereum.*
 
-When they reach **Confirm payment**, stop them **before** they confirm and ask:
+When they reach **Hold near the reader**, ask:
 
-> How much will leave your wallet, and does that include any fees?
+> Which coin is about to pay, and do you know yet how much will leave your wallet?
 >
-> *Сколько спишется с кошелька и входят ли в это какие-то комиссии?*
+> *Какая монета сейчас заплатит и знаешь ли ты уже, сколько спишется?*
+
+**Answer key:** Tether; not yet — the terminal sets the amount after the tap
+(any wording that says the amount comes later counts).
+
+When they reach **Paid**, ask:
+
+> How much left your wallet, and does that include any fees?
+>
+> *Сколько списалось с кошелька и входят ли в это комиссии?*
 
 **Answer key:** 12.51 USDT (≈ $12.51); yes, the 0.9% conversion fee ($0.11) is
-already included.
+included.
 
-**Record:** the first tap on Home; whether Tether was picked; time to the
-Confirm screen; the answer, verbatim; anything said aloud.
+**Record:** the first tap on Home; whether Tether was picked; time to Hold near
+the reader; both answers, verbatim; anything said aloud.
 
 **Threshold (set in advance):**
 
-- **1a** reaches Confirm with Tether selected, without help, within 2 minutes:
-  **at least 4 of 5**.
-- **1b** names 12.51 USDT (or $12.51) **and** says the fee is included:
-  **at least 4 of 5**.
+- **1a** reaches Hold near the reader with Tether selected, without help,
+  within 2 minutes: **at least 4 of 5**.
+- **1b** before the tap, says the amount isn't known yet or comes from the
+  terminal: **at least 4 of 5**.
+- **1c** after paying, names 12.51 USDT (or $12.51) **and** says the fee is
+  included: **at least 4 of 5**.
 
 **If it fails** (decided in advance):
 
 - 1a fails because they continue with the preselected Ethereum: the choice
-  doesn't register. Name it on the button: "Pay with Tether" instead of
-  "Continue", so the asset is repeated at the moment of the tap.
-- 1a fails before the flow opens (no one finds Pay on the card or in the tab
-  bar): the card reads as a picture. Give the card's Pay button a label
-  with the terminal icon and move it out of the glass.
-- 1b fails: the charged line is lost among four rows. Merge Purchase and fee
-  into one "Charged" line with the breakdown underneath in dim text.
+  doesn't register. Turn the coin list into one row that opens a picker, so
+  changing the coin is an action, not a glance.
+- 1a fails before the flow opens (no one finds Pay under the card or in the
+  tab bar): make the whole Pay with row open Pay, not only its button.
+- 1b fails: the rule in the blue notice isn't read. Move it into one line right
+  above the button: "Amount comes from the terminal · 0.9% fee included".
+- 1c fails: the charged line is lost among four rows. Merge them into one
+  "Charged" line with the breakdown underneath in dim text.
 
 ---
 
@@ -208,15 +226,15 @@ Result: A __ of 5 (need 4) · B __ of 5 (need 3) · **passed / failed**
 
 ### Task 1
 
-| # | first tap | Tether picked | sec to Confirm | answer (verbatim) | 1a | 1b | said aloud |
-|---|---|---|---|---|---|---|---|
-| 1 |  |  |  |  |  |  |  |
-| 2 |  |  |  |  |  |  |  |
-| 3 |  |  |  |  |  |  |  |
-| 4 |  |  |  |  |  |  |  |
-| 5 |  |  |  |  |  |  |  |
+| # | first tap | Tether picked | sec to Hold | before the tap (verbatim) | after paying (verbatim) | 1a | 1b | 1c | said aloud |
+|---|---|---|---|---|---|---|---|---|---|
+| 1 |  |  |  |  |  |  |  |  |  |
+| 2 |  |  |  |  |  |  |  |  |  |
+| 3 |  |  |  |  |  |  |  |  |  |
+| 4 |  |  |  |  |  |  |  |  |  |
+| 5 |  |  |  |  |  |  |  |  |  |
 
-Result: 1a __ of 5 (need 4) · 1b __ of 5 (need 4) · **passed / failed**
+Result: 1a __ of 5 (need 4) · 1b __ of 5 (need 4) · 1c __ of 5 (need 4) · **passed / failed**
 
 ### Task 2
 

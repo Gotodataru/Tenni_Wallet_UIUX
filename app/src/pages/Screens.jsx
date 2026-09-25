@@ -20,7 +20,7 @@ const LABEL = {
   reset: 'New passcode', faceid: 'Face ID', failed: 'Face ID failed',
   intro: 'Intro', country: 'Country', details: 'Details', document: 'ID photo', selfie: 'Selfie', checking: 'Checking', approved: 'Card ready', retry: 'Retake',
   main: 'Card', limits: 'Limit', lost: 'Lost or stolen', replaced: 'Replaced',
-  request: 'Terminal request', confirm: 'Confirm', processing: 'Processing', success: 'Success', declined: 'Declined',
+  ready: 'Pick the coin', hold: 'Hold near reader', confirm: 'Confirm', processing: 'Terminal answers', success: 'Paid', declined: 'Declined',
   address: 'Address', amount: 'Amount', review: 'Review',
   settings: 'Settings', profile: 'Profile',
 }
@@ -191,7 +191,7 @@ function PaySection({ theme }) {
   const [outcome, setOutcome] = useState('success')
 
   return (
-    <Section title="Pay" hint="Tap-to-pay charged in crypto. The terminal sends the amount; the user picks the asset and confirms.">
+    <Section title="Pay" hint="Tap the phone at a terminal, charged in crypto. The coin is picked before the tap (with a backup), Face ID arms the phone, the terminal sets the amount after the tap. The breakdown comes with the result.">
       <Spec title="Live flow: try both outcomes" column>
         <div style={{ maxWidth: 320 }}>
           <Segmented items={['Approved', 'Declined']} active={outcomes.indexOf(outcome)} onChange={(i) => setOutcome(outcomes[i])} />
@@ -205,6 +205,7 @@ function PaySection({ theme }) {
         {PAY_STEPS.map((s) => (
           <Small key={s} label={LABEL[s]}><PayScreen step={s} theme={theme} scaled /></Small>
         ))}
+        <Small label="Card frozen"><PayScreen step="ready" frozen theme={theme} scaled /></Small>
       </Grid>
     </Section>
   )
