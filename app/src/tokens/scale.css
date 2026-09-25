@@ -28,6 +28,14 @@
   --r-2xl:  32px;
   --r-full: 999px;
   --r-phone: 44px;   /* iPhone screen frame */
+  --r-device: 58px;  /* phone body = screen radius + frame width */
+  --r-device-hero: 36px;  /* the body at .62 */
+  --r-device-sm:   26px;  /* the body at .44 */
+
+  /* --- Phone frame width (3.6% of the 390 screen) --- */
+  --phone-frame:      14px;
+  --phone-frame-hero: 9px;   /* at .62 */
+  --phone-frame-sm:   6px;   /* at .44 */
 
   /* --- Control sizes (fixed height) --- */
   --control-xs: 24px;   /* chip sm */
