@@ -2,7 +2,11 @@ import { useState } from 'react'
 import { Text, Segmented, Button, Stack } from '../ui/index.js'
 import { HomeScreen } from '../screens/HomeScreen.jsx'
 import { PayScreen, PAY_STEPS } from '../screens/PayScreen.jsx'
-import { OnboardingScreen, ONBOARDING_STEPS } from '../screens/OnboardingScreen.jsx'
+import { OnboardingScreen, ONBOARDING_STEPS, ONBOARDING_CHECKS } from '../screens/OnboardingScreen.jsx'
+import { SignInScreen, SIGNIN_STEPS } from '../screens/SignInScreen.jsx'
+import { UnlockScreen, UNLOCK_STEPS, UNLOCK_CHECKS } from '../screens/UnlockScreen.jsx'
+import { VerifyScreen, VERIFY_STEPS, VERIFY_CHECKS } from '../screens/VerifyScreen.jsx'
+import { CardScreen, CARD_STEPS, CARD_CHECKS } from '../screens/CardScreen.jsx'
 import { SendScreen, SEND_STEPS } from '../screens/SendScreen.jsx'
 import { ReceiveScreen, RECEIVE_ASSETS } from '../screens/ReceiveScreen.jsx'
 import { ActivityScreen, ACTIVITY_FILTERS } from '../screens/ActivityScreen.jsx'
@@ -12,12 +16,42 @@ import { Section, Spec, Cell } from './parts.jsx'
 const HOME_STATES = ['default', 'loading', 'empty', 'error']
 
 const LABEL = {
-  welcome: 'Welcome', biometric: 'Biometrics', choice: 'Set up',
+  welcome: 'Welcome', email: 'Email', code: 'Code', passcode: 'Passcode', biometric: 'Biometrics', choice: 'Set up', backup: 'Backup',
+  reset: 'New passcode', faceid: 'Face ID', failed: 'Face ID failed',
+  intro: 'Intro', country: 'Country', details: 'Details', document: 'ID photo', selfie: 'Selfie', checking: 'Checking', approved: 'Card ready', retry: 'Retake',
+  main: 'Card', limits: 'Limit', lost: 'Lost or stolen', replaced: 'Replaced',
   request: 'Terminal request', confirm: 'Confirm', processing: 'Processing', success: 'Success', declined: 'Declined',
   address: 'Address', amount: 'Amount', review: 'Review',
   settings: 'Settings', profile: 'Profile',
 }
 const SEND_LABEL = { ...LABEL, confirm: 'Face ID', success: 'Sent' }
+const ONBOARDING_LABEL = { ...LABEL, confirm: 'Repeat passcode' }
+const CARD_LABEL = { ...LABEL, details: 'Details (Face ID)' }
+
+/** Every check a flow makes, frozen in its error state. */
+function Checks({ checks, render }) {
+  return (
+    <Grid title="Validation" contract="every check the flow makes, in its error state">
+      {checks.map((c) => (
+        <Small key={c.id} label={c.label}>{render(c)}</Small>
+      ))}
+    </Grid>
+  )
+}
+
+/** A live flow with its outcome picked on a Segmented, like Pay. */
+function Live({ title, items, value, onChange, children }) {
+  return (
+    <Spec title={title} column>
+      {items && (
+        <div style={{ maxWidth: 320 }}>
+          <Segmented items={items.map((i) => i.label)} active={items.findIndex((i) => i.id === value)} onChange={(i) => onChange(items[i].id)} />
+        </div>
+      )}
+      <div className="Device">{children}</div>
+    </Spec>
+  )
+}
 
 function Grid({ title, contract, children }) {
   return <Spec title={title} contract={contract}>{children}</Spec>
@@ -32,13 +66,83 @@ function Small({ label, children }) {
 }
 
 function OnboardingSection({ theme }) {
+  const [run, setRun] = useState(0)
   return (
-    <Section title="Onboarding" hint="Welcome → biometrics → create or import. The demo stops before the recovery phrase on purpose.">
+    <Section title="Onboarding · sign-up" hint="Welcome → email → code → passcode → biometrics → create or import → backup. The new wallet is backed up with a passkey; no screen shows or asks for a recovery phrase.">
+      <Live title="Live flow">
+        <OnboardingScreen key={run} theme={theme} onFinish={() => setRun((r) => r + 1)} onSignIn={() => setRun((r) => r + 1)} />
+      </Live>
       <Grid title="All steps" contract="Figma: one flow, arrows between frames">
         {ONBOARDING_STEPS.map((s) => (
-          <Small key={s} label={LABEL[s]}><OnboardingScreen step={s} theme={theme} scaled /></Small>
+          <Small key={s} label={ONBOARDING_LABEL[s]}><OnboardingScreen step={s} theme={theme} scaled /></Small>
         ))}
       </Grid>
+      <Checks checks={ONBOARDING_CHECKS} render={(c) => <OnboardingScreen step={c.step} preset={c.preset} theme={theme} scaled />} />
+    </Section>
+  )
+}
+
+function SignInSection({ theme }) {
+  return (
+    <Section title="Sign in" hint="A returning user on a new phone: email → code → passcode. Forgot the passcode? The email was just confirmed, so a new one is set right there.">
+      <Grid title="All steps">
+        {SIGNIN_STEPS.map((s) => (
+          <Small key={s} label={LABEL[s]}><SignInScreen step={s} theme={theme} scaled /></Small>
+        ))}
+      </Grid>
+    </Section>
+  )
+}
+
+function UnlockSection({ theme }) {
+  const [run, setRun] = useState(0)
+  return (
+    <Section title="Unlock" hint="The app comes back from the background: Face ID first, the passcode when Face ID can’t. The live flow fails the first scan on purpose. Five wrong passcodes pause the pad for 30 s.">
+      <Live title="Live flow: the first scan fails">
+        <UnlockScreen key={run} theme={theme} onUnlock={() => setRun((r) => r + 1)} onForgot={() => setRun((r) => r + 1)} />
+      </Live>
+      <Grid title="All steps">
+        {UNLOCK_STEPS.map((s) => (
+          <Small key={s} label={LABEL[s]}><UnlockScreen step={s} theme={theme} scaled /></Small>
+        ))}
+      </Grid>
+      <Checks checks={UNLOCK_CHECKS} render={(c) => <UnlockScreen step={c.step} preset={c.preset} theme={theme} scaled />} />
+    </Section>
+  )
+}
+
+function VerifySection({ theme }) {
+  const outcomes = [{ id: 'approved', label: 'Approved' }, { id: 'retry', label: 'Blurry ID' }]
+  const [outcome, setOutcome] = useState('approved')
+  const [run, setRun] = useState(0)
+  return (
+    <Section title="Verify identity" hint="The check a card issuer must run, then the card. Why first, refuse early (country, age), and a retry asks again only for the one photo that failed.">
+      <Live title="Live flow: try both outcomes" items={outcomes} value={outcome} onChange={(o) => { setOutcome(o); setRun((r) => r + 1) }}>
+        <VerifyScreen key={`${outcome}-${run}`} outcome={outcome} theme={theme} onFinish={() => setRun((r) => r + 1)} onExit={() => setRun((r) => r + 1)} />
+      </Live>
+      <Grid title="All steps">
+        {VERIFY_STEPS.map((s) => (
+          <Small key={s} label={LABEL[s]}><VerifyScreen step={s} theme={theme} scaled /></Small>
+        ))}
+      </Grid>
+      <Checks checks={VERIFY_CHECKS} render={(c) => <VerifyScreen step={c.step} preset={c.preset} theme={theme} scaled />} />
+    </Section>
+  )
+}
+
+function CardSection({ theme }) {
+  const [run, setRun] = useState(0)
+  return (
+    <Section title="Card" hint="Freeze, details behind Face ID, a daily limit, lost or stolen. Each action is sized to its risk: freezing is one toggle, raising a limit past $5,000 asks for Face ID, blocking offers Freeze instead.">
+      <Live title="Live flow">
+        <CardScreen key={run} theme={theme} onExit={() => setRun((r) => r + 1)} />
+      </Live>
+      <Grid title="All steps">
+        {CARD_STEPS.map((s) => (
+          <Small key={s} label={CARD_LABEL[s]}><CardScreen step={s} theme={theme} scaled /></Small>
+        ))}
+      </Grid>
+      <Checks checks={CARD_CHECKS} render={(c) => <CardScreen step={c.step} preset={c.preset} theme={theme} scaled />} />
     </Section>
   )
 }
@@ -155,7 +259,11 @@ export function Screens({ theme }) {
         </Stack>
       </Section>
       <OnboardingSection theme={theme} />
+      <SignInSection theme={theme} />
+      <UnlockSection theme={theme} />
+      <VerifySection theme={theme} />
       <HomeSection theme={theme} />
+      <CardSection theme={theme} />
       <PaySection theme={theme} />
       <SendSection theme={theme} />
       <ReceiveSection theme={theme} />

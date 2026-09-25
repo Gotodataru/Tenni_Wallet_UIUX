@@ -4,6 +4,7 @@ import { HomeScreen } from '../screens/HomeScreen.jsx'
 import { PayScreen } from '../screens/PayScreen.jsx'
 import { SendScreen } from '../screens/SendScreen.jsx'
 import { ReceiveScreen } from '../screens/ReceiveScreen.jsx'
+import { VerifyScreen } from '../screens/VerifyScreen.jsx'
 import { ICON_NAMES } from '../icons/paths.js'
 import { Section, Spec, Cell } from './parts.jsx'
 import homeBefore from '../assets/case/home-before.webp'
@@ -27,7 +28,7 @@ const FACTS = [
   ['Product', 'Crypto wallet with a debit card'],
   ['Platform', 'iOS, 390 × 844'],
   ['Scope', 'UX flows · UI · design system · coded prototype'],
-  ['System', `44 components · ${ICON_NAMES.length} icons · 2 themes`],
+  ['System', `45 components · ${ICON_NAMES.length} icons · 2 themes`],
 ]
 
 const TRY = [
@@ -35,7 +36,9 @@ const TRY = [
   'Send → type anything into the address field, then paste an Ethereum address',
   'Send → Max: it leaves room for the network fee',
   'More → Dark theme switches the whole prototype',
-  'More → Log out walks you through onboarding and back',
+  'Tap the card → freeze it, then try to Pay',
+  'More → Lock the app now: the first Face ID scan fails on purpose',
+  'More → Log out → Get started: try 123456 as a passcode, or a birth date after 2008',
 ]
 
 /**
@@ -63,6 +66,11 @@ const DECISIONS = [
     ],
   },
   {
+    title: 'A check runs when you commit, and names the fix',
+    body: 'Nothing turns red while you are still typing. A field is checked on Continue or on the sixth digit, and every error says what to do: "Use Latin letters, as printed in your ID", not "Invalid name". The hard stops come first: a country without the card or an age under 18 ends the flow on the step where it is typed, not after the review. A failed ID check asks again only for the one photo that failed.',
+    previews: (theme) => [{ label: 'Verify · details that don’t pass', screen: <VerifyScreen step="details" preset="errors" theme={theme} scaled /> }],
+  },
+  {
     title: 'The address is shown once, in full',
     body: 'Receive shows the address in one place only. The QR caption is off, so there is no second, truncated copy to compare against. The network warning names the exact network, because a wrong-network transfer is unrecoverable.',
     previews: (theme) => [{ label: 'Receive · Tether (TRC-20)', screen: <ReceiveScreen asset="usdt" theme={theme} scaled /> }],
@@ -74,7 +82,11 @@ const STATES = [
   'Pay: processing, success, declined with two ways out',
   'Send: invalid and wrong-network address, not enough funds',
   'Activity: pending and failed transactions, nothing found',
-  'Onboarding: a clear stop before the recovery phrase, since a public demo never asks for one',
+  'Sign-up: email already taken, terms not accepted, a wrong code and a lock after three, a passcode too easy to guess or not repeated',
+  'Verify: a country without the card, under 18, glare on the ID photo, a blurry ID sent back for that one photo',
+  'Unlock: Face ID not recognized, a wrong passcode, a 30-second pause after five',
+  'Card: a frozen card stopped in Pay with a one-tap way out, a limit raise that asks for Face ID',
+  'No screen shows or asks for a recovery phrase: the wallet is backed up with a passkey',
 ]
 
 const NEXT = [
@@ -170,7 +182,7 @@ export function Case({ theme }) {
         </Spec>
       </Section>
 
-      <Section id="prototype" title="Clickable prototype" hint="All seven screens wired into one app. It runs right here, no Figma and no install.">
+      <Section id="prototype" title="Clickable prototype" hint="Eleven screens wired into one app, from sign-up to a lost card. It runs right here, no Figma and no install.">
         <Spec title="Try this">
           <div className="Device">
             <PrototypeApp theme={theme} />
